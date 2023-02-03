@@ -1,0 +1,6 @@
+{
+  "packageName": "lusid_workflow",
+  "projectName": "lusid-workflow-sdk",
+  "generateSourceCodeOnly": "generateSourceCodeOnly",
+  "packageVersion": "0.0.1"
+}
