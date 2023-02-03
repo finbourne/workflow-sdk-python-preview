@@ -1,0 +1,2814 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "FINBOURNE Workflow API",
+    "termsOfService": "https://www.finbourne.com/legal/terms-conditions",
+    "contact": {
+      "name": "FINBOURNE Technology",
+      "url": "https://www.finbourne.com",
+      "email": "info@finbourne.com"
+    },
+    "version": "0.1.128",
+    "x-logo": {
+      "url": "https://www.lusid.com/app/assets/logo_white.png",
+      "backgroundColor": "#415464"
+    },
+    "description": "FINBOURNE Technology"
+  },
+  "servers": [
+    {
+      "url": "https://www.lusid.com/workflow"
+    }
+  ],
+  "paths": {
+    "/api/taskdefinitions": {
+      "post": {
+        "tags": [
+          "Task Definitions"
+        ],
+        "summary": "[EXPERIMENTAL] CreateTaskDefinition: Create a new Task Definition.",
+        "operationId": "CreateTaskDefinition",
+        "requestBody": {
+          "description": "The data to create a Task Definition",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTaskDefinitionRequest"
+              },
+              "example": {
+                "id": {
+                  "scope": "A1",
+                  "code": "ZZZ"
+                },
+                "displayName": "An example TaskDefinition",
+                "description": "Test",
+                "fields": [
+                  {
+                    "name": "assignee",
+                    "type": "String"
+                  },
+                  {
+                    "name": "resolutionDetail",
+                    "type": "String"
+                  }
+                ],
+                "states": [
+                  {
+                    "type": "Input",
+                    "name": "Submitted"
+                  },
+                  {
+                    "type": "Internal",
+                    "name": "InProgress"
+                  },
+                  {
+                    "type": "Internal",
+                    "name": "SendingSurvey"
+                  },
+                  {
+                    "type": "Output",
+                    "name": "Done"
+                  },
+                  {
+                    "type": "Output",
+                    "name": "SurveyNotSent"
+                  },
+                  {
+                    "type": "Output",
+                    "name": "NotDone"
+                  }
+                ],
+                "transitions": [
+                  {
+                    "from": "Submitted",
+                    "to": "InProgress",
+                    "trigger": "start",
+                    "guard": "fields.assignee exists AND fields.assignee NOT eq ''"
+                  },
+                  {
+                    "from": "InProgress",
+                    "to": "SendingSurvey",
+                    "trigger": "resolve",
+                    "guard": "fields.resolutionDetail exists AND fields.resolutionDetail NOT eq ''",
+                    "output": "sendSurvey"
+                  },
+                  {
+                    "from": "SendingSurvey",
+                    "to": "Done",
+                    "trigger": "success"
+                  },
+                  {
+                    "from": "SendingSurvey",
+                    "to": "SurveyNotSent",
+                    "trigger": "failure"
+                  },
+                  {
+                    "from": "SendingSurvey",
+                    "to": "NotDone",
+                    "trigger": "timeout"
+                  },
+                  {
+                    "from": "InProgress",
+                    "to": "NotDone",
+                    "trigger": "cancel",
+                    "guard": "fields.cancellationDetail exists AND fields.cancellationDetail NOT eq ''"
+                  }
+                ],
+                "triggers": [
+                  {
+                    "name": "start",
+                    "schema": {
+                      "type": "Manual",
+                      "timeInState": 0
+                    }
+                  },
+                  {
+                    "name": "cancel",
+                    "schema": {
+                      "type": "Manual",
+                      "timeInState": 0
+                    }
+                  },
+                  {
+                    "name": "resolve",
+                    "schema": {
+                      "type": "Manual",
+                      "timeInState": 0
+                    }
+                  },
+                  {
+                    "name": "timeout",
+                    "schema": {
+                      "type": "Timeout",
+                      "timeInState": 30
+                    }
+                  },
+                  {
+                    "name": "success",
+                    "schema": {
+                      "type": "WebHook",
+                      "timeInState": 0,
+                      "responseCodes": {
+                        "in": [
+                          200
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "name": "failure",
+                    "schema": {
+                      "type": "WebHook",
+                      "timeInState": 0,
+                      "responseCodes": {
+                        "notIn": [
+                          200
+                        ]
+                      }
+                    }
+                  }
+                ],
+                "initialState": {
+                  "name": "Submitted",
+                  "requiredFields": [
+                    "clientId",
+                    "description"
+                  ]
+                },
+                "outputs": [
+                  {
+                    "name": "a web hook",
+                    "schema": {
+                      "requestDetails": {
+                        "method": "Get",
+                        "url": "www.zzz.com",
+                        "parameters": [
+                          {
+                            "kind": "Query",
+                            "key": "client_id",
+                            "value": "ZZZ"
+                          }
+                        ],
+                        "expectedHttpResponseCodes": [
+                          "200"
+                        ]
+                      },
+                      "type": "WebHook"
+                    }
+                  }
+                ]
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTaskDefinitionRequest"
+              },
+              "example": {
+                "id": {
+                  "scope": "A1",
+                  "code": "ZZZ"
+                },
+                "displayName": "An example TaskDefinition",
+                "description": "Test",
+                "fields": [
+                  {
+                    "name": "assignee",
+                    "type": "String"
+                  },
+                  {
+                    "name": "resolutionDetail",
+                    "type": "String"
+                  }
+                ],
+                "states": [
+                  {
+                    "type": "Input",
+                    "name": "Submitted"
+                  },
+                  {
+                    "type": "Internal",
+                    "name": "InProgress"
+                  },
+                  {
+                    "type": "Internal",
+                    "name": "SendingSurvey"
+                  },
+                  {
+                    "type": "Output",
+                    "name": "Done"
+                  },
+                  {
+                    "type": "Output",
+                    "name": "SurveyNotSent"
+                  },
+                  {
+                    "type": "Output",
+                    "name": "NotDone"
+                  }
+                ],
+                "transitions": [
+                  {
+                    "from": "Submitted",
+                    "to": "InProgress",
+                    "trigger": "start",
+                    "guard": "fields.assignee exists AND fields.assignee NOT eq ''"
+                  },
+                  {
+                    "from": "InProgress",
+                    "to": "SendingSurvey",
+                    "trigger": "resolve",
+                    "guard": "fields.resolutionDetail exists AND fields.resolutionDetail NOT eq ''",
+                    "output": "sendSurvey"
+                  },
+                  {
+                    "from": "SendingSurvey",
+                    "to": "Done",
+                    "trigger": "success"
+                  },
+                  {
+                    "from": "SendingSurvey",
+                    "to": "SurveyNotSent",
+                    "trigger": "failure"
+                  },
+                  {
+                    "from": "SendingSurvey",
+                    "to": "NotDone",
+                    "trigger": "timeout"
+                  },
+                  {
+                    "from": "InProgress",
+                    "to": "NotDone",
+                    "trigger": "cancel",
+                    "guard": "fields.cancellationDetail exists AND fields.cancellationDetail NOT eq ''"
+                  }
+                ],
+                "triggers": [
+                  {
+                    "name": "start",
+                    "schema": {
+                      "type": "Manual",
+                      "timeInState": 0
+                    }
+                  },
+                  {
+                    "name": "cancel",
+                    "schema": {
+                      "type": "Manual",
+                      "timeInState": 0
+                    }
+                  },
+                  {
+                    "name": "resolve",
+                    "schema": {
+                      "type": "Manual",
+                      "timeInState": 0
+                    }
+                  },
+                  {
+                    "name": "timeout",
+                    "schema": {
+                      "type": "Timeout",
+                      "timeInState": 30
+                    }
+                  },
+                  {
+                    "name": "success",
+                    "schema": {
+                      "type": "WebHook",
+                      "timeInState": 0,
+                      "responseCodes": {
+                        "in": [
+                          200
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "name": "failure",
+                    "schema": {
+                      "type": "WebHook",
+                      "timeInState": 0,
+                      "responseCodes": {
+                        "notIn": [
+                          200
+                        ]
+                      }
+                    }
+                  }
+                ],
+                "initialState": {
+                  "name": "Submitted",
+                  "requiredFields": [
+                    "clientId",
+                    "description"
+                  ]
+                },
+                "outputs": [
+                  {
+                    "name": "a web hook",
+                    "schema": {
+                      "requestDetails": {
+                        "method": "Get",
+                        "url": "www.zzz.com",
+                        "parameters": [
+                          {
+                            "kind": "Query",
+                            "key": "client_id",
+                            "value": "ZZZ"
+                          }
+                        ],
+                        "expectedHttpResponseCodes": [
+                          "200"
+                        ]
+                      },
+                      "type": "WebHook"
+                    }
+                  }
+                ]
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTaskDefinitionRequest"
+              },
+              "example": {
+                "id": {
+                  "scope": "A1",
+                  "code": "ZZZ"
+                },
+                "displayName": "An example TaskDefinition",
+                "description": "Test",
+                "fields": [
+                  {
+                    "name": "assignee",
+                    "type": "String"
+                  },
+                  {
+                    "name": "resolutionDetail",
+                    "type": "String"
+                  }
+                ],
+                "states": [
+                  {
+                    "type": "Input",
+                    "name": "Submitted"
+                  },
+                  {
+                    "type": "Internal",
+                    "name": "InProgress"
+                  },
+                  {
+                    "type": "Internal",
+                    "name": "SendingSurvey"
+                  },
+                  {
+                    "type": "Output",
+                    "name": "Done"
+                  },
+                  {
+                    "type": "Output",
+                    "name": "SurveyNotSent"
+                  },
+                  {
+                    "type": "Output",
+                    "name": "NotDone"
+                  }
+                ],
+                "transitions": [
+                  {
+                    "from": "Submitted",
+                    "to": "InProgress",
+                    "trigger": "start",
+                    "guard": "fields.assignee exists AND fields.assignee NOT eq ''"
+                  },
+                  {
+                    "from": "InProgress",
+                    "to": "SendingSurvey",
+                    "trigger": "resolve",
+                    "guard": "fields.resolutionDetail exists AND fields.resolutionDetail NOT eq ''",
+                    "output": "sendSurvey"
+                  },
+                  {
+                    "from": "SendingSurvey",
+                    "to": "Done",
+                    "trigger": "success"
+                  },
+                  {
+                    "from": "SendingSurvey",
+                    "to": "SurveyNotSent",
+                    "trigger": "failure"
+                  },
+                  {
+                    "from": "SendingSurvey",
+                    "to": "NotDone",
+                    "trigger": "timeout"
+                  },
+                  {
+                    "from": "InProgress",
+                    "to": "NotDone",
+                    "trigger": "cancel",
+                    "guard": "fields.cancellationDetail exists AND fields.cancellationDetail NOT eq ''"
+                  }
+                ],
+                "triggers": [
+                  {
+                    "name": "start",
+                    "schema": {
+                      "type": "Manual",
+                      "timeInState": 0
+                    }
+                  },
+                  {
+                    "name": "cancel",
+                    "schema": {
+                      "type": "Manual",
+                      "timeInState": 0
+                    }
+                  },
+                  {
+                    "name": "resolve",
+                    "schema": {
+                      "type": "Manual",
+                      "timeInState": 0
+                    }
+                  },
+                  {
+                    "name": "timeout",
+                    "schema": {
+                      "type": "Timeout",
+                      "timeInState": 30
+                    }
+                  },
+                  {
+                    "name": "success",
+                    "schema": {
+                      "type": "WebHook",
+                      "timeInState": 0,
+                      "responseCodes": {
+                        "in": [
+                          200
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "name": "failure",
+                    "schema": {
+                      "type": "WebHook",
+                      "timeInState": 0,
+                      "responseCodes": {
+                        "notIn": [
+                          200
+                        ]
+                      }
+                    }
+                  }
+                ],
+                "initialState": {
+                  "name": "Submitted",
+                  "requiredFields": [
+                    "clientId",
+                    "description"
+                  ]
+                },
+                "outputs": [
+                  {
+                    "name": "a web hook",
+                    "schema": {
+                      "requestDetails": {
+                        "method": "Get",
+                        "url": "www.zzz.com",
+                        "parameters": [
+                          {
+                            "kind": "Query",
+                            "key": "client_id",
+                            "value": "ZZZ"
+                          }
+                        ],
+                        "expectedHttpResponseCodes": [
+                          "200"
+                        ]
+                      },
+                      "type": "WebHook"
+                    }
+                  }
+                ]
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTaskDefinitionRequest"
+              },
+              "example": {
+                "id": {
+                  "scope": "A1",
+                  "code": "ZZZ"
+                },
+                "displayName": "An example TaskDefinition",
+                "description": "Test",
+                "fields": [
+                  {
+                    "name": "assignee",
+                    "type": "String"
+                  },
+                  {
+                    "name": "resolutionDetail",
+                    "type": "String"
+                  }
+                ],
+                "states": [
+                  {
+                    "type": "Input",
+                    "name": "Submitted"
+                  },
+                  {
+                    "type": "Internal",
+                    "name": "InProgress"
+                  },
+                  {
+                    "type": "Internal",
+                    "name": "SendingSurvey"
+                  },
+                  {
+                    "type": "Output",
+                    "name": "Done"
+                  },
+                  {
+                    "type": "Output",
+                    "name": "SurveyNotSent"
+                  },
+                  {
+                    "type": "Output",
+                    "name": "NotDone"
+                  }
+                ],
+                "transitions": [
+                  {
+                    "from": "Submitted",
+                    "to": "InProgress",
+                    "trigger": "start",
+                    "guard": "fields.assignee exists AND fields.assignee NOT eq ''"
+                  },
+                  {
+                    "from": "InProgress",
+                    "to": "SendingSurvey",
+                    "trigger": "resolve",
+                    "guard": "fields.resolutionDetail exists AND fields.resolutionDetail NOT eq ''",
+                    "output": "sendSurvey"
+                  },
+                  {
+                    "from": "SendingSurvey",
+                    "to": "Done",
+                    "trigger": "success"
+                  },
+                  {
+                    "from": "SendingSurvey",
+                    "to": "SurveyNotSent",
+                    "trigger": "failure"
+                  },
+                  {
+                    "from": "SendingSurvey",
+                    "to": "NotDone",
+                    "trigger": "timeout"
+                  },
+                  {
+                    "from": "InProgress",
+                    "to": "NotDone",
+                    "trigger": "cancel",
+                    "guard": "fields.cancellationDetail exists AND fields.cancellationDetail NOT eq ''"
+                  }
+                ],
+                "triggers": [
+                  {
+                    "name": "start",
+                    "schema": {
+                      "type": "Manual",
+                      "timeInState": 0
+                    }
+                  },
+                  {
+                    "name": "cancel",
+                    "schema": {
+                      "type": "Manual",
+                      "timeInState": 0
+                    }
+                  },
+                  {
+                    "name": "resolve",
+                    "schema": {
+                      "type": "Manual",
+                      "timeInState": 0
+                    }
+                  },
+                  {
+                    "name": "timeout",
+                    "schema": {
+                      "type": "Timeout",
+                      "timeInState": 30
+                    }
+                  },
+                  {
+                    "name": "success",
+                    "schema": {
+                      "type": "WebHook",
+                      "timeInState": 0,
+                      "responseCodes": {
+                        "in": [
+                          200
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "name": "failure",
+                    "schema": {
+                      "type": "WebHook",
+                      "timeInState": 0,
+                      "responseCodes": {
+                        "notIn": [
+                          200
+                        ]
+                      }
+                    }
+                  }
+                ],
+                "initialState": {
+                  "name": "Submitted",
+                  "requiredFields": [
+                    "clientId",
+                    "description"
+                  ]
+                },
+                "outputs": [
+                  {
+                    "name": "a web hook",
+                    "schema": {
+                      "requestDetails": {
+                        "method": "Get",
+                        "url": "www.zzz.com",
+                        "parameters": [
+                          {
+                            "kind": "Query",
+                            "key": "client_id",
+                            "value": "ZZZ"
+                          }
+                        ],
+                        "expectedHttpResponseCodes": [
+                          "200"
+                        ]
+                      },
+                      "type": "WebHook"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskDefinition"
+                },
+                "example": {
+                  "taskDefinitionId": {
+                    "scope": "A1",
+                    "code": "ZZZ",
+                    "version": 1
+                  },
+                  "displayName": "An example TaskDefinition",
+                  "description": "Test",
+                  "states": [
+                    {
+                      "type": "Input",
+                      "name": "Submitted"
+                    },
+                    {
+                      "type": "Internal",
+                      "name": "InProgress"
+                    },
+                    {
+                      "type": "Internal",
+                      "name": "SendingSurvey"
+                    },
+                    {
+                      "type": "Output",
+                      "name": "Done"
+                    },
+                    {
+                      "type": "Output",
+                      "name": "SurveyNotSent"
+                    },
+                    {
+                      "type": "Output",
+                      "name": "NotDone"
+                    }
+                  ],
+                  "fieldsSchema": [
+                    {
+                      "name": "assignee",
+                      "type": "String"
+                    },
+                    {
+                      "name": "resolutionDetail",
+                      "type": "String"
+                    }
+                  ],
+                  "initialState": {
+                    "name": "Submitted",
+                    "requiredFields": [
+                      "clientId",
+                      "description"
+                    ]
+                  },
+                  "triggers": [
+                    {
+                      "name": "start",
+                      "schema": {
+                        "type": "Manual",
+                        "timeInState": 0
+                      }
+                    },
+                    {
+                      "name": "cancel",
+                      "schema": {
+                        "type": "Manual",
+                        "timeInState": 0
+                      }
+                    },
+                    {
+                      "name": "resolve",
+                      "schema": {
+                        "type": "Manual",
+                        "timeInState": 0
+                      }
+                    },
+                    {
+                      "name": "timeout",
+                      "schema": {
+                        "type": "Timeout",
+                        "timeInState": 30
+                      }
+                    },
+                    {
+                      "name": "success",
+                      "schema": {
+                        "type": "WebHook",
+                        "timeInState": 0,
+                        "responseCodes": {
+                          "in": [
+                            200
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "name": "failure",
+                      "schema": {
+                        "type": "WebHook",
+                        "timeInState": 0,
+                        "responseCodes": {
+                          "notIn": [
+                            200
+                          ]
+                        }
+                      }
+                    }
+                  ],
+                  "outputs": [
+                    {
+                      "name": "a web hook",
+                      "schema": {
+                        "requestDetails": {
+                          "method": "Get",
+                          "url": "www.zzz.com",
+                          "parameters": [
+                            {
+                              "kind": "Query",
+                              "key": "client_id",
+                              "value": "ZZZ"
+                            }
+                          ],
+                          "expectedHttpResponseCodes": [
+                            "200"
+                          ]
+                        },
+                        "type": "WebHook"
+                      }
+                    }
+                  ],
+                  "transitions": [
+                    {
+                      "from": "Submitted",
+                      "to": "InProgress",
+                      "trigger": "start",
+                      "guard": "fields.assignee exists AND fields.assignee NOT eq ''"
+                    },
+                    {
+                      "from": "InProgress",
+                      "to": "SendingSurvey",
+                      "trigger": "resolve",
+                      "guard": "fields.resolutionDetail exists AND fields.resolutionDetail NOT eq ''",
+                      "output": "sendSurvey"
+                    },
+                    {
+                      "from": "SendingSurvey",
+                      "to": "Done",
+                      "trigger": "success"
+                    },
+                    {
+                      "from": "SendingSurvey",
+                      "to": "SurveyNotSent",
+                      "trigger": "failure"
+                    },
+                    {
+                      "from": "SendingSurvey",
+                      "to": "NotDone",
+                      "trigger": "timeout"
+                    },
+                    {
+                      "from": "InProgress",
+                      "to": "NotDone",
+                      "trigger": "cancel",
+                      "guard": "fields.cancellationDetail exists AND fields.cancellationDetail NOT eq ''"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The details of the input related failure",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": []
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
+      }
+    },
+    "/api/taskdefinitions/{scope}/{code}": {
+      "post": {
+        "tags": [
+          "Task Definitions"
+        ],
+        "summary": "[EXPERIMENTAL] CreateTaskInstance: Create a new Task Instance.",
+        "operationId": "CreateTaskInstance",
+        "parameters": [
+          {
+            "name": "scope",
+            "in": "path",
+            "description": "The scope of task definition to create task instance from",
+            "required": true,
+            "schema": {
+              "maxLength": 64,
+              "minLength": 1,
+              "pattern": "^[a-zA-Z0-9\\-_]+$",
+              "type": "string",
+              "description": "The scope of task definition to create task instance from"
+            }
+          },
+          {
+            "name": "code",
+            "in": "path",
+            "description": "The code of task definition to create a task instance from",
+            "required": true,
+            "schema": {
+              "maxLength": 64,
+              "minLength": 1,
+              "pattern": "^[a-zA-Z0-9\\-_]+$",
+              "type": "string",
+              "description": "The code of task definition to create a task instance from"
+            }
+          },
+          {
+            "name": "taskInstanceScope",
+            "in": "query",
+            "description": "The scope of the task instance should be in; set to 'default' if not provided.",
+            "schema": {
+              "maxLength": 64,
+              "minLength": 1,
+              "pattern": "^[a-zA-Z0-9\\-_]+$",
+              "type": "string",
+              "description": "The scope of the task instance should be in; set to 'default' if not provided.",
+              "default": "default",
+              "nullable": true
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request to create task instance",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTaskInstanceRequest"
+              },
+              "example": {
+                "correlationId": "correlation-id"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTaskInstanceRequest"
+              },
+              "example": {
+                "correlationId": "correlation-id"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTaskInstanceRequest"
+              },
+              "example": {
+                "correlationId": "correlation-id"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTaskInstanceRequest"
+              },
+              "example": {
+                "correlationId": "correlation-id"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskInstance"
+                },
+                "example": {
+                  "taskDefinitionId": {
+                    "scope": "A1Scope",
+                    "code": "A1-Def",
+                    "version": 0
+                  },
+                  "taskInstanceId": "4aa4b4e1-866a-493e-8d33-51f9e47a0843",
+                  "correlationId": "correlation-id",
+                  "activeState": "foo",
+                  "status": "Undefined",
+                  "terminalState": false,
+                  "created": "0001-01-01T00:00:00.0000000+00:00"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The details of the input related failure",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": []
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
+      },
+      "get": {
+        "tags": [
+          "Task Definitions"
+        ],
+        "summary": "[EXPERIMENTAL] GetTaskDefinition: Get a Task Definition.",
+        "operationId": "GetTaskDefinition",
+        "parameters": [
+          {
+            "name": "scope",
+            "in": "path",
+            "description": "The scope that identifies a Task Definition",
+            "required": true,
+            "schema": {
+              "maxLength": 64,
+              "minLength": 1,
+              "pattern": "^[a-zA-Z0-9\\-_]+$",
+              "type": "string",
+              "description": "The scope that identifies a Task Definition"
+            }
+          },
+          {
+            "name": "code",
+            "in": "path",
+            "description": "The code that identifies a Task Definition",
+            "required": true,
+            "schema": {
+              "maxLength": 64,
+              "minLength": 1,
+              "pattern": "^[a-zA-Z0-9\\-_]+$",
+              "type": "string",
+              "description": "The code that identifies a Task Definition"
+            }
+          },
+          {
+            "name": "asAt",
+            "in": "query",
+            "description": "AsAt time to retrieve stated Task Definition. Default to current time if not provided.",
+            "schema": {
+              "type": "string",
+              "description": "AsAt time to retrieve stated Task Definition. Default to current time if not provided.",
+              "format": "date-time",
+              "nullable": true
+            },
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskDefinition"
+                },
+                "example": {
+                  "taskDefinitionId": {
+                    "scope": "A1",
+                    "code": "ZZZ",
+                    "version": 1
+                  },
+                  "displayName": "An example TaskDefinition",
+                  "description": "Test",
+                  "states": [
+                    {
+                      "type": "Input",
+                      "name": "Submitted"
+                    },
+                    {
+                      "type": "Internal",
+                      "name": "InProgress"
+                    },
+                    {
+                      "type": "Internal",
+                      "name": "SendingSurvey"
+                    },
+                    {
+                      "type": "Output",
+                      "name": "Done"
+                    },
+                    {
+                      "type": "Output",
+                      "name": "SurveyNotSent"
+                    },
+                    {
+                      "type": "Output",
+                      "name": "NotDone"
+                    }
+                  ],
+                  "fieldsSchema": [
+                    {
+                      "name": "assignee",
+                      "type": "String"
+                    },
+                    {
+                      "name": "resolutionDetail",
+                      "type": "String"
+                    }
+                  ],
+                  "initialState": {
+                    "name": "Submitted",
+                    "requiredFields": [
+                      "clientId",
+                      "description"
+                    ]
+                  },
+                  "triggers": [
+                    {
+                      "name": "start",
+                      "schema": {
+                        "type": "Manual",
+                        "timeInState": 0
+                      }
+                    },
+                    {
+                      "name": "cancel",
+                      "schema": {
+                        "type": "Manual",
+                        "timeInState": 0
+                      }
+                    },
+                    {
+                      "name": "resolve",
+                      "schema": {
+                        "type": "Manual",
+                        "timeInState": 0
+                      }
+                    },
+                    {
+                      "name": "timeout",
+                      "schema": {
+                        "type": "Timeout",
+                        "timeInState": 30
+                      }
+                    },
+                    {
+                      "name": "success",
+                      "schema": {
+                        "type": "WebHook",
+                        "timeInState": 0,
+                        "responseCodes": {
+                          "in": [
+                            200
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "name": "failure",
+                      "schema": {
+                        "type": "WebHook",
+                        "timeInState": 0,
+                        "responseCodes": {
+                          "notIn": [
+                            200
+                          ]
+                        }
+                      }
+                    }
+                  ],
+                  "outputs": [
+                    {
+                      "name": "a web hook",
+                      "schema": {
+                        "requestDetails": {
+                          "method": "Get",
+                          "url": "www.zzz.com",
+                          "parameters": [
+                            {
+                              "kind": "Query",
+                              "key": "client_id",
+                              "value": "ZZZ"
+                            }
+                          ],
+                          "expectedHttpResponseCodes": [
+                            "200"
+                          ]
+                        },
+                        "type": "WebHook"
+                      }
+                    }
+                  ],
+                  "transitions": [
+                    {
+                      "from": "Submitted",
+                      "to": "InProgress",
+                      "trigger": "start",
+                      "guard": "fields.assignee exists AND fields.assignee NOT eq ''"
+                    },
+                    {
+                      "from": "InProgress",
+                      "to": "SendingSurvey",
+                      "trigger": "resolve",
+                      "guard": "fields.resolutionDetail exists AND fields.resolutionDetail NOT eq ''",
+                      "output": "sendSurvey"
+                    },
+                    {
+                      "from": "SendingSurvey",
+                      "to": "Done",
+                      "trigger": "success"
+                    },
+                    {
+                      "from": "SendingSurvey",
+                      "to": "SurveyNotSent",
+                      "trigger": "failure"
+                    },
+                    {
+                      "from": "SendingSurvey",
+                      "to": "NotDone",
+                      "trigger": "timeout"
+                    },
+                    {
+                      "from": "InProgress",
+                      "to": "NotDone",
+                      "trigger": "cancel",
+                      "guard": "fields.cancellationDetail exists AND fields.cancellationDetail NOT eq ''"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The details of the input related failure",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No task definition exists in current scope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": []
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
+      },
+      "put": {
+        "tags": [
+          "Task Definitions"
+        ],
+        "summary": "[EXPERIMENTAL] UpdateTaskDefinition: Update an existing Task Definition.",
+        "operationId": "UpdateTaskDefinition",
+        "parameters": [
+          {
+            "name": "scope",
+            "in": "path",
+            "description": "The scope that identifies a Task Definition",
+            "required": true,
+            "schema": {
+              "maxLength": 64,
+              "minLength": 1,
+              "pattern": "^[a-zA-Z0-9\\-_]+$",
+              "type": "string",
+              "description": "The scope that identifies a Task Definition"
+            }
+          },
+          {
+            "name": "code",
+            "in": "path",
+            "description": "The code that identifies a Task Definition",
+            "required": true,
+            "schema": {
+              "maxLength": 64,
+              "minLength": 1,
+              "pattern": "^[a-zA-Z0-9\\-_]+$",
+              "type": "string",
+              "description": "The code that identifies a Task Definition"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The data to update a Task Definition",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTaskDefinitionRequest"
+              },
+              "example": {
+                "displayName": "bar",
+                "description": "foo",
+                "fields": [
+                  {
+                    "name": "foo",
+                    "type": "Boolean"
+                  }
+                ]
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTaskDefinitionRequest"
+              },
+              "example": {
+                "displayName": "bar",
+                "description": "foo",
+                "fields": [
+                  {
+                    "name": "foo",
+                    "type": "Boolean"
+                  }
+                ]
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTaskDefinitionRequest"
+              },
+              "example": {
+                "displayName": "bar",
+                "description": "foo",
+                "fields": [
+                  {
+                    "name": "foo",
+                    "type": "Boolean"
+                  }
+                ]
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTaskDefinitionRequest"
+              },
+              "example": {
+                "displayName": "bar",
+                "description": "foo",
+                "fields": [
+                  {
+                    "name": "foo",
+                    "type": "Boolean"
+                  }
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskDefinition"
+                },
+                "example": {
+                  "taskDefinitionId": {
+                    "scope": "A1",
+                    "code": "ZZZ",
+                    "version": 1
+                  },
+                  "displayName": "An example TaskDefinition",
+                  "description": "Test",
+                  "states": [
+                    {
+                      "type": "Input",
+                      "name": "Submitted"
+                    },
+                    {
+                      "type": "Internal",
+                      "name": "InProgress"
+                    },
+                    {
+                      "type": "Internal",
+                      "name": "SendingSurvey"
+                    },
+                    {
+                      "type": "Output",
+                      "name": "Done"
+                    },
+                    {
+                      "type": "Output",
+                      "name": "SurveyNotSent"
+                    },
+                    {
+                      "type": "Output",
+                      "name": "NotDone"
+                    }
+                  ],
+                  "fieldsSchema": [
+                    {
+                      "name": "assignee",
+                      "type": "String"
+                    },
+                    {
+                      "name": "resolutionDetail",
+                      "type": "String"
+                    }
+                  ],
+                  "initialState": {
+                    "name": "Submitted",
+                    "requiredFields": [
+                      "clientId",
+                      "description"
+                    ]
+                  },
+                  "triggers": [
+                    {
+                      "name": "start",
+                      "schema": {
+                        "type": "Manual",
+                        "timeInState": 0
+                      }
+                    },
+                    {
+                      "name": "cancel",
+                      "schema": {
+                        "type": "Manual",
+                        "timeInState": 0
+                      }
+                    },
+                    {
+                      "name": "resolve",
+                      "schema": {
+                        "type": "Manual",
+                        "timeInState": 0
+                      }
+                    },
+                    {
+                      "name": "timeout",
+                      "schema": {
+                        "type": "Timeout",
+                        "timeInState": 30
+                      }
+                    },
+                    {
+                      "name": "success",
+                      "schema": {
+                        "type": "WebHook",
+                        "timeInState": 0,
+                        "responseCodes": {
+                          "in": [
+                            200
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "name": "failure",
+                      "schema": {
+                        "type": "WebHook",
+                        "timeInState": 0,
+                        "responseCodes": {
+                          "notIn": [
+                            200
+                          ]
+                        }
+                      }
+                    }
+                  ],
+                  "outputs": [
+                    {
+                      "name": "a web hook",
+                      "schema": {
+                        "requestDetails": {
+                          "method": "Get",
+                          "url": "www.zzz.com",
+                          "parameters": [
+                            {
+                              "kind": "Query",
+                              "key": "client_id",
+                              "value": "ZZZ"
+                            }
+                          ],
+                          "expectedHttpResponseCodes": [
+                            "200"
+                          ]
+                        },
+                        "type": "WebHook"
+                      }
+                    }
+                  ],
+                  "transitions": [
+                    {
+                      "from": "Submitted",
+                      "to": "InProgress",
+                      "trigger": "start",
+                      "guard": "fields.assignee exists AND fields.assignee NOT eq ''"
+                    },
+                    {
+                      "from": "InProgress",
+                      "to": "SendingSurvey",
+                      "trigger": "resolve",
+                      "guard": "fields.resolutionDetail exists AND fields.resolutionDetail NOT eq ''",
+                      "output": "sendSurvey"
+                    },
+                    {
+                      "from": "SendingSurvey",
+                      "to": "Done",
+                      "trigger": "success"
+                    },
+                    {
+                      "from": "SendingSurvey",
+                      "to": "SurveyNotSent",
+                      "trigger": "failure"
+                    },
+                    {
+                      "from": "SendingSurvey",
+                      "to": "NotDone",
+                      "trigger": "timeout"
+                    },
+                    {
+                      "from": "InProgress",
+                      "to": "NotDone",
+                      "trigger": "cancel",
+                      "guard": "fields.cancellationDetail exists AND fields.cancellationDetail NOT eq ''"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The details of the input related failure",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No task definition exists in current scope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": []
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
+      },
+      "delete": {
+        "tags": [
+          "Task Definitions"
+        ],
+        "summary": "[EXPERIMENTAL] DeleteTaskDefinition: Delete a Task Definition.",
+        "operationId": "DeleteTaskDefinition",
+        "parameters": [
+          {
+            "name": "scope",
+            "in": "path",
+            "description": "The scope that identifies a Task Definition",
+            "required": true,
+            "schema": {
+              "maxLength": 64,
+              "minLength": 1,
+              "pattern": "^[a-zA-Z0-9\\-_]+$",
+              "type": "string",
+              "description": "The scope that identifies a Task Definition"
+            }
+          },
+          {
+            "name": "code",
+            "in": "path",
+            "description": "The code that identifies a Task Definition",
+            "required": true,
+            "schema": {
+              "maxLength": 64,
+              "minLength": 1,
+              "pattern": "^[a-zA-Z0-9\\-_]+$",
+              "type": "string",
+              "description": "The code that identifies a Task Definition"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeletedEntityResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The details of the input related failure",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No task definition exists in current scope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": []
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
+      }
+    },
+    "/api/taskdefinitions/{scope}/{code}/instances": {
+      "get": {
+        "tags": [
+          "Task Definitions"
+        ],
+        "summary": "[EXPERIMENTAL] GetTaskInstancesForDefinition: Get all Task Instances based on a Task Definition",
+        "operationId": "GetTaskInstancesForDefinition",
+        "parameters": [
+          {
+            "name": "scope",
+            "in": "path",
+            "description": "The scope of the source Task Definition and the Task Instances so be searched under.",
+            "required": true,
+            "schema": {
+              "maxLength": 64,
+              "minLength": 1,
+              "pattern": "^[a-zA-Z0-9\\-_]+$",
+              "type": "string",
+              "description": "The scope of the source Task Definition and the Task Instances so be searched under."
+            }
+          },
+          {
+            "name": "code",
+            "in": "path",
+            "description": "The code that identifies the source Task Definition",
+            "required": true,
+            "schema": {
+              "maxLength": 64,
+              "minLength": 1,
+              "pattern": "^[a-zA-Z0-9\\-_]+$",
+              "type": "string",
+              "description": "The code that identifies the source Task Definition"
+            }
+          },
+          {
+            "name": "asAt",
+            "in": "query",
+            "description": "AsAt time to retrieve stated Task Instances. Default to latest AsAt if not provided.",
+            "schema": {
+              "type": "string",
+              "description": "AsAt time to retrieve stated Task Instances. Default to latest AsAt if not provided.",
+              "format": "date-time",
+              "nullable": true
+            },
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of Task Instances which share the requested Definition",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceListOfTaskInstance"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The details of the input related failure",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No Task Instances found in current scope for this Definition",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": []
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
+      }
+    },
+    "/api/taskinstances/{id}": {
+      "get": {
+        "tags": [
+          "Task Instances"
+        ],
+        "summary": "[EXPERIMENTAL] GetTaskInstance: Get a Task Instance.",
+        "operationId": "GetTaskInstance",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of the task instance to retrieve",
+            "required": true,
+            "schema": {
+              "maxLength": 40,
+              "minLength": 30,
+              "pattern": "^[a-zA-Z0-9\\-]+$",
+              "type": "string",
+              "description": "Id of the task instance to retrieve"
+            }
+          },
+          {
+            "name": "asAt",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string",
+              "description": "",
+              "format": "date-time",
+              "nullable": true
+            },
+            "x-nullable": true
+          },
+          {
+            "name": "taskInstanceScope",
+            "in": "query",
+            "description": "The scope of the task instance to retrieve from; 'default' if not provided.",
+            "schema": {
+              "maxLength": 64,
+              "minLength": 1,
+              "pattern": "^[a-zA-Z0-9\\-_]+$",
+              "type": "string",
+              "description": "The scope of the task instance to retrieve from; 'default' if not provided.",
+              "default": "default",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskInstance"
+                },
+                "example": {
+                  "taskDefinitionId": {
+                    "scope": "A1Scope",
+                    "code": "A1-Def",
+                    "version": 0
+                  },
+                  "taskInstanceId": "4aa4b4e1-866a-493e-8d33-51f9e47a0843",
+                  "correlationId": "correlation-id",
+                  "activeState": "foo",
+                  "status": "Undefined",
+                  "terminalState": false,
+                  "created": "0001-01-01T00:00:00.0000000+00:00"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The details of the input related failure",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No Task Instance exists in current scope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": []
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
+      }
+    },
+    "/api/updates": {
+      "post": {
+        "tags": [
+          "Updates"
+        ],
+        "summary": "[EXPERIMENTAL] Raise: Process an inbound Update.",
+        "operationId": "Raise",
+        "parameters": [
+          {
+            "name": "scope",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "schema": {
+              "maxLength": 64,
+              "minLength": 1,
+              "pattern": "^[a-zA-Z0-9\\-_]+$",
+              "type": "string",
+              "description": ""
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Update request",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTaskRequest"
+              },
+              "example": {
+                "field": "fieldName",
+                "value": "aaa"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTaskRequest"
+              },
+              "example": {
+                "field": "fieldName",
+                "value": "aaa"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTaskRequest"
+              },
+              "example": {
+                "field": "fieldName",
+                "value": "aaa"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTaskRequest"
+              },
+              "example": {
+                "field": "fieldName",
+                "value": "aaa"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "The details of the input related failure",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": []
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CreateTaskDefinitionRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/ResourceId"
+          },
+          "displayName": {
+            "type": "string",
+            "description": "Human readable name",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Human readable description",
+            "nullable": true
+          },
+          "fields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FieldSchema"
+            },
+            "description": "Defines the fields associated with this Task",
+            "nullable": true
+          },
+          "states": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/State"
+            },
+            "description": "The states this Task Definition operates over",
+            "nullable": true
+          },
+          "transitions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Transition"
+            },
+            "description": "Transitions",
+            "nullable": true
+          },
+          "triggers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Trigger"
+            },
+            "description": "Triggers",
+            "nullable": true
+          },
+          "initialState": {
+            "$ref": "#/components/schemas/InitialState"
+          },
+          "outputs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Output"
+            },
+            "description": "The Outputs of this Task",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains required info to create a new Task Definition"
+      },
+      "CreateTaskInstanceRequest": {
+        "type": "object",
+        "properties": {
+          "correlationId": {
+            "maxLength": 64,
+            "minLength": 36,
+            "pattern": "^[a-zA-Z0-9\\-_]+$",
+            "type": "string",
+            "description": "An identifier to allow correlation across the application tier",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains required info to create a new Task Instance"
+      },
+      "DeletedEntityResponse": {
+        "required": [
+          "asAt"
+        ],
+        "type": "object",
+        "properties": {
+          "href": {
+            "type": "string",
+            "description": "The Uri related to this Entity",
+            "format": "uri",
+            "nullable": true
+          },
+          "effectiveFrom": {
+            "type": "string",
+            "description": "The EffectiveFrom for this response",
+            "format": "date-time",
+            "nullable": true
+          },
+          "asAt": {
+            "type": "string",
+            "description": "The AsAt for this response",
+            "format": "date-time"
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Link"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FieldInstance": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The flattened path of a field, eg: investments.bonds.usd.tbill",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "description": "The JSON type of the data: https://datatracker.ietf.org/doc/html/rfc8259#section-3",
+            "nullable": true
+          },
+          "value": {
+            "type": "string",
+            "description": "The value of this Field",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "A Task Definition/Task Instance Field instance"
+      },
+      "FieldSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The flattened path of a field, eg: investments.bonds.usd.tbill",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "description": "The JSON type of the data: https://datatracker.ietf.org/doc/html/rfc8259",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Defines a Task Definition/Task Instance Field"
+      },
+      "HistoryEntry": {
+        "type": "object",
+        "properties": {
+          "timeStamp": {
+            "type": "string",
+            "description": "The timestamp for the entry",
+            "format": "date-time"
+          },
+          "entry": {
+            "type": "string",
+            "description": "The information itself",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "A single audit entry"
+      },
+      "InitialState": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The initial State of the Task Instance",
+            "nullable": true
+          },
+          "requiredFields": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Required input Fields for the initial State",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Defines the Initial State of the Task Instance"
+      },
+      "Link": {
+        "required": [
+          "href",
+          "method",
+          "relation"
+        ],
+        "type": "object",
+        "properties": {
+          "relation": {
+            "type": "string"
+          },
+          "href": {
+            "type": "string",
+            "format": "uri"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "method": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LusidProblemDetails": {
+        "required": [
+          "code",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "errorDetails": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "nullable": true
+          },
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          },
+          "extensions": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": false
+            },
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LusidValidationProblemDetails": {
+        "required": [
+          "code",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "errorDetails": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "nullable": true
+          },
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "errors": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          },
+          "extensions": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": false
+            },
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Output": {
+        "required": [
+          "name",
+          "schema"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The Name of this Output"
+          },
+          "schema": {
+            "$ref": "#/components/schemas/OutputSchema"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Defines the Outputs for a Task"
+      },
+      "OutputSchema": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/OutputType"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Abstracts the kinds of Outputs available"
+      },
+      "OutputType": {
+        "enum": [
+          "Undefined",
+          "WebHook"
+        ],
+        "type": "string",
+        "description": "Output Types"
+      },
+      "ResourceId": {
+        "required": [
+          "code",
+          "scope"
+        ],
+        "type": "object",
+        "properties": {
+          "scope": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResourceListOfTaskInstance": {
+        "required": [
+          "values"
+        ],
+        "type": "object",
+        "properties": {
+          "values": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TaskInstance"
+            }
+          },
+          "href": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Link"
+            },
+            "nullable": true
+          },
+          "nextPage": {
+            "type": "string",
+            "nullable": true
+          },
+          "previousPage": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "State": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Input/Internal/Output",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "The Name of this State",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "A Task Definition/Task Instance has a given set of States"
+      },
+      "Status": {
+        "enum": [
+          "Undefined",
+          "NotStarted",
+          "InProgress",
+          "Failed",
+          "Complete",
+          "Blocked"
+        ],
+        "type": "string",
+        "description": "Denotes the status of the entire Task Instance"
+      },
+      "TaskDefinition": {
+        "type": "object",
+        "properties": {
+          "taskDefinitionId": {
+            "$ref": "#/components/schemas/TaskDefinitionId"
+          },
+          "displayName": {
+            "type": "string",
+            "description": "Human readable name",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Human readable description",
+            "nullable": true
+          },
+          "states": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/State"
+            },
+            "description": "The states this Task Definition operates over",
+            "nullable": true
+          },
+          "fieldsSchema": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FieldSchema"
+            },
+            "description": "The Fields that this Task Definition operates on",
+            "nullable": true
+          },
+          "initialState": {
+            "$ref": "#/components/schemas/InitialState"
+          },
+          "triggers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Trigger"
+            },
+            "description": "The Triggers for State transition",
+            "nullable": true
+          },
+          "outputs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Output"
+            },
+            "description": "The Outputs of this Task",
+            "nullable": true
+          },
+          "transitions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Transition"
+            },
+            "description": "The Transitions between States",
+            "nullable": true
+          },
+          "instances": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Each Definition will have a number of instances associated with it",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "TaskDefinition"
+      },
+      "TaskDefinitionId": {
+        "type": "object",
+        "properties": {
+          "scope": {
+            "type": "string",
+            "description": "Identifer",
+            "nullable": true
+          },
+          "code": {
+            "type": "string",
+            "description": "Human readable Key",
+            "nullable": true
+          },
+          "version": {
+            "type": "integer",
+            "description": "Numeric versioning support",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Identification for a Task Definition"
+      },
+      "TaskInstance": {
+        "type": "object",
+        "properties": {
+          "taskDefinitionId": {
+            "$ref": "#/components/schemas/TaskDefinitionId"
+          },
+          "taskInstanceId": {
+            "type": "string",
+            "description": "The unique id for this Task Instance",
+            "format": "uuid"
+          },
+          "correlationId": {
+            "type": "string",
+            "description": "User-provided ID used to link entities and tasks",
+            "nullable": true
+          },
+          "states": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/State"
+            },
+            "description": "States",
+            "nullable": true
+          },
+          "transitions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Transition"
+            },
+            "description": "Transitions",
+            "nullable": true
+          },
+          "triggers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Trigger"
+            },
+            "description": "Triggers",
+            "nullable": true
+          },
+          "activeState": {
+            "type": "string",
+            "description": "Currently Active State",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/Status"
+          },
+          "terminalState": {
+            "type": "boolean",
+            "description": "True if no onward transitions are possible"
+          },
+          "created": {
+            "type": "string",
+            "description": "Creation timestamp",
+            "nullable": true
+          },
+          "updated": {
+            "type": "string",
+            "description": "Last Update timestamp",
+            "nullable": true
+          },
+          "lastTransition": {
+            "type": "string",
+            "description": "Last Transition timestamp",
+            "nullable": true
+          },
+          "fields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FieldInstance"
+            },
+            "description": "Fields and their latest values - should correspond with the Task Definition field schema",
+            "nullable": true
+          },
+          "receivers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "A list of downstream Tasks to be invoked on completion",
+            "nullable": true
+          },
+          "history": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HistoryEntry"
+            },
+            "description": "A list of timestamped messages detailing what has occurred to this Task",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Defines an Instance of a TaskDefinition"
+      },
+      "Transition": {
+        "type": "object",
+        "properties": {
+          "from": {
+            "type": "string",
+            "description": "The State this Transition if coming From",
+            "nullable": true
+          },
+          "to": {
+            "type": "string",
+            "description": "The State this Transition is going To",
+            "nullable": true
+          },
+          "trigger": {
+            "type": "string",
+            "description": "The Trigger for this Transition",
+            "nullable": true
+          },
+          "guard": {
+            "type": "string",
+            "description": "The Guard for this Transition, if any",
+            "nullable": true
+          },
+          "output": {
+            "type": "string",
+            "description": "The Output action to invoke on successful Transition",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Defines a State change"
+      },
+      "Trigger": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The key/Name of this Trigger",
+            "nullable": true
+          },
+          "schema": {
+            "$ref": "#/components/schemas/TriggerSchema"
+          }
+        },
+        "additionalProperties": false,
+        "description": "State changes happen in response to Triggers"
+      },
+      "TriggerSchema": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "The type of Trigger: Manual, Timeout or WebHook",
+            "nullable": true
+          },
+          "timeInState": {
+            "type": "integer",
+            "description": "The amount of time to wait in seconds (Timeout only)",
+            "format": "int32"
+          },
+          "responseCodes": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            "description": "Defines a set of HTTP response codes that correspond to an outcome. eg: 'OK =>  ['200', '204'] (WebHook only)",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Triggers can operate in response to different stimuli"
+      },
+      "UpdateTaskDefinitionRequest": {
+        "type": "object",
+        "properties": {
+          "displayName": {
+            "type": "string",
+            "description": "Human readable name",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "Human readable description",
+            "nullable": true
+          },
+          "fields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FieldSchema"
+            },
+            "description": "Defines the fields associated with this Task\r\ntodo: add in remaining structure: States, Transitions, Field, Trigger, Guards, etc",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains required info to update a Task Definition"
+      },
+      "UpdateTaskRequest": {
+        "type": "object",
+        "properties": {
+          "field": {
+            "type": "string",
+            "description": "The Field this Update is reporting; this is synonymous with FieldSchema.Name",
+            "nullable": true
+          },
+          "value": {
+            "type": "string",
+            "description": "String representation of the data itself",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contains required info to update a set of affected Task Instances"
+      }
+    },
+    "securitySchemes": {
+      "oauth2": {
+        "type": "oauth2",
+        "description": "OAuth2 Implicit Grant",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "https://lusid.okta.com/oauth2/default/v1/authorize",
+            "scopes": {}
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {}
+  ],
+  "tags": [
+    {
+      "name": "Task Definitions",
+      "description": "Workflow endpoint for managing Task Instances"
+    },
+    {
+      "name": "Task Instances",
+      "description": "Workflow endpoint for managing Task Instances"
+    },
+    {
+      "name": "Updates",
+      "description": "Workflow endpoint for manually raising inbound Events"
+    }
+  ],
+  "x-tagGroups": {
+    "name": "API",
+    "tags": [
+      "Task Definitions",
+      "Task Instances",
+      "Updates"
+    ]
+  }
+}

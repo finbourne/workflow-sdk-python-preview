@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: lusid-workflow-sdk-preview
+Version: 0.1.128
+Summary: Python Preview SDK for Workflow API
+Home-page: https://github.com/finbourne/workflow-sdk-python-preview
+Author: FINBOURNE Technology
+Author-email: engineering@finbourne.com
+License: MIT
+Description: UNKNOWN
+Keywords: OpenAPI,FINBOURNE,LUSID,Workflow API
+Platform: UNKNOWN
