@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.131",
+    "version": "0.1.133",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -1912,103 +1912,6 @@
         ],
         "x-fbn-apistatus": "Experimental"
       }
-    },
-    "/api/updates": {
-      "post": {
-        "tags": [
-          "Updates"
-        ],
-        "summary": "[EXPERIMENTAL] Raise: Process an inbound Update.",
-        "operationId": "Raise",
-        "parameters": [
-          {
-            "name": "scope",
-            "in": "query",
-            "description": "",
-            "required": true,
-            "schema": {
-              "maxLength": 64,
-              "minLength": 1,
-              "pattern": "^[a-zA-Z0-9\\-_]+$",
-              "type": "string",
-              "description": ""
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "Update request",
-          "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateTaskRequest"
-              },
-              "example": {
-                "field": "fieldName",
-                "value": "aaa"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateTaskRequest"
-              },
-              "example": {
-                "field": "fieldName",
-                "value": "aaa"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateTaskRequest"
-              },
-              "example": {
-                "field": "fieldName",
-                "value": "aaa"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateTaskRequest"
-              },
-              "example": {
-                "field": "fieldName",
-                "value": "aaa"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "204": {
-            "description": "Success"
-          },
-          "400": {
-            "description": "The details of the input related failure",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "Error response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/LusidProblemDetails"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "oauth2": []
-          }
-        ],
-        "x-fbn-apistatus": "Experimental"
-      }
     }
   },
   "components": {
@@ -2754,23 +2657,6 @@
         },
         "additionalProperties": false,
         "description": "Contains required info to update a Task Definition"
-      },
-      "UpdateTaskRequest": {
-        "type": "object",
-        "properties": {
-          "field": {
-            "type": "string",
-            "description": "The Field this Update is reporting; this is synonymous with FieldSchema.Name",
-            "nullable": true
-          },
-          "value": {
-            "type": "string",
-            "description": "String representation of the data itself",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "Contains required info to update a set of affected Task Instances"
       }
     },
     "securitySchemes": {
@@ -2797,18 +2683,13 @@
     {
       "name": "Task Instances",
       "description": "Workflow endpoint for managing Task Instances"
-    },
-    {
-      "name": "Updates",
-      "description": "Workflow endpoint for manually raising inbound Events"
     }
   ],
   "x-tagGroups": {
     "name": "API",
     "tags": [
       "Task Definitions",
-      "Task Instances",
-      "Updates"
+      "Task Instances"
     ]
   }
 }
