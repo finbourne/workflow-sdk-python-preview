@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.134",
+    "version": "0.1.157",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -43,6 +43,10 @@
                 "displayName": "An example TaskDefinition",
                 "description": "Test",
                 "fields": [
+                  {
+                    "name": "clientId",
+                    "type": "String"
+                  },
                   {
                     "name": "assignee",
                     "type": "String"
@@ -118,21 +122,21 @@
                   {
                     "name": "start",
                     "schema": {
-                      "type": "Manual",
+                      "type": "External",
                       "timeInState": 0
                     }
                   },
                   {
                     "name": "cancel",
                     "schema": {
-                      "type": "Manual",
+                      "type": "External",
                       "timeInState": 0
                     }
                   },
                   {
                     "name": "resolve",
                     "schema": {
-                      "type": "Manual",
+                      "type": "External",
                       "timeInState": 0
                     }
                   },
@@ -171,8 +175,7 @@
                 "initialState": {
                   "name": "Submitted",
                   "requiredFields": [
-                    "clientId",
-                    "description"
+                    "clientId"
                   ]
                 },
                 "outputs": [
@@ -212,6 +215,10 @@
                 "description": "Test",
                 "fields": [
                   {
+                    "name": "clientId",
+                    "type": "String"
+                  },
+                  {
                     "name": "assignee",
                     "type": "String"
                   },
@@ -286,21 +293,21 @@
                   {
                     "name": "start",
                     "schema": {
-                      "type": "Manual",
+                      "type": "External",
                       "timeInState": 0
                     }
                   },
                   {
                     "name": "cancel",
                     "schema": {
-                      "type": "Manual",
+                      "type": "External",
                       "timeInState": 0
                     }
                   },
                   {
                     "name": "resolve",
                     "schema": {
-                      "type": "Manual",
+                      "type": "External",
                       "timeInState": 0
                     }
                   },
@@ -339,8 +346,7 @@
                 "initialState": {
                   "name": "Submitted",
                   "requiredFields": [
-                    "clientId",
-                    "description"
+                    "clientId"
                   ]
                 },
                 "outputs": [
@@ -380,6 +386,10 @@
                 "description": "Test",
                 "fields": [
                   {
+                    "name": "clientId",
+                    "type": "String"
+                  },
+                  {
                     "name": "assignee",
                     "type": "String"
                   },
@@ -454,21 +464,21 @@
                   {
                     "name": "start",
                     "schema": {
-                      "type": "Manual",
+                      "type": "External",
                       "timeInState": 0
                     }
                   },
                   {
                     "name": "cancel",
                     "schema": {
-                      "type": "Manual",
+                      "type": "External",
                       "timeInState": 0
                     }
                   },
                   {
                     "name": "resolve",
                     "schema": {
-                      "type": "Manual",
+                      "type": "External",
                       "timeInState": 0
                     }
                   },
@@ -507,8 +517,7 @@
                 "initialState": {
                   "name": "Submitted",
                   "requiredFields": [
-                    "clientId",
-                    "description"
+                    "clientId"
                   ]
                 },
                 "outputs": [
@@ -548,6 +557,10 @@
                 "description": "Test",
                 "fields": [
                   {
+                    "name": "clientId",
+                    "type": "String"
+                  },
+                  {
                     "name": "assignee",
                     "type": "String"
                   },
@@ -622,21 +635,21 @@
                   {
                     "name": "start",
                     "schema": {
-                      "type": "Manual",
+                      "type": "External",
                       "timeInState": 0
                     }
                   },
                   {
                     "name": "cancel",
                     "schema": {
-                      "type": "Manual",
+                      "type": "External",
                       "timeInState": 0
                     }
                   },
                   {
                     "name": "resolve",
                     "schema": {
-                      "type": "Manual",
+                      "type": "External",
                       "timeInState": 0
                     }
                   },
@@ -675,8 +688,7 @@
                 "initialState": {
                   "name": "Submitted",
                   "requiredFields": [
-                    "clientId",
-                    "description"
+                    "clientId"
                   ]
                 },
                 "outputs": [
@@ -750,6 +762,10 @@
                   ],
                   "fieldsSchema": [
                     {
+                      "name": "clientId",
+                      "type": "String"
+                    },
+                    {
                       "name": "assignee",
                       "type": "String"
                     },
@@ -761,29 +777,28 @@
                   "initialState": {
                     "name": "Submitted",
                     "requiredFields": [
-                      "clientId",
-                      "description"
+                      "clientId"
                     ]
                   },
                   "triggers": [
                     {
                       "name": "start",
                       "schema": {
-                        "type": "Manual",
+                        "type": "External",
                         "timeInState": 0
                       }
                     },
                     {
                       "name": "cancel",
                       "schema": {
-                        "type": "Manual",
+                        "type": "External",
                         "timeInState": 0
                       }
                     },
                     {
                       "name": "resolve",
                       "schema": {
-                        "type": "Manual",
+                        "type": "External",
                         "timeInState": 0
                       }
                     },
@@ -1139,6 +1154,10 @@
                   ],
                   "fieldsSchema": [
                     {
+                      "name": "clientId",
+                      "type": "String"
+                    },
+                    {
                       "name": "assignee",
                       "type": "String"
                     },
@@ -1150,29 +1169,28 @@
                   "initialState": {
                     "name": "Submitted",
                     "requiredFields": [
-                      "clientId",
-                      "description"
+                      "clientId"
                     ]
                   },
                   "triggers": [
                     {
                       "name": "start",
                       "schema": {
-                        "type": "Manual",
+                        "type": "External",
                         "timeInState": 0
                       }
                     },
                     {
                       "name": "cancel",
                       "schema": {
-                        "type": "Manual",
+                        "type": "External",
                         "timeInState": 0
                       }
                     },
                     {
                       "name": "resolve",
                       "schema": {
-                        "type": "Manual",
+                        "type": "External",
                         "timeInState": 0
                       }
                     },
@@ -1452,6 +1470,10 @@
                   ],
                   "fieldsSchema": [
                     {
+                      "name": "clientId",
+                      "type": "String"
+                    },
+                    {
                       "name": "assignee",
                       "type": "String"
                     },
@@ -1463,29 +1485,28 @@
                   "initialState": {
                     "name": "Submitted",
                     "requiredFields": [
-                      "clientId",
-                      "description"
+                      "clientId"
                     ]
                   },
                   "triggers": [
                     {
                       "name": "start",
                       "schema": {
-                        "type": "Manual",
+                        "type": "External",
                         "timeInState": 0
                       }
                     },
                     {
                       "name": "cancel",
                       "schema": {
-                        "type": "Manual",
+                        "type": "External",
                         "timeInState": 0
                       }
                     },
                     {
                       "name": "resolve",
                       "schema": {
-                        "type": "Manual",
+                        "type": "External",
                         "timeInState": 0
                       }
                     },
@@ -1911,6 +1932,164 @@
           }
         ],
         "x-fbn-apistatus": "Experimental"
+      },
+      "post": {
+        "tags": [
+          "Task Instances"
+        ],
+        "summary": "[EXPERIMENTAL] InvokeTrigger: Invoke a Task Instance Trigger.",
+        "operationId": "InvokeTrigger",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of the task instance to act upon",
+            "required": true,
+            "schema": {
+              "maxLength": 40,
+              "minLength": 30,
+              "pattern": "^[a-zA-Z0-9\\-]+$",
+              "type": "string",
+              "description": "Id of the task instance to act upon"
+            }
+          },
+          {
+            "name": "trigger",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "maxLength": 150,
+              "minLength": 5,
+              "type": "string",
+              "description": "",
+              "nullable": true
+            }
+          },
+          {
+            "name": "taskInstanceScope",
+            "in": "query",
+            "description": "The scope of the task instance to retrieve from; 'default' if not provided.",
+            "schema": {
+              "maxLength": 64,
+              "minLength": 1,
+              "pattern": "^[a-zA-Z0-9\\-_]+$",
+              "type": "string",
+              "description": "The scope of the task instance to retrieve from; 'default' if not provided.",
+              "default": "default",
+              "nullable": true
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The details of the request",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransitTaskInstanceRequest"
+              },
+              "example": {
+                "fields": [
+                  {
+                    "name": "test",
+                    "value": "foo"
+                  }
+                ]
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransitTaskInstanceRequest"
+              },
+              "example": {
+                "fields": [
+                  {
+                    "name": "test",
+                    "value": "foo"
+                  }
+                ]
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransitTaskInstanceRequest"
+              },
+              "example": {
+                "fields": [
+                  {
+                    "name": "test",
+                    "value": "foo"
+                  }
+                ]
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransitTaskInstanceRequest"
+              },
+              "example": {
+                "fields": [
+                  {
+                    "name": "test",
+                    "value": "foo"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TriggerInvocationResponse"
+                },
+                "example": {
+                  "wasSuccessful": true,
+                  "asAt": "0001-01-01T00:00:00.0000000+00:00",
+                  "message": "foo"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The details of the input related failure",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No Task Instance exists in current scope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": []
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
       }
     }
   },
@@ -2028,22 +2207,19 @@
         "additionalProperties": false
       },
       "FieldInstance": {
+        "required": [
+          "name",
+          "value"
+        ],
         "type": "object",
         "properties": {
           "name": {
             "type": "string",
-            "description": "The flattened path of a field, eg: investments.bonds.usd.tbill",
-            "nullable": true
-          },
-          "type": {
-            "type": "string",
-            "description": "The JSON type of the data: https://datatracker.ietf.org/doc/html/rfc8259#section-3",
-            "nullable": true
+            "description": "The flattened path of a field, eg: investments.bonds.usd.tbill"
           },
           "value": {
             "type": "string",
-            "description": "The value of this Field",
-            "nullable": true
+            "description": "The value of this Field"
           }
         },
         "additionalProperties": false,
@@ -2589,6 +2765,21 @@
         "additionalProperties": false,
         "description": "Defines a State change"
       },
+      "TransitTaskInstanceRequest": {
+        "type": "object",
+        "properties": {
+          "fields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FieldInstance"
+            },
+            "description": "Defines the fields associated with the Trigger",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "A request to Transit a Task by invoking a Trigger"
+      },
       "Trigger": {
         "type": "object",
         "properties": {
@@ -2604,12 +2795,34 @@
         "additionalProperties": false,
         "description": "State changes happen in response to Triggers"
       },
+      "TriggerInvocationResponse": {
+        "type": "object",
+        "properties": {
+          "wasSuccessful": {
+            "type": "boolean",
+            "description": "A flag indicating success"
+          },
+          "asAt": {
+            "type": "string",
+            "description": "If successful, the AsAt time",
+            "format": "date-time",
+            "nullable": true
+          },
+          "message": {
+            "type": "string",
+            "description": "Any messaging",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Encapsulates what happened"
+      },
       "TriggerSchema": {
         "type": "object",
         "properties": {
           "type": {
             "type": "string",
-            "description": "The type of Trigger: Manual, Timeout or WebHook",
+            "description": "The type of Trigger: External, Timeout or WebHook",
             "nullable": true
           },
           "timeInState": {

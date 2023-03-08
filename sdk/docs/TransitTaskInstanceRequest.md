@@ -1,12 +1,11 @@
-# FieldInstance
+# TransitTaskInstanceRequest
 
-A Task Definition/Task Instance Field instance
+A request to Transit a Task by invoking a Trigger
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** | The flattened path of a field, eg: investments.bonds.usd.tbill | 
-**value** | **str** | The value of this Field | 
+**fields** | [**list[FieldInstance]**](FieldInstance.md) | Defines the fields associated with the Trigger | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
