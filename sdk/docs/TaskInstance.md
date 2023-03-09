@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **active_state** | **str** | Currently Active State | [optional] 
 **status** | [**Status**](Status.md) |  | [optional] 
 **terminal_state** | **bool** | True if no onward transitions are possible | [optional] 
-**created** | **str** | Creation timestamp | [optional] 
+**created** | **datetime** | Creation timestamp | [optional] 
 **updated** | **str** | Last Update timestamp | [optional] 
 **last_transition** | **str** | Last Transition timestamp | [optional] 
 **fields** | [**list[FieldInstance]**](FieldInstance.md) | Fields and their latest values - should correspond with the Task Definition field schema | [optional] 
