@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.160",
+    "version": "0.1.161",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -902,6 +902,251 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": []
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
+      }
+    },
+    "/api/taskdefinitions/{scope}": {
+      "get": {
+        "tags": [
+          "Task Definitions"
+        ],
+        "summary": "[EXPERIMENTAL] ListTaskDefinitions: List Task Definitions",
+        "operationId": "ListTaskDefinitions",
+        "parameters": [
+          {
+            "name": "scope",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "maxLength": 64,
+              "minLength": 1,
+              "pattern": "^[a-zA-Z0-9\\-_]+$",
+              "type": "string",
+              "default": "default",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of Task Definitions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceListOfTaskDefinition"
+                },
+                "example": {
+                  "values": [
+                    {
+                      "taskDefinitionId": {
+                        "scope": "A1",
+                        "code": "ZZZ",
+                        "version": 1
+                      },
+                      "displayName": "An example TaskDefinition",
+                      "description": "Test",
+                      "states": [
+                        {
+                          "type": "Input",
+                          "name": "Submitted"
+                        },
+                        {
+                          "type": "Internal",
+                          "name": "InProgress"
+                        },
+                        {
+                          "type": "Internal",
+                          "name": "SendingSurvey"
+                        },
+                        {
+                          "type": "Output",
+                          "name": "Done"
+                        },
+                        {
+                          "type": "Output",
+                          "name": "SurveyNotSent"
+                        },
+                        {
+                          "type": "Output",
+                          "name": "NotDone"
+                        }
+                      ],
+                      "fieldsSchema": [
+                        {
+                          "name": "clientId",
+                          "type": "String"
+                        },
+                        {
+                          "name": "assignee",
+                          "type": "String"
+                        },
+                        {
+                          "name": "resolutionDetail",
+                          "type": "String"
+                        }
+                      ],
+                      "initialState": {
+                        "name": "Submitted",
+                        "requiredFields": [
+                          "clientId"
+                        ]
+                      },
+                      "triggers": [
+                        {
+                          "name": "start",
+                          "schema": {
+                            "type": "External",
+                            "timeInState": 0
+                          }
+                        },
+                        {
+                          "name": "cancel",
+                          "schema": {
+                            "type": "External",
+                            "timeInState": 0
+                          }
+                        },
+                        {
+                          "name": "resolve",
+                          "schema": {
+                            "type": "External",
+                            "timeInState": 0
+                          }
+                        },
+                        {
+                          "name": "timeout",
+                          "schema": {
+                            "type": "Timeout",
+                            "timeInState": 30
+                          }
+                        },
+                        {
+                          "name": "success",
+                          "schema": {
+                            "type": "WebHook",
+                            "timeInState": 0,
+                            "responseCodes": {
+                              "in": [
+                                200
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "name": "failure",
+                          "schema": {
+                            "type": "WebHook",
+                            "timeInState": 0,
+                            "responseCodes": {
+                              "notIn": [
+                                200
+                              ]
+                            }
+                          }
+                        }
+                      ],
+                      "outputs": [
+                        {
+                          "name": "a web hook",
+                          "schema": {
+                            "requestDetails": {
+                              "method": "Get",
+                              "url": "www.zzz.com",
+                              "parameters": [
+                                {
+                                  "kind": "Query",
+                                  "key": "client_id",
+                                  "value": "ZZZ"
+                                }
+                              ],
+                              "expectedHttpResponseCodes": [
+                                "200"
+                              ]
+                            },
+                            "type": "WebHook"
+                          }
+                        }
+                      ],
+                      "transitions": [
+                        {
+                          "from": "Submitted",
+                          "to": "InProgress",
+                          "trigger": "start",
+                          "guard": "fields.assignee exists AND fields.assignee NOT eq ''"
+                        },
+                        {
+                          "from": "InProgress",
+                          "to": "SendingSurvey",
+                          "trigger": "resolve",
+                          "guard": "fields.resolutionDetail exists AND fields.resolutionDetail NOT eq ''",
+                          "output": "sendSurvey"
+                        },
+                        {
+                          "from": "SendingSurvey",
+                          "to": "Done",
+                          "trigger": "success"
+                        },
+                        {
+                          "from": "SendingSurvey",
+                          "to": "SurveyNotSent",
+                          "trigger": "failure"
+                        },
+                        {
+                          "from": "SendingSurvey",
+                          "to": "NotDone",
+                          "trigger": "timeout"
+                        },
+                        {
+                          "from": "InProgress",
+                          "to": "NotDone",
+                          "trigger": "cancel",
+                          "guard": "fields.cancellationDetail exists AND fields.cancellationDetail NOT eq ''"
+                        }
+                      ]
+                    }
+                  ],
+                  "href": "dummy://href",
+                  "links": []
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The details of the input related failure",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No Task Definitions found in the requested scope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
                 }
               }
             }
@@ -2476,6 +2721,41 @@
           },
           "code": {
             "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResourceListOfTaskDefinition": {
+        "required": [
+          "values"
+        ],
+        "type": "object",
+        "properties": {
+          "values": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TaskDefinition"
+            }
+          },
+          "href": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Link"
+            },
+            "nullable": true
+          },
+          "nextPage": {
+            "type": "string",
+            "nullable": true
+          },
+          "previousPage": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false

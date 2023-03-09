@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**delete_task_definition**](TaskDefinitionsApi.md#delete_task_definition) | **DELETE** /api/taskdefinitions/{scope}/{code} | [EXPERIMENTAL] DeleteTaskDefinition: Delete a Task Definition.
 [**get_task_definition**](TaskDefinitionsApi.md#get_task_definition) | **GET** /api/taskdefinitions/{scope}/{code} | [EXPERIMENTAL] GetTaskDefinition: Get a Task Definition.
 [**get_task_instances_for_definition**](TaskDefinitionsApi.md#get_task_instances_for_definition) | **GET** /api/taskdefinitions/{scope}/{code}/instances | [EXPERIMENTAL] GetTaskInstancesForDefinition: Get all Task Instances based on a Task Definition
+[**list_task_definitions**](TaskDefinitionsApi.md#list_task_definitions) | **GET** /api/taskdefinitions/{scope} | [EXPERIMENTAL] ListTaskDefinitions: List Task Definitions
 [**update_task_definition**](TaskDefinitionsApi.md#update_task_definition) | **PUT** /api/taskdefinitions/{scope}/{code} | [EXPERIMENTAL] UpdateTaskDefinition: Update an existing Task Definition.
 
 
@@ -392,6 +393,80 @@ Name | Type | Description  | Notes
 **200** | List of Task Instances which share the requested Definition |  -  |
 **400** | The details of the input related failure |  -  |
 **404** | No Task Instances found in current scope for this Definition |  -  |
+**0** | Error response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **list_task_definitions**
+> ResourceListOfTaskDefinition list_task_definitions(scope)
+
+[EXPERIMENTAL] ListTaskDefinitions: List Task Definitions
+
+### Example
+
+* OAuth Authentication (oauth2):
+```python
+from __future__ import print_function
+import time
+import lusid_workflow
+from lusid_workflow.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://www.lusid.com/workflow
+# See configuration.py for a list of all supported configuration parameters.
+configuration = lusid_workflow.Configuration(
+    host = "https://www.lusid.com/workflow"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure OAuth2 access token for authorization: oauth2
+configuration = lusid_workflow.Configuration(
+    host = "https://www.lusid.com/workflow"
+)
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Enter a context with an instance of the API client
+with lusid_workflow.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = lusid_workflow.TaskDefinitionsApi(api_client)
+    scope = 'default' # str |  (default to 'default')
+
+    try:
+        # [EXPERIMENTAL] ListTaskDefinitions: List Task Definitions
+        api_response = api_instance.list_task_definitions(scope)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling TaskDefinitionsApi->list_task_definitions: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**|  | [default to &#39;default&#39;]
+
+### Return type
+
+[**ResourceListOfTaskDefinition**](ResourceListOfTaskDefinition.md)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | List of Task Definitions |  -  |
+**400** | The details of the input related failure |  -  |
+**404** | No Task Definitions found in the requested scope |  -  |
 **0** | Error response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
