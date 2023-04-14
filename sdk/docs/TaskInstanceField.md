@@ -1,11 +1,12 @@
-# TriggerSchema
+# TaskInstanceField
 
-Triggers can operate in response to different stimuli
+Defines a Field on a Task
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | **str** | The type of Trigger | [optional] 
+**name** | **str** | The name of this Field | 
+**value** | **str** | The value of this Field | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

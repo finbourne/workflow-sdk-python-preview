@@ -1,11 +1,11 @@
-# TriggerSchema
+# LuminesceView
 
-Triggers can operate in response to different stimuli
+Configuration for a Worker that calls off to a Luminesce view
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | **str** | The type of Trigger | [optional] 
+**view_name** | **str** | Name of the view in Luminesce | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

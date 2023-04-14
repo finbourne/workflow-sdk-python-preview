@@ -8,12 +8,11 @@ Name | Type | Description | Notes
 **id** | [**ResourceId**](ResourceId.md) |  | [optional] 
 **display_name** | **str** | Human readable name | [optional] 
 **description** | **str** | Human readable description | [optional] 
-**fields** | [**list[FieldSchema]**](FieldSchema.md) | Defines the fields associated with this Task | [optional] 
-**states** | [**list[State]**](State.md) | The states this Task Definition operates over | [optional] 
-**transitions** | [**list[Transition]**](Transition.md) | Transitions | [optional] 
-**triggers** | [**list[Trigger]**](Trigger.md) | Triggers | [optional] 
+**states** | [**list[TaskStateDefinition]**](TaskStateDefinition.md) | The states this Task Definition operates over | [optional] 
+**field_schema** | [**list[TaskFieldDefinition]**](TaskFieldDefinition.md) | Defines the fields associated with this Task | [optional] 
 **initial_state** | [**InitialState**](InitialState.md) |  | [optional] 
-**outputs** | [**list[Output]**](Output.md) | The Outputs of this Task | [optional] 
+**triggers** | [**list[TransitionTriggerDefinition]**](TransitionTriggerDefinition.md) | Triggers | [optional] 
+**transitions** | [**list[TaskTransitionDefinition]**](TaskTransitionDefinition.md) | Transitions | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

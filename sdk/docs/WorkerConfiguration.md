@@ -1,11 +1,11 @@
-# TriggerSchema
+# WorkerConfiguration
 
-Triggers can operate in response to different stimuli
+Information about how the worker should be executed
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | **str** | The type of Trigger | [optional] 
+**type** | **str** | The type of worker | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

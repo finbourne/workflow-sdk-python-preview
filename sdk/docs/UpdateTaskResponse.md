@@ -1,11 +1,13 @@
-# TriggerSchema
+# UpdateTaskResponse
 
-Triggers can operate in response to different stimuli
+Encapsulates what happened
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | **str** | The type of Trigger | [optional] 
+**was_successful** | **bool** | A flag indicating success | [optional] 
+**as_at** | **datetime** | If successful, the AsAt time | [optional] 
+**message** | **str** | Any messaging | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
