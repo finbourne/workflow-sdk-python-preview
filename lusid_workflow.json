@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.208",
+    "version": "0.1.209",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -2424,12 +2424,7 @@
             "nullable": true
           },
           "workerConfiguration": {
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/LuminesceView"
-              }
-            ],
-            "description": "Information about how the worker should be executed"
+            "$ref": "#/components/schemas/WorkerConfiguration"
           }
         },
         "additionalProperties": false,
@@ -2512,28 +2507,6 @@
           }
         },
         "additionalProperties": false
-      },
-      "LuminesceView": {
-        "required": [
-          "viewName"
-        ],
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/WorkerConfiguration"
-          }
-        ],
-        "properties": {
-          "viewName": {
-            "maxLength": 512,
-            "minLength": 1,
-            "pattern": "^[\\s\\S]*$",
-            "type": "string",
-            "description": "Name of the view in Luminesce"
-          }
-        },
-        "additionalProperties": false,
-        "description": "Configuration for a Worker that calls off to a Luminesce view"
       },
       "LusidProblemDetails": {
         "required": [
@@ -3064,12 +3037,7 @@
             "nullable": true
           },
           "workerConfiguration": {
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/LuminesceView"
-              }
-            ],
-            "description": "Information about how the worker should be executed"
+            "$ref": "#/components/schemas/WorkerConfiguration"
           },
           "version": {
             "$ref": "#/components/schemas/Version"
@@ -3098,10 +3066,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "Information about how the worker should be executed",
-        "discriminator": {
-          "propertyName": "type"
-        }
+        "description": "Information about how the worker should be executed"
       }
     },
     "securitySchemes": {

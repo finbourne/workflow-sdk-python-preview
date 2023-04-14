@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **id** | [**ResourceId**](ResourceId.md) |  | 
 **display_name** | **str** | Human readable name | 
 **description** | **str** | Human readable description | [optional] 
-**worker_configuration** | [**OneOfLuminesceView**](OneOfLuminesceView.md) | Information about how the worker should be executed | 
+**worker_configuration** | [**WorkerConfiguration**](WorkerConfiguration.md) |  | 
 **version** | [**Version**](Version.md) |  | [optional] 
 **links** | [**list[Link]**](Link.md) |  | [optional] 
 
