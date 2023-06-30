@@ -32,11 +32,13 @@ from lusid_workflow.exceptions import ApiKeyError
 from lusid_workflow.exceptions import ApiException
 # import models into sdk package
 from lusid_workflow.models.action_definition import ActionDefinition
+from lusid_workflow.models.action_definition_action_details import ActionDefinitionActionDetails
 from lusid_workflow.models.action_details import ActionDetails
 from lusid_workflow.models.create_child_tasks_action import CreateChildTasksAction
 from lusid_workflow.models.create_task_definition_request import CreateTaskDefinitionRequest
 from lusid_workflow.models.create_task_request import CreateTaskRequest
 from lusid_workflow.models.create_worker_request import CreateWorkerRequest
+from lusid_workflow.models.create_worker_request_worker_configuration import CreateWorkerRequestWorkerConfiguration
 from lusid_workflow.models.deleted_entity_response import DeletedEntityResponse
 from lusid_workflow.models.field_mapping import FieldMapping
 from lusid_workflow.models.health_check import HealthCheck

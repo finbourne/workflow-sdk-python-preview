@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** |  | 
-**error_details** | **list[dict(str, str)]** |  | [optional] 
+**error_details** | **list[dict[str, str]]** |  | [optional] 
 **code** | **int** |  | 
-**errors** | **dict(str, list[str])** |  | [optional] 
+**errors** | **dict[str, list[str]]** |  | [optional] 
 **type** | **str** |  | [optional] 
 **title** | **str** |  | [optional] 
 **status** | **int** |  | [optional] 

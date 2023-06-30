@@ -685,7 +685,7 @@ class TasksApi(object):
 
         :param id: Id of the Task to act upon (required)
         :type id: str
-        :param trigger:
+        :param trigger: 
         :type trigger: str
         :param update_task_request: The details of the request
         :type update_task_request: UpdateTaskRequest
@@ -718,7 +718,7 @@ class TasksApi(object):
 
         :param id: Id of the Task to act upon (required)
         :type id: str
-        :param trigger:
+        :param trigger: 
         :type trigger: str
         :param update_task_request: The details of the request
         :type update_task_request: UpdateTaskRequest

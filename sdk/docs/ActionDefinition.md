@@ -6,7 +6,7 @@ Defines the Actions for a Task
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** | The Name of this Action | 
-**action_details** | [**OneOfCreateChildTasksActionRunWorkerActionTriggerParentTaskAction**](OneOfCreateChildTasksActionRunWorkerActionTriggerParentTaskAction.md) | Schema for the Action | 
+**action_details** | [**ActionDefinitionActionDetails**](ActionDefinitionActionDetails.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

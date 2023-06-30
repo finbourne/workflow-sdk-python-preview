@@ -112,11 +112,13 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [ActionDefinition](docs/ActionDefinition.md)
+ - [ActionDefinitionActionDetails](docs/ActionDefinitionActionDetails.md)
  - [ActionDetails](docs/ActionDetails.md)
  - [CreateChildTasksAction](docs/CreateChildTasksAction.md)
  - [CreateTaskDefinitionRequest](docs/CreateTaskDefinitionRequest.md)
  - [CreateTaskRequest](docs/CreateTaskRequest.md)
  - [CreateWorkerRequest](docs/CreateWorkerRequest.md)
+ - [CreateWorkerRequestWorkerConfiguration](docs/CreateWorkerRequestWorkerConfiguration.md)
  - [DeletedEntityResponse](docs/DeletedEntityResponse.md)
  - [FieldMapping](docs/FieldMapping.md)
  - [HealthCheck](docs/HealthCheck.md)
@@ -156,10 +158,13 @@ Class | Method | HTTP request | Description
  - [WorkerStatusTriggers](docs/WorkerStatusTriggers.md)
 
 
+<a id="documentation-for-authorization"></a>
 ## Documentation For Authorization
 
 
-## oauth2
+Authentication schemes defined for the API:
+<a id="oauth2"></a>
+### oauth2
 
 - **Type**: OAuth
 - **Flow**: implicit

@@ -40,7 +40,7 @@ class ActionDefinition(object):
     """
     openapi_types = {
         'name': 'str',
-        'action_details': 'OneOfCreateChildTasksActionRunWorkerActionTriggerParentTaskAction'
+        'action_details': 'ActionDefinitionActionDetails'
     }
 
     attribute_map = {
@@ -58,8 +58,8 @@ class ActionDefinition(object):
         
         :param name:  The Name of this Action (required)
         :type name: str
-        :param action_details:  Schema for the Action (required)
-        :type action_details: lusid_workflow.OneOfCreateChildTasksActionRunWorkerActionTriggerParentTaskAction
+        :param action_details:  (required)
+        :type action_details: lusid_workflow.ActionDefinitionActionDetails
 
         """  # noqa: E501
         if local_vars_configuration is None:
@@ -111,10 +111,9 @@ class ActionDefinition(object):
     def action_details(self):
         """Gets the action_details of this ActionDefinition.  # noqa: E501
 
-        Schema for the Action  # noqa: E501
 
         :return: The action_details of this ActionDefinition.  # noqa: E501
-        :rtype: lusid_workflow.OneOfCreateChildTasksActionRunWorkerActionTriggerParentTaskAction
+        :rtype: lusid_workflow.ActionDefinitionActionDetails
         """
         return self._action_details
 
@@ -122,10 +121,9 @@ class ActionDefinition(object):
     def action_details(self, action_details):
         """Sets the action_details of this ActionDefinition.
 
-        Schema for the Action  # noqa: E501
 
         :param action_details: The action_details of this ActionDefinition.  # noqa: E501
-        :type action_details: lusid_workflow.OneOfCreateChildTasksActionRunWorkerActionTriggerParentTaskAction
+        :type action_details: lusid_workflow.ActionDefinitionActionDetails
         """
         if self.local_vars_configuration.client_side_validation and action_details is None:  # noqa: E501
             raise ValueError("Invalid value for `action_details`, must not be `None`")  # noqa: E501

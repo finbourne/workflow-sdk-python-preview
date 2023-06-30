@@ -40,7 +40,7 @@ class LusidProblemDetails(object):
     """
     openapi_types = {
         'name': 'str',
-        'error_details': 'list[dict(str, str)]',
+        'error_details': 'list[dict[str, str]]',
         'code': 'int',
         'type': 'str',
         'title': 'str',
@@ -77,7 +77,7 @@ class LusidProblemDetails(object):
         :param name:  (required)
         :type name: str
         :param error_details: 
-        :type error_details: list[dict(str, str)]
+        :type error_details: list[dict[str, str]]
         :param code:  (required)
         :type code: int
         :param type: 
@@ -147,7 +147,7 @@ class LusidProblemDetails(object):
 
 
         :return: The error_details of this LusidProblemDetails.  # noqa: E501
-        :rtype: list[dict(str, str)]
+        :rtype: list[dict[str, str]]
         """
         return self._error_details
 
@@ -157,7 +157,7 @@ class LusidProblemDetails(object):
 
 
         :param error_details: The error_details of this LusidProblemDetails.  # noqa: E501
-        :type error_details: list[dict(str, str)]
+        :type error_details: list[dict[str, str]]
         """
 
         self._error_details = error_details
