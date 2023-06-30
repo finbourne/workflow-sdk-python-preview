@@ -39,20 +39,25 @@ class LuminesceView(object):
                            and the value is whether it is 'required' or 'optional'.
     """
     openapi_types = {
+        'type': 'str',
         'name': 'str'
     }
 
     attribute_map = {
+        'type': 'type',
         'name': 'name'
     }
 
     required_map = {
+        'type': 'required',
         'name': 'required'
     }
 
-    def __init__(self, name=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, type=None, name=None, local_vars_configuration=None):  # noqa: E501
         """LuminesceView - a model defined in OpenAPI"
         
+        :param type:  The type of worker (required)
+        :type type: str
         :param name:  Name of the view in Luminesce (required)
         :type name: str
 
@@ -61,10 +66,43 @@ class LuminesceView(object):
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
+        self._type = None
         self._name = None
         self.discriminator = None
 
+        self.type = type
         self.name = name
+
+    @property
+    def type(self):
+        """Gets the type of this LuminesceView.  # noqa: E501
+
+        The type of worker  # noqa: E501
+
+        :return: The type of this LuminesceView.  # noqa: E501
+        :rtype: str
+        """
+        return self._type
+
+    @type.setter
+    def type(self, type):
+        """Sets the type of this LuminesceView.
+
+        The type of worker  # noqa: E501
+
+        :param type: The type of this LuminesceView.  # noqa: E501
+        :type type: str
+        """
+        if self.local_vars_configuration.client_side_validation and type is None:  # noqa: E501
+            raise ValueError("Invalid value for `type`, must not be `None`")  # noqa: E501
+        allowed_values = ["LuminesceView"]  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and type not in allowed_values:  # noqa: E501
+            raise ValueError(
+                "Invalid value for `type` ({0}), must be one of {1}"  # noqa: E501
+                .format(type, allowed_values)
+            )
+
+        self._type = type
 
     @property
     def name(self):

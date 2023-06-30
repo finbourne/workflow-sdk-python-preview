@@ -17,7 +17,7 @@
   },
   "servers": [
     {
-      "url": "https://www.lusid.com/workflow"
+      "url": "http://localhost"
     }
   ],
   "paths": {
@@ -160,6 +160,7 @@
                   {
                     "name": "health-check",
                     "actionDetails": {
+                      "type": "RunWorker",
                       "workerId": {
                         "scope": "Health",
                         "code": "HealthCheckWorker"
@@ -181,8 +182,7 @@
                             }
                           }
                         }
-                      ],
-                      "type": "RunWorker"
+                      ]
                     }
                   }
                 ]
@@ -317,6 +317,7 @@
                   {
                     "name": "health-check",
                     "actionDetails": {
+                      "type": "RunWorker",
                       "workerId": {
                         "scope": "Health",
                         "code": "HealthCheckWorker"
@@ -338,8 +339,7 @@
                             }
                           }
                         }
-                      ],
-                      "type": "RunWorker"
+                      ]
                     }
                   }
                 ]
@@ -474,6 +474,7 @@
                   {
                     "name": "health-check",
                     "actionDetails": {
+                      "type": "RunWorker",
                       "workerId": {
                         "scope": "Health",
                         "code": "HealthCheckWorker"
@@ -495,8 +496,7 @@
                             }
                           }
                         }
-                      ],
-                      "type": "RunWorker"
+                      ]
                     }
                   }
                 ]
@@ -631,6 +631,7 @@
                   {
                     "name": "health-check",
                     "actionDetails": {
+                      "type": "RunWorker",
                       "workerId": {
                         "scope": "Health",
                         "code": "HealthCheckWorker"
@@ -652,8 +653,7 @@
                             }
                           }
                         }
-                      ],
-                      "type": "RunWorker"
+                      ]
                     }
                   }
                 ]
@@ -768,6 +768,7 @@
                     {
                       "name": "health-check",
                       "actionDetails": {
+                        "type": "RunWorker",
                         "workerId": {
                           "scope": "Health",
                           "code": "HealthCheckWorker"
@@ -789,8 +790,7 @@
                               }
                             }
                           }
-                        ],
-                        "type": "RunWorker"
+                        ]
                       }
                     }
                   ],
@@ -1010,6 +1010,7 @@
                         {
                           "name": "health-check",
                           "actionDetails": {
+                            "type": "RunWorker",
                             "workerId": {
                               "scope": "Health",
                               "code": "HealthCheckWorker"
@@ -1031,8 +1032,7 @@
                                   }
                                 }
                               }
-                            ],
-                            "type": "RunWorker"
+                            ]
                           }
                         }
                       ],
@@ -1267,6 +1267,7 @@
                     {
                       "name": "health-check",
                       "actionDetails": {
+                        "type": "RunWorker",
                         "workerId": {
                           "scope": "Health",
                           "code": "HealthCheckWorker"
@@ -1288,8 +1289,7 @@
                               }
                             }
                           }
-                        ],
-                        "type": "RunWorker"
+                        ]
                       }
                     }
                   ],
@@ -1531,6 +1531,7 @@
                   {
                     "name": "health-check",
                     "actionDetails": {
+                      "type": "RunWorker",
                       "workerId": {
                         "scope": "Health",
                         "code": "HealthCheckWorker"
@@ -1552,8 +1553,7 @@
                             }
                           }
                         }
-                      ],
-                      "type": "RunWorker"
+                      ]
                     }
                   }
                 ]
@@ -1684,6 +1684,7 @@
                   {
                     "name": "health-check",
                     "actionDetails": {
+                      "type": "RunWorker",
                       "workerId": {
                         "scope": "Health",
                         "code": "HealthCheckWorker"
@@ -1705,8 +1706,7 @@
                             }
                           }
                         }
-                      ],
-                      "type": "RunWorker"
+                      ]
                     }
                   }
                 ]
@@ -1837,6 +1837,7 @@
                   {
                     "name": "health-check",
                     "actionDetails": {
+                      "type": "RunWorker",
                       "workerId": {
                         "scope": "Health",
                         "code": "HealthCheckWorker"
@@ -1858,8 +1859,7 @@
                             }
                           }
                         }
-                      ],
-                      "type": "RunWorker"
+                      ]
                     }
                   }
                 ]
@@ -1990,6 +1990,7 @@
                   {
                     "name": "health-check",
                     "actionDetails": {
+                      "type": "RunWorker",
                       "workerId": {
                         "scope": "Health",
                         "code": "HealthCheckWorker"
@@ -2011,8 +2012,7 @@
                             }
                           }
                         }
-                      ],
-                      "type": "RunWorker"
+                      ]
                     }
                   }
                 ]
@@ -2127,6 +2127,7 @@
                     {
                       "name": "health-check",
                       "actionDetails": {
+                        "type": "RunWorker",
                         "workerId": {
                           "scope": "Health",
                           "code": "HealthCheckWorker"
@@ -2148,8 +2149,7 @@
                               }
                             }
                           }
-                        ],
-                        "type": "RunWorker"
+                        ]
                       }
                     }
                   ],
@@ -3050,8 +3050,8 @@
                 "displayName": "ASP.Net Health Check worker",
                 "description": "Calls /health to check a service is running",
                 "workerConfiguration": {
-                  "url": "http://localhost.lusid.com:8282",
-                  "type": "HealthCheck"
+                  "type": "HealthCheck",
+                  "url": "http://localhost.lusid.com:8282"
                 }
               }
             },
@@ -3067,8 +3067,8 @@
                 "displayName": "ASP.Net Health Check worker",
                 "description": "Calls /health to check a service is running",
                 "workerConfiguration": {
-                  "url": "http://localhost.lusid.com:8282",
-                  "type": "HealthCheck"
+                  "type": "HealthCheck",
+                  "url": "http://localhost.lusid.com:8282"
                 }
               }
             },
@@ -3084,8 +3084,8 @@
                 "displayName": "ASP.Net Health Check worker",
                 "description": "Calls /health to check a service is running",
                 "workerConfiguration": {
-                  "url": "http://localhost.lusid.com:8282",
-                  "type": "HealthCheck"
+                  "type": "HealthCheck",
+                  "url": "http://localhost.lusid.com:8282"
                 }
               }
             },
@@ -3101,8 +3101,8 @@
                 "displayName": "ASP.Net Health Check worker",
                 "description": "Calls /health to check a service is running",
                 "workerConfiguration": {
-                  "url": "http://localhost.lusid.com:8282",
-                  "type": "HealthCheck"
+                  "type": "HealthCheck",
+                  "url": "http://localhost.lusid.com:8282"
                 }
               }
             }
@@ -3125,8 +3125,8 @@
                   "displayName": "ASP.Net Health Check worker",
                   "description": "Calls /health to check a service is running",
                   "workerConfiguration": {
-                    "url": "http://localhost.lusid.com:8282/health",
-                    "type": "HealthCheck"
+                    "Type": "HealthCheck",
+                    "Url": "http://localhost.lusid.com:8282/health"
                   },
                   "version": {
                     "asAtCreated": "2023-01-01T12:00:00.0000000+00:00",
@@ -3153,8 +3153,8 @@
                   "displayName": "ASP.Net Health Check worker",
                   "description": "Calls /health to check a service is running",
                   "workerConfiguration": {
-                    "url": "http://localhost.lusid.com:8282/health",
-                    "type": "HealthCheck"
+                    "Type": "HealthCheck",
+                    "Url": "http://localhost.lusid.com:8282/health"
                   },
                   "version": {
                     "asAtCreated": "2023-01-01T12:00:00.0000000+00:00",
@@ -3181,8 +3181,8 @@
                   "displayName": "ASP.Net Health Check worker",
                   "description": "Calls /health to check a service is running",
                   "workerConfiguration": {
-                    "url": "http://localhost.lusid.com:8282/health",
-                    "type": "HealthCheck"
+                    "Type": "HealthCheck",
+                    "Url": "http://localhost.lusid.com:8282/health"
                   },
                   "version": {
                     "asAtCreated": "2023-01-01T12:00:00.0000000+00:00",
@@ -3295,8 +3295,8 @@
                       "displayName": "ASP.Net Health Check worker",
                       "description": "Calls /health to check a service is running",
                       "workerConfiguration": {
-                        "url": "http://localhost.lusid.com:8282/health",
-                        "type": "HealthCheck"
+                        "Type": "HealthCheck",
+                        "Url": "http://localhost.lusid.com:8282/health"
                       },
                       "version": {
                         "asAtCreated": "2023-01-01T12:00:00.0000000+00:00",
@@ -3328,8 +3328,8 @@
                       "displayName": "ASP.Net Health Check worker",
                       "description": "Calls /health to check a service is running",
                       "workerConfiguration": {
-                        "url": "http://localhost.lusid.com:8282/health",
-                        "type": "HealthCheck"
+                        "Type": "HealthCheck",
+                        "Url": "http://localhost.lusid.com:8282/health"
                       },
                       "version": {
                         "asAtCreated": "2023-01-01T12:00:00.0000000+00:00",
@@ -3361,8 +3361,8 @@
                       "displayName": "ASP.Net Health Check worker",
                       "description": "Calls /health to check a service is running",
                       "workerConfiguration": {
-                        "url": "http://localhost.lusid.com:8282/health",
-                        "type": "HealthCheck"
+                        "Type": "HealthCheck",
+                        "Url": "http://localhost.lusid.com:8282/health"
                       },
                       "version": {
                         "asAtCreated": "2023-01-01T12:00:00.0000000+00:00",
@@ -3481,8 +3481,8 @@
                   "displayName": "ASP.Net Health Check worker",
                   "description": "Calls /health to check a service is running",
                   "workerConfiguration": {
-                    "url": "http://localhost.lusid.com:8282/health",
-                    "type": "HealthCheck"
+                    "Type": "HealthCheck",
+                    "Url": "http://localhost.lusid.com:8282/health"
                   },
                   "version": {
                     "asAtCreated": "2023-01-01T12:00:00.0000000+00:00",
@@ -3509,8 +3509,8 @@
                   "displayName": "ASP.Net Health Check worker",
                   "description": "Calls /health to check a service is running",
                   "workerConfiguration": {
-                    "url": "http://localhost.lusid.com:8282/health",
-                    "type": "HealthCheck"
+                    "Type": "HealthCheck",
+                    "Url": "http://localhost.lusid.com:8282/health"
                   },
                   "version": {
                     "asAtCreated": "2023-01-01T12:00:00.0000000+00:00",
@@ -3537,8 +3537,8 @@
                   "displayName": "ASP.Net Health Check worker",
                   "description": "Calls /health to check a service is running",
                   "workerConfiguration": {
-                    "url": "http://localhost.lusid.com:8282/health",
-                    "type": "HealthCheck"
+                    "Type": "HealthCheck",
+                    "Url": "http://localhost.lusid.com:8282/health"
                   },
                   "version": {
                     "asAtCreated": "2023-01-01T12:00:00.0000000+00:00",
@@ -3782,18 +3782,7 @@
             "description": "The Name of this Action"
           },
           "actionDetails": {
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/CreateChildTasksAction"
-              },
-              {
-                "$ref": "#/components/schemas/RunWorkerAction"
-              },
-              {
-                "$ref": "#/components/schemas/TriggerParentTaskAction"
-              }
-            ],
-            "description": "Schema for the Action"
+            "$ref": "#/components/schemas/ActionDetails"
           }
         },
         "additionalProperties": false,
@@ -3804,6 +3793,17 @@
           "type"
         ],
         "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/CreateChildTasksAction"
+          },
+          {
+            "$ref": "#/components/schemas/RunWorkerAction"
+          },
+          {
+            "$ref": "#/components/schemas/TriggerParentTaskAction"
+          }
+        ],
         "properties": {
           "type": {
             "minLength": 1,
@@ -3815,13 +3815,19 @@
         "description": "Abstracts the kinds of Actions available"
       },
       "CreateChildTasksAction": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/ActionDetails"
-          }
+        "required": [
+          "type"
         ],
+        "type": "object",
         "properties": {
+          "type": {
+            "minLength": 1,
+            "enum": [
+              "CreateChildTasks"
+            ],
+            "type": "string",
+            "description": "Type name for this Action"
+          },
           "childTaskConfigurations": {
             "type": "array",
             "items": {
@@ -3959,15 +3965,7 @@
             "nullable": true
           },
           "workerConfiguration": {
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/HealthCheck"
-              },
-              {
-                "$ref": "#/components/schemas/LuminesceView"
-              }
-            ],
-            "description": "Information about how the worker should be executed"
+            "$ref": "#/components/schemas/WorkerConfiguration"
           }
         },
         "additionalProperties": false,
@@ -4031,15 +4029,19 @@
       },
       "HealthCheck": {
         "required": [
+          "type",
           "url"
         ],
         "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/WorkerConfiguration"
-          }
-        ],
         "properties": {
+          "type": {
+            "minLength": 1,
+            "enum": [
+              "HealthCheck"
+            ],
+            "type": "string",
+            "description": "The type of worker"
+          },
           "url": {
             "maxLength": 2048,
             "minLength": 1,
@@ -4103,15 +4105,19 @@
       },
       "LuminesceView": {
         "required": [
-          "name"
+          "name",
+          "type"
         ],
         "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/WorkerConfiguration"
-          }
-        ],
         "properties": {
+          "type": {
+            "minLength": 1,
+            "enum": [
+              "LuminesceView"
+            ],
+            "type": "string",
+            "description": "The type of worker"
+          },
           "name": {
             "maxLength": 512,
             "minLength": 1,
@@ -4536,15 +4542,19 @@
       },
       "RunWorkerAction": {
         "required": [
+          "type",
           "workerId"
         ],
         "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/ActionDetails"
-          }
-        ],
         "properties": {
+          "type": {
+            "minLength": 1,
+            "enum": [
+              "RunWorker"
+            ],
+            "type": "string",
+            "description": "Type name for this Action"
+          },
           "workerId": {
             "$ref": "#/components/schemas/ResourceId"
           },
@@ -4898,15 +4908,19 @@
       },
       "TriggerParentTaskAction": {
         "required": [
-          "trigger"
+          "trigger",
+          "type"
         ],
         "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/ActionDetails"
-          }
-        ],
         "properties": {
+          "type": {
+            "minLength": 1,
+            "enum": [
+              "TriggerParentTask"
+            ],
+            "type": "string",
+            "description": "Type name for this Action"
+          },
           "trigger": {
             "maxLength": 1024,
             "minLength": 1,
@@ -5088,14 +5102,6 @@
             "nullable": true
           },
           "workerConfiguration": {
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/HealthCheck"
-              },
-              {
-                "$ref": "#/components/schemas/LuminesceView"
-              }
-            ],
             "description": "Information about how the worker should be executed"
           },
           "version": {
@@ -5133,6 +5139,14 @@
           "type"
         ],
         "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/HealthCheck"
+          },
+          {
+            "$ref": "#/components/schemas/LuminesceView"
+          }
+        ],
         "properties": {
           "type": {
             "minLength": 1,
@@ -5141,10 +5155,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "Information about how the worker should be executed",
-        "discriminator": {
-          "propertyName": "type"
-        }
+        "description": "Information about how the worker should be executed"
       },
       "WorkerStatusTriggers": {
         "type": "object",
@@ -5185,7 +5196,7 @@
         "description": "OAuth2 Implicit Grant",
         "flows": {
           "implicit": {
-            "authorizationUrl": "https://lusid.okta.com/oauth2/default/v1/authorize",
+            "authorizationUrl": "https://dummyurl.lusid.com/",
             "scopes": {}
           }
         }

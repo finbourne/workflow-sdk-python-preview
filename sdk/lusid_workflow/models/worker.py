@@ -42,7 +42,7 @@ class Worker(object):
         'id': 'ResourceId',
         'display_name': 'str',
         'description': 'str',
-        'worker_configuration': 'CreateWorkerRequestWorkerConfiguration',
+        'worker_configuration': 'object',
         'version': 'Version',
         'parameters': 'list[Parameter]',
         'result_fields': 'list[ResultField]',
@@ -80,8 +80,8 @@ class Worker(object):
         :type display_name: str
         :param description:  Human readable description
         :type description: str
-        :param worker_configuration:  (required)
-        :type worker_configuration: lusid_workflow.CreateWorkerRequestWorkerConfiguration
+        :param worker_configuration:  Information about how the worker should be executed (required)
+        :type worker_configuration: object
         :param version: 
         :type version: lusid_workflow.Version
         :param parameters:  The Parameters this Worker accepts or requires.
@@ -194,9 +194,10 @@ class Worker(object):
     def worker_configuration(self):
         """Gets the worker_configuration of this Worker.  # noqa: E501
 
+        Information about how the worker should be executed  # noqa: E501
 
         :return: The worker_configuration of this Worker.  # noqa: E501
-        :rtype: lusid_workflow.CreateWorkerRequestWorkerConfiguration
+        :rtype: object
         """
         return self._worker_configuration
 
@@ -204,12 +205,11 @@ class Worker(object):
     def worker_configuration(self, worker_configuration):
         """Sets the worker_configuration of this Worker.
 
+        Information about how the worker should be executed  # noqa: E501
 
         :param worker_configuration: The worker_configuration of this Worker.  # noqa: E501
-        :type worker_configuration: lusid_workflow.CreateWorkerRequestWorkerConfiguration
+        :type worker_configuration: object
         """
-        if self.local_vars_configuration.client_side_validation and worker_configuration is None:  # noqa: E501
-            raise ValueError("Invalid value for `worker_configuration`, must not be `None`")  # noqa: E501
 
         self._worker_configuration = worker_configuration
 

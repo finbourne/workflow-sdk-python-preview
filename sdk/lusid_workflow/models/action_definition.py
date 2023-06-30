@@ -40,7 +40,7 @@ class ActionDefinition(object):
     """
     openapi_types = {
         'name': 'str',
-        'action_details': 'ActionDefinitionActionDetails'
+        'action_details': 'ActionDetails'
     }
 
     attribute_map = {
@@ -59,7 +59,7 @@ class ActionDefinition(object):
         :param name:  The Name of this Action (required)
         :type name: str
         :param action_details:  (required)
-        :type action_details: lusid_workflow.ActionDefinitionActionDetails
+        :type action_details: lusid_workflow.ActionDetails
 
         """  # noqa: E501
         if local_vars_configuration is None:
@@ -113,7 +113,7 @@ class ActionDefinition(object):
 
 
         :return: The action_details of this ActionDefinition.  # noqa: E501
-        :rtype: lusid_workflow.ActionDefinitionActionDetails
+        :rtype: lusid_workflow.ActionDetails
         """
         return self._action_details
 
@@ -123,7 +123,7 @@ class ActionDefinition(object):
 
 
         :param action_details: The action_details of this ActionDefinition.  # noqa: E501
-        :type action_details: lusid_workflow.ActionDefinitionActionDetails
+        :type action_details: lusid_workflow.ActionDetails
         """
         if self.local_vars_configuration.client_side_validation and action_details is None:  # noqa: E501
             raise ValueError("Invalid value for `action_details`, must not be `None`")  # noqa: E501

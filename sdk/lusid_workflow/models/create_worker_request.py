@@ -42,7 +42,7 @@ class CreateWorkerRequest(object):
         'id': 'ResourceId',
         'display_name': 'str',
         'description': 'str',
-        'worker_configuration': 'CreateWorkerRequestWorkerConfiguration'
+        'worker_configuration': 'WorkerConfiguration'
     }
 
     attribute_map = {
@@ -69,7 +69,7 @@ class CreateWorkerRequest(object):
         :param description:  Human readable description
         :type description: str
         :param worker_configuration:  (required)
-        :type worker_configuration: lusid_workflow.CreateWorkerRequestWorkerConfiguration
+        :type worker_configuration: lusid_workflow.WorkerConfiguration
 
         """  # noqa: E501
         if local_vars_configuration is None:
@@ -182,7 +182,7 @@ class CreateWorkerRequest(object):
 
 
         :return: The worker_configuration of this CreateWorkerRequest.  # noqa: E501
-        :rtype: lusid_workflow.CreateWorkerRequestWorkerConfiguration
+        :rtype: lusid_workflow.WorkerConfiguration
         """
         return self._worker_configuration
 
@@ -192,7 +192,7 @@ class CreateWorkerRequest(object):
 
 
         :param worker_configuration: The worker_configuration of this CreateWorkerRequest.  # noqa: E501
-        :type worker_configuration: lusid_workflow.CreateWorkerRequestWorkerConfiguration
+        :type worker_configuration: lusid_workflow.WorkerConfiguration
         """
         if self.local_vars_configuration.client_side_validation and worker_configuration is None:  # noqa: E501
             raise ValueError("Invalid value for `worker_configuration`, must not be `None`")  # noqa: E501

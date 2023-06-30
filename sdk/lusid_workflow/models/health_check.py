@@ -39,20 +39,25 @@ class HealthCheck(object):
                            and the value is whether it is 'required' or 'optional'.
     """
     openapi_types = {
+        'type': 'str',
         'url': 'str'
     }
 
     attribute_map = {
+        'type': 'type',
         'url': 'url'
     }
 
     required_map = {
+        'type': 'required',
         'url': 'required'
     }
 
-    def __init__(self, url=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, type=None, url=None, local_vars_configuration=None):  # noqa: E501
         """HealthCheck - a model defined in OpenAPI"
         
+        :param type:  The type of worker (required)
+        :type type: str
         :param url:  The URL to check, eg: https://www.google.com/ (required)
         :type url: str
 
@@ -61,10 +66,43 @@ class HealthCheck(object):
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
+        self._type = None
         self._url = None
         self.discriminator = None
 
+        self.type = type
         self.url = url
+
+    @property
+    def type(self):
+        """Gets the type of this HealthCheck.  # noqa: E501
+
+        The type of worker  # noqa: E501
+
+        :return: The type of this HealthCheck.  # noqa: E501
+        :rtype: str
+        """
+        return self._type
+
+    @type.setter
+    def type(self, type):
+        """Sets the type of this HealthCheck.
+
+        The type of worker  # noqa: E501
+
+        :param type: The type of this HealthCheck.  # noqa: E501
+        :type type: str
+        """
+        if self.local_vars_configuration.client_side_validation and type is None:  # noqa: E501
+            raise ValueError("Invalid value for `type`, must not be `None`")  # noqa: E501
+        allowed_values = ["HealthCheck"]  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and type not in allowed_values:  # noqa: E501
+            raise ValueError(
+                "Invalid value for `type` ({0}), must be one of {1}"  # noqa: E501
+                .format(type, allowed_values)
+            )
+
+        self._type = type
 
     @property
     def url(self):

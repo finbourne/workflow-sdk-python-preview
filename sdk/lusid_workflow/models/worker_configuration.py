@@ -39,27 +39,32 @@ class WorkerConfiguration(object):
                            and the value is whether it is 'required' or 'optional'.
     """
     openapi_types = {
-        'type': 'str'
+        'type': 'str',
+        'url': 'str',
+        'name': 'str'
     }
 
     attribute_map = {
-        'type': 'type'
+        'type': 'type',
+        'url': 'url',
+        'name': 'name'
     }
 
     required_map = {
-        'type': 'required'
+        'type': 'required',
+        'url': 'required',
+        'name': 'required'
     }
 
-    discriminator_value_class_map = {
-        'HealthCheck': 'HealthCheck',
-        'LuminesceView': 'LuminesceView'
-    }
-
-    def __init__(self, type=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, type=None, url=None, name=None, local_vars_configuration=None):  # noqa: E501
         """WorkerConfiguration - a model defined in OpenAPI"
         
         :param type:  The type of worker (required)
         :type type: str
+        :param url:  The URL to check, eg: https://www.google.com/ (required)
+        :type url: str
+        :param name:  Name of the view in Luminesce (required)
+        :type name: str
 
         """  # noqa: E501
         if local_vars_configuration is None:
@@ -67,9 +72,13 @@ class WorkerConfiguration(object):
         self.local_vars_configuration = local_vars_configuration
 
         self._type = None
-        self.discriminator = 'type'
+        self._url = None
+        self._name = None
+        self.discriminator = None
 
         self.type = type
+        self.url = url
+        self.name = name
 
     @property
     def type(self):
@@ -99,11 +108,70 @@ class WorkerConfiguration(object):
 
         self._type = type
 
-    def get_real_child_model(self, data):
-        """Returns the real base class specified by the discriminator"""
-        discriminator_key = self.attribute_map[self.discriminator]
-        discriminator_value = data[discriminator_key]
-        return self.discriminator_value_class_map.get(discriminator_value)
+    @property
+    def url(self):
+        """Gets the url of this WorkerConfiguration.  # noqa: E501
+
+        The URL to check, eg: https://www.google.com/  # noqa: E501
+
+        :return: The url of this WorkerConfiguration.  # noqa: E501
+        :rtype: str
+        """
+        return self._url
+
+    @url.setter
+    def url(self, url):
+        """Sets the url of this WorkerConfiguration.
+
+        The URL to check, eg: https://www.google.com/  # noqa: E501
+
+        :param url: The url of this WorkerConfiguration.  # noqa: E501
+        :type url: str
+        """
+        if self.local_vars_configuration.client_side_validation and url is None:  # noqa: E501
+            raise ValueError("Invalid value for `url`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                url is not None and len(url) > 2048):
+            raise ValueError("Invalid value for `url`, length must be less than or equal to `2048`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                url is not None and len(url) < 1):
+            raise ValueError("Invalid value for `url`, length must be greater than or equal to `1`")  # noqa: E501
+
+        self._url = url
+
+    @property
+    def name(self):
+        """Gets the name of this WorkerConfiguration.  # noqa: E501
+
+        Name of the view in Luminesce  # noqa: E501
+
+        :return: The name of this WorkerConfiguration.  # noqa: E501
+        :rtype: str
+        """
+        return self._name
+
+    @name.setter
+    def name(self, name):
+        """Sets the name of this WorkerConfiguration.
+
+        Name of the view in Luminesce  # noqa: E501
+
+        :param name: The name of this WorkerConfiguration.  # noqa: E501
+        :type name: str
+        """
+        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
+            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                name is not None and len(name) > 512):
+            raise ValueError("Invalid value for `name`, length must be less than or equal to `512`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                name is not None and len(name) < 1):
+            raise ValueError("Invalid value for `name`, length must be greater than or equal to `1`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                name is not None and not re.search(r'^[\s\S]*$', name)):  # noqa: E501
+            raise ValueError(r"Invalid value for `name`, must be a follow pattern or equal to `/^[\s\S]*$/`")  # noqa: E501
+
+        self._name = name
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

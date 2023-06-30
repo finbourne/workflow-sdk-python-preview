@@ -1,6 +1,6 @@
 # lusid_workflow.TaskDefinitionsApi
 
-All URIs are relative to *https://www.lusid.com/workflow*
+All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -26,10 +26,10 @@ import time
 import lusid_workflow
 from lusid_workflow.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://www.lusid.com/workflow
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = lusid_workflow.Configuration(
-    host = "https://www.lusid.com/workflow"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -39,7 +39,7 @@ configuration = lusid_workflow.Configuration(
 
 # Configure OAuth2 access token for authorization: oauth2
 configuration = lusid_workflow.Configuration(
-    host = "https://www.lusid.com/workflow"
+    host = "http://localhost"
 )
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
@@ -47,7 +47,7 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with lusid_workflow.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = lusid_workflow.TaskDefinitionsApi(api_client)
-    create_task_definition_request = {"id":{"scope":"A1","code":"ZZZ"},"displayName":"An example TaskDefinition","description":"Test","states":[{"name":"Submitted"},{"name":"InProgress"},{"name":"SendingSurvey"},{"name":"Done"},{"name":"SurveyNotSent"},{"name":"NotDone"}],"fieldSchema":[{"name":"clientId","type":"String"},{"name":"assignee","type":"String"},{"name":"resolutionDetail","type":"String"}],"initialState":{"name":"Submitted","requiredFields":["clientId"]},"triggers":[{"name":"start","trigger":{"type":"External"}},{"name":"cancel","trigger":{"type":"External"}},{"name":"resolve","trigger":{"type":"External"}},{"name":"timeout","trigger":{"type":"External"}},{"name":"success","trigger":{"type":"External"}},{"name":"failure","trigger":{"type":"External"}}],"transitions":[{"fromState":"Submitted","toState":"InProgress","trigger":"start","guard":"fields['assignee'] exists AND fields['assignee'] NOT eq ''"},{"fromState":"InProgress","toState":"SendingSurvey","trigger":"resolve","guard":"fields['resolutionDetail'] exists AND fields['resolutionDetail'] NOT eq ''","action":"health-check"},{"fromState":"SendingSurvey","toState":"Done","trigger":"success"},{"fromState":"SendingSurvey","toState":"SurveyNotSent","trigger":"failure"},{"fromState":"SendingSurvey","toState":"NotDone","trigger":"timeout"},{"fromState":"InProgress","toState":"NotDone","trigger":"cancel","guard":"fields['cancellationDetail'] exists AND fields['cancellationDetail'] NOT eq ''"}],"actions":[{"name":"health-check","actionDetails":{"workerId":{"scope":"Health","code":"HealthCheckWorker"},"workerAsAt":"2022-01-01T01:02:03.0000000+00:00","workerParameters":{},"workerStatusTriggers":{},"childTaskConfigurations":[{"taskDefinitionId":{"scope":"AAA","code":"BBB"},"initialTrigger":"test-trigger","childTaskFields":{"assignee":{"mapFrom":"foo","setTo":"bar"}}}],"type":"RunWorker"}}]} # CreateTaskDefinitionRequest | The data to create a Task Definition
+    create_task_definition_request = {"id":{"scope":"A1","code":"ZZZ"},"displayName":"An example TaskDefinition","description":"Test","states":[{"name":"Submitted"},{"name":"InProgress"},{"name":"SendingSurvey"},{"name":"Done"},{"name":"SurveyNotSent"},{"name":"NotDone"}],"fieldSchema":[{"name":"clientId","type":"String"},{"name":"assignee","type":"String"},{"name":"resolutionDetail","type":"String"}],"initialState":{"name":"Submitted","requiredFields":["clientId"]},"triggers":[{"name":"start","trigger":{"type":"External"}},{"name":"cancel","trigger":{"type":"External"}},{"name":"resolve","trigger":{"type":"External"}},{"name":"timeout","trigger":{"type":"External"}},{"name":"success","trigger":{"type":"External"}},{"name":"failure","trigger":{"type":"External"}}],"transitions":[{"fromState":"Submitted","toState":"InProgress","trigger":"start","guard":"fields['assignee'] exists AND fields['assignee'] NOT eq ''"},{"fromState":"InProgress","toState":"SendingSurvey","trigger":"resolve","guard":"fields['resolutionDetail'] exists AND fields['resolutionDetail'] NOT eq ''","action":"health-check"},{"fromState":"SendingSurvey","toState":"Done","trigger":"success"},{"fromState":"SendingSurvey","toState":"SurveyNotSent","trigger":"failure"},{"fromState":"SendingSurvey","toState":"NotDone","trigger":"timeout"},{"fromState":"InProgress","toState":"NotDone","trigger":"cancel","guard":"fields['cancellationDetail'] exists AND fields['cancellationDetail'] NOT eq ''"}],"actions":[{"name":"health-check","actionDetails":{"type":"RunWorker","workerId":{"scope":"Health","code":"HealthCheckWorker"},"workerAsAt":"2022-01-01T01:02:03.0000000+00:00","workerParameters":{},"workerStatusTriggers":{},"childTaskConfigurations":[{"taskDefinitionId":{"scope":"AAA","code":"BBB"},"initialTrigger":"test-trigger","childTaskFields":{"assignee":{"mapFrom":"foo","setTo":"bar"}}}]}}]} # CreateTaskDefinitionRequest | The data to create a Task Definition
 
     try:
         # [EXPERIMENTAL] CreateTaskDefinition: Create a new Task Definition
@@ -99,10 +99,10 @@ import time
 import lusid_workflow
 from lusid_workflow.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://www.lusid.com/workflow
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = lusid_workflow.Configuration(
-    host = "https://www.lusid.com/workflow"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -112,7 +112,7 @@ configuration = lusid_workflow.Configuration(
 
 # Configure OAuth2 access token for authorization: oauth2
 configuration = lusid_workflow.Configuration(
-    host = "https://www.lusid.com/workflow"
+    host = "http://localhost"
 )
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
@@ -175,10 +175,10 @@ import time
 import lusid_workflow
 from lusid_workflow.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://www.lusid.com/workflow
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = lusid_workflow.Configuration(
-    host = "https://www.lusid.com/workflow"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -188,7 +188,7 @@ configuration = lusid_workflow.Configuration(
 
 # Configure OAuth2 access token for authorization: oauth2
 configuration = lusid_workflow.Configuration(
-    host = "https://www.lusid.com/workflow"
+    host = "http://localhost"
 )
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
@@ -253,10 +253,10 @@ import time
 import lusid_workflow
 from lusid_workflow.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://www.lusid.com/workflow
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = lusid_workflow.Configuration(
-    host = "https://www.lusid.com/workflow"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -266,7 +266,7 @@ configuration = lusid_workflow.Configuration(
 
 # Configure OAuth2 access token for authorization: oauth2
 configuration = lusid_workflow.Configuration(
-    host = "https://www.lusid.com/workflow"
+    host = "http://localhost"
 )
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
@@ -331,10 +331,10 @@ import time
 import lusid_workflow
 from lusid_workflow.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://www.lusid.com/workflow
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = lusid_workflow.Configuration(
-    host = "https://www.lusid.com/workflow"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -344,7 +344,7 @@ configuration = lusid_workflow.Configuration(
 
 # Configure OAuth2 access token for authorization: oauth2
 configuration = lusid_workflow.Configuration(
-    host = "https://www.lusid.com/workflow"
+    host = "http://localhost"
 )
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
@@ -409,10 +409,10 @@ import time
 import lusid_workflow
 from lusid_workflow.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to https://www.lusid.com/workflow
+# Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
 configuration = lusid_workflow.Configuration(
-    host = "https://www.lusid.com/workflow"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -422,7 +422,7 @@ configuration = lusid_workflow.Configuration(
 
 # Configure OAuth2 access token for authorization: oauth2
 configuration = lusid_workflow.Configuration(
-    host = "https://www.lusid.com/workflow"
+    host = "http://localhost"
 )
 configuration.access_token = 'YOUR_ACCESS_TOKEN'
 
@@ -432,7 +432,7 @@ with lusid_workflow.ApiClient(configuration) as api_client:
     api_instance = lusid_workflow.TaskDefinitionsApi(api_client)
     scope = 'scope_example' # str | The scope that identifies a Task Definition
 code = 'code_example' # str | The code that identifies a Task Definition
-update_task_definition_request = {"displayName":"An example TaskDefinition","description":"Test","states":[{"name":"Submitted"},{"name":"InProgress"},{"name":"SendingSurvey"},{"name":"Done"},{"name":"SurveyNotSent"},{"name":"NotDone"}],"fieldSchema":[{"name":"clientId","type":"String"},{"name":"assignee","type":"String"},{"name":"resolutionDetail","type":"String"}],"initialState":{"name":"Submitted","requiredFields":["clientId"]},"triggers":[{"name":"start","trigger":{"type":"External"}},{"name":"cancel","trigger":{"type":"External"}},{"name":"resolve","trigger":{"type":"External"}},{"name":"timeout","trigger":{"type":"External"}},{"name":"success","trigger":{"type":"External"}},{"name":"failure","trigger":{"type":"External"}}],"transitions":[{"fromState":"Submitted","toState":"InProgress","trigger":"start","guard":"fields['assignee'] exists AND fields['assignee'] NOT eq ''"},{"fromState":"InProgress","toState":"SendingSurvey","trigger":"resolve","guard":"fields['resolutionDetail'] exists AND fields['resolutionDetail'] NOT eq ''","action":"health-check"},{"fromState":"SendingSurvey","toState":"Done","trigger":"success"},{"fromState":"SendingSurvey","toState":"SurveyNotSent","trigger":"failure"},{"fromState":"SendingSurvey","toState":"NotDone","trigger":"timeout"},{"fromState":"InProgress","toState":"NotDone","trigger":"cancel","guard":"fields['cancellationDetail'] exists AND fields['cancellationDetail'] NOT eq ''"}],"actions":[{"name":"health-check","actionDetails":{"workerId":{"scope":"Health","code":"HealthCheckWorker"},"workerAsAt":"2022-01-01T01:02:03.0000000+00:00","workerParameters":{},"workerStatusTriggers":{},"childTaskConfigurations":[{"taskDefinitionId":{"scope":"AAA","code":"BBB"},"initialTrigger":"test-trigger","childTaskFields":{"assignee":{"mapFrom":"foo","setTo":"bar"}}}],"type":"RunWorker"}}]} # UpdateTaskDefinitionRequest | The data to update a Task Definition
+update_task_definition_request = {"displayName":"An example TaskDefinition","description":"Test","states":[{"name":"Submitted"},{"name":"InProgress"},{"name":"SendingSurvey"},{"name":"Done"},{"name":"SurveyNotSent"},{"name":"NotDone"}],"fieldSchema":[{"name":"clientId","type":"String"},{"name":"assignee","type":"String"},{"name":"resolutionDetail","type":"String"}],"initialState":{"name":"Submitted","requiredFields":["clientId"]},"triggers":[{"name":"start","trigger":{"type":"External"}},{"name":"cancel","trigger":{"type":"External"}},{"name":"resolve","trigger":{"type":"External"}},{"name":"timeout","trigger":{"type":"External"}},{"name":"success","trigger":{"type":"External"}},{"name":"failure","trigger":{"type":"External"}}],"transitions":[{"fromState":"Submitted","toState":"InProgress","trigger":"start","guard":"fields['assignee'] exists AND fields['assignee'] NOT eq ''"},{"fromState":"InProgress","toState":"SendingSurvey","trigger":"resolve","guard":"fields['resolutionDetail'] exists AND fields['resolutionDetail'] NOT eq ''","action":"health-check"},{"fromState":"SendingSurvey","toState":"Done","trigger":"success"},{"fromState":"SendingSurvey","toState":"SurveyNotSent","trigger":"failure"},{"fromState":"SendingSurvey","toState":"NotDone","trigger":"timeout"},{"fromState":"InProgress","toState":"NotDone","trigger":"cancel","guard":"fields['cancellationDetail'] exists AND fields['cancellationDetail'] NOT eq ''"}],"actions":[{"name":"health-check","actionDetails":{"type":"RunWorker","workerId":{"scope":"Health","code":"HealthCheckWorker"},"workerAsAt":"2022-01-01T01:02:03.0000000+00:00","workerParameters":{},"workerStatusTriggers":{},"childTaskConfigurations":[{"taskDefinitionId":{"scope":"AAA","code":"BBB"},"initialTrigger":"test-trigger","childTaskFields":{"assignee":{"mapFrom":"foo","setTo":"bar"}}}]}}]} # UpdateTaskDefinitionRequest | The data to update a Task Definition
 
     try:
         # [EXPERIMENTAL] UpdateTaskDefinition: Update an existing Task Definition

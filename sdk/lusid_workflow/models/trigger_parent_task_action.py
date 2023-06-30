@@ -39,39 +39,70 @@ class TriggerParentTaskAction(object):
                            and the value is whether it is 'required' or 'optional'.
     """
     openapi_types = {
-        'trigger': 'str',
-        'type': 'str'
+        'type': 'str',
+        'trigger': 'str'
     }
 
     attribute_map = {
-        'trigger': 'trigger',
-        'type': 'type'
+        'type': 'type',
+        'trigger': 'trigger'
     }
 
     required_map = {
-        'trigger': 'required',
-        'type': 'required'
+        'type': 'required',
+        'trigger': 'required'
     }
 
-    def __init__(self, trigger=None, type=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, type=None, trigger=None, local_vars_configuration=None):  # noqa: E501
         """TriggerParentTaskAction - a model defined in OpenAPI"
         
-        :param trigger:  Trigger on parent task to be invoked (required)
-        :type trigger: str
         :param type:  Type name for this Action (required)
         :type type: str
+        :param trigger:  Trigger on parent task to be invoked (required)
+        :type trigger: str
 
         """  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
-        self._trigger = None
         self._type = None
+        self._trigger = None
         self.discriminator = None
 
-        self.trigger = trigger
         self.type = type
+        self.trigger = trigger
+
+    @property
+    def type(self):
+        """Gets the type of this TriggerParentTaskAction.  # noqa: E501
+
+        Type name for this Action  # noqa: E501
+
+        :return: The type of this TriggerParentTaskAction.  # noqa: E501
+        :rtype: str
+        """
+        return self._type
+
+    @type.setter
+    def type(self, type):
+        """Sets the type of this TriggerParentTaskAction.
+
+        Type name for this Action  # noqa: E501
+
+        :param type: The type of this TriggerParentTaskAction.  # noqa: E501
+        :type type: str
+        """
+        if self.local_vars_configuration.client_side_validation and type is None:  # noqa: E501
+            raise ValueError("Invalid value for `type`, must not be `None`")  # noqa: E501
+        allowed_values = ["TriggerParentTask"]  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and type not in allowed_values:  # noqa: E501
+            raise ValueError(
+                "Invalid value for `type` ({0}), must be one of {1}"  # noqa: E501
+                .format(type, allowed_values)
+            )
+
+        self._type = type
 
     @property
     def trigger(self):
@@ -106,34 +137,6 @@ class TriggerParentTaskAction(object):
             raise ValueError(r"Invalid value for `trigger`, must be a follow pattern or equal to `/^[a-zA-Z0-9\-_]+$/`")  # noqa: E501
 
         self._trigger = trigger
-
-    @property
-    def type(self):
-        """Gets the type of this TriggerParentTaskAction.  # noqa: E501
-
-        Type name for this Action  # noqa: E501
-
-        :return: The type of this TriggerParentTaskAction.  # noqa: E501
-        :rtype: str
-        """
-        return self._type
-
-    @type.setter
-    def type(self, type):
-        """Sets the type of this TriggerParentTaskAction.
-
-        Type name for this Action  # noqa: E501
-
-        :param type: The type of this TriggerParentTaskAction.  # noqa: E501
-        :type type: str
-        """
-        if self.local_vars_configuration.client_side_validation and type is None:  # noqa: E501
-            raise ValueError("Invalid value for `type`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                type is not None and len(type) < 1):
-            raise ValueError("Invalid value for `type`, length must be greater than or equal to `1`")  # noqa: E501
-
-        self._type = type
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""

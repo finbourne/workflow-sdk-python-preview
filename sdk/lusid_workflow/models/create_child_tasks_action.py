@@ -39,62 +39,39 @@ class CreateChildTasksAction(object):
                            and the value is whether it is 'required' or 'optional'.
     """
     openapi_types = {
-        'child_task_configurations': 'list[ResultantChildTaskConfiguration]',
-        'type': 'str'
+        'type': 'str',
+        'child_task_configurations': 'list[ResultantChildTaskConfiguration]'
     }
 
     attribute_map = {
-        'child_task_configurations': 'childTaskConfigurations',
-        'type': 'type'
+        'type': 'type',
+        'child_task_configurations': 'childTaskConfigurations'
     }
 
     required_map = {
-        'child_task_configurations': 'optional',
-        'type': 'required'
+        'type': 'required',
+        'child_task_configurations': 'optional'
     }
 
-    def __init__(self, child_task_configurations=None, type=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, type=None, child_task_configurations=None, local_vars_configuration=None):  # noqa: E501
         """CreateChildTasksAction - a model defined in OpenAPI"
         
-        :param child_task_configurations:  The Child Task Configurations
-        :type child_task_configurations: list[lusid_workflow.ResultantChildTaskConfiguration]
         :param type:  Type name for this Action (required)
         :type type: str
+        :param child_task_configurations:  The Child Task Configurations
+        :type child_task_configurations: list[lusid_workflow.ResultantChildTaskConfiguration]
 
         """  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
-        self._child_task_configurations = None
         self._type = None
+        self._child_task_configurations = None
         self.discriminator = None
 
-        self.child_task_configurations = child_task_configurations
         self.type = type
-
-    @property
-    def child_task_configurations(self):
-        """Gets the child_task_configurations of this CreateChildTasksAction.  # noqa: E501
-
-        The Child Task Configurations  # noqa: E501
-
-        :return: The child_task_configurations of this CreateChildTasksAction.  # noqa: E501
-        :rtype: list[lusid_workflow.ResultantChildTaskConfiguration]
-        """
-        return self._child_task_configurations
-
-    @child_task_configurations.setter
-    def child_task_configurations(self, child_task_configurations):
-        """Sets the child_task_configurations of this CreateChildTasksAction.
-
-        The Child Task Configurations  # noqa: E501
-
-        :param child_task_configurations: The child_task_configurations of this CreateChildTasksAction.  # noqa: E501
-        :type child_task_configurations: list[lusid_workflow.ResultantChildTaskConfiguration]
-        """
-
-        self._child_task_configurations = child_task_configurations
+        self.child_task_configurations = child_task_configurations
 
     @property
     def type(self):
@@ -118,11 +95,37 @@ class CreateChildTasksAction(object):
         """
         if self.local_vars_configuration.client_side_validation and type is None:  # noqa: E501
             raise ValueError("Invalid value for `type`, must not be `None`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                type is not None and len(type) < 1):
-            raise ValueError("Invalid value for `type`, length must be greater than or equal to `1`")  # noqa: E501
+        allowed_values = ["CreateChildTasks"]  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and type not in allowed_values:  # noqa: E501
+            raise ValueError(
+                "Invalid value for `type` ({0}), must be one of {1}"  # noqa: E501
+                .format(type, allowed_values)
+            )
 
         self._type = type
+
+    @property
+    def child_task_configurations(self):
+        """Gets the child_task_configurations of this CreateChildTasksAction.  # noqa: E501
+
+        The Child Task Configurations  # noqa: E501
+
+        :return: The child_task_configurations of this CreateChildTasksAction.  # noqa: E501
+        :rtype: list[lusid_workflow.ResultantChildTaskConfiguration]
+        """
+        return self._child_task_configurations
+
+    @child_task_configurations.setter
+    def child_task_configurations(self, child_task_configurations):
+        """Sets the child_task_configurations of this CreateChildTasksAction.
+
+        The Child Task Configurations  # noqa: E501
+
+        :param child_task_configurations: The child_task_configurations of this CreateChildTasksAction.  # noqa: E501
+        :type child_task_configurations: list[lusid_workflow.ResultantChildTaskConfiguration]
+        """
+
+        self._child_task_configurations = child_task_configurations
 
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
