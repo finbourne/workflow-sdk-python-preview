@@ -542,7 +542,7 @@ class WorkersApi(object):
         :type scope: str
         :param code: Code of the worker (required)
         :type code: str
-        :param run_worker_request: (required)
+        :param run_worker_request:  (required)
         :type run_worker_request: RunWorkerRequest
         :param as_at: The asAt datetime at which to retrieve the Worker. Defaults to returning the latest version of the Worker if not specified.
         :type as_at: datetime
@@ -577,7 +577,7 @@ class WorkersApi(object):
         :type scope: str
         :param code: Code of the worker (required)
         :type code: str
-        :param run_worker_request: (required)
+        :param run_worker_request:  (required)
         :type run_worker_request: RunWorkerRequest
         :param as_at: The asAt datetime at which to retrieve the Worker. Defaults to returning the latest version of the Worker if not specified.
         :type as_at: datetime

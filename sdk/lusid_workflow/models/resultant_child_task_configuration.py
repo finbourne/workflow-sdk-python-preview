@@ -43,7 +43,7 @@ class ResultantChildTaskConfiguration(object):
         'task_definition_id': 'ResourceId',
         'task_definition_as_at': 'datetime',
         'initial_trigger': 'str',
-        'child_task_fields': 'dict(str, FieldMapping)'
+        'child_task_fields': 'dict[str, FieldMapping]'
     }
 
     attribute_map = {
