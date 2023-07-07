@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **correlation_ids** | **list[str]** | User-provided ID used to link entities and tasks | [optional] 
 **task_definition_id** | [**ResourceId**](ResourceId.md) |  | 
 **task_definition_version** | [**TaskDefinitionVersion**](TaskDefinitionVersion.md) |  | 
-**version** | [**Version**](Version.md) |  | [optional] 
+**version** | [**VersionInfo**](VersionInfo.md) |  | [optional] 
 **state** | **str** | Current State | 
 **terminal_state** | **bool** | True if no onward transitions are possible | 
 **as_at_last_transition** | **datetime** | Last Transition timestamp | [optional] 

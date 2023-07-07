@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.333",
+    "version": "0.1.342",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -4663,7 +4663,7 @@
             "$ref": "#/components/schemas/TaskDefinitionVersion"
           },
           "version": {
-            "$ref": "#/components/schemas/Version"
+            "$ref": "#/components/schemas/VersionInfo"
           },
           "state": {
             "minLength": 1,
@@ -4705,7 +4705,7 @@
             "$ref": "#/components/schemas/ResourceId"
           },
           "version": {
-            "$ref": "#/components/schemas/Version"
+            "$ref": "#/components/schemas/VersionInfo"
           },
           "displayName": {
             "minLength": 1,
@@ -5035,7 +5035,7 @@
         "additionalProperties": false,
         "description": "A request to update a Task"
       },
-      "Version": {
+      "VersionInfo": {
         "type": "object",
         "properties": {
           "asAtCreated": {
@@ -5105,7 +5105,7 @@
             "description": "Information about how the worker should be executed"
           },
           "version": {
-            "$ref": "#/components/schemas/Version"
+            "$ref": "#/components/schemas/VersionInfo"
           },
           "parameters": {
             "type": "array",
