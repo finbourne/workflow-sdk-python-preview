@@ -43,7 +43,7 @@ class ActionDetails(object):
         'child_task_configurations': 'list[ResultantChildTaskConfiguration]',
         'worker_id': 'ResourceId',
         'worker_as_at': 'datetime',
-        'worker_parameters': 'dict(str, FieldMapping)',
+        'worker_parameters': 'dict[str, FieldMapping]',
         'worker_status_triggers': 'WorkerStatusTriggers',
         'trigger': 'str'
     }

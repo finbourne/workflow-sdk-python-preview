@@ -156,10 +156,13 @@ Class | Method | HTTP request | Description
  - [WorkerStatusTriggers](docs/WorkerStatusTriggers.md)
 
 
+<a id="documentation-for-authorization"></a>
 ## Documentation For Authorization
 
 
-## oauth2
+Authentication schemes defined for the API:
+<a id="oauth2"></a>
+### oauth2
 
 - **Type**: OAuth
 - **Flow**: implicit
