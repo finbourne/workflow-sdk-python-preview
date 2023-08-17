@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.362",
+    "version": "0.1.363",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -167,20 +167,28 @@
                       },
                       "workerAsAt": "2022-01-01T01:02:03.0000000+00:00",
                       "workerParameters": {},
-                      "workerStatusTriggers": {},
+                      "workerStatusTriggers": {
+                        "started": null,
+                        "completedWithResults": null,
+                        "completedNoResults": null,
+                        "failedToStart": null,
+                        "failedToComplete": null
+                      },
                       "childTaskConfigurations": [
                         {
                           "taskDefinitionId": {
                             "scope": "AAA",
                             "code": "BBB"
                           },
-                          "initialTrigger": "test-trigger",
                           "childTaskFields": {
                             "assignee": {
                               "mapFrom": "foo",
                               "setTo": "bar"
                             }
-                          }
+                          },
+                          "resultMatchingPattern": null,
+                          "taskDefinitionAsAt": null,
+                          "initialTrigger": "test-trigger"
                         }
                       ]
                     }
@@ -324,20 +332,28 @@
                       },
                       "workerAsAt": "2022-01-01T01:02:03.0000000+00:00",
                       "workerParameters": {},
-                      "workerStatusTriggers": {},
+                      "workerStatusTriggers": {
+                        "started": null,
+                        "completedWithResults": null,
+                        "completedNoResults": null,
+                        "failedToStart": null,
+                        "failedToComplete": null
+                      },
                       "childTaskConfigurations": [
                         {
                           "taskDefinitionId": {
                             "scope": "AAA",
                             "code": "BBB"
                           },
-                          "initialTrigger": "test-trigger",
                           "childTaskFields": {
                             "assignee": {
                               "mapFrom": "foo",
                               "setTo": "bar"
                             }
-                          }
+                          },
+                          "resultMatchingPattern": null,
+                          "taskDefinitionAsAt": null,
+                          "initialTrigger": "test-trigger"
                         }
                       ]
                     }
@@ -481,20 +497,28 @@
                       },
                       "workerAsAt": "2022-01-01T01:02:03.0000000+00:00",
                       "workerParameters": {},
-                      "workerStatusTriggers": {},
+                      "workerStatusTriggers": {
+                        "started": null,
+                        "completedWithResults": null,
+                        "completedNoResults": null,
+                        "failedToStart": null,
+                        "failedToComplete": null
+                      },
                       "childTaskConfigurations": [
                         {
                           "taskDefinitionId": {
                             "scope": "AAA",
                             "code": "BBB"
                           },
-                          "initialTrigger": "test-trigger",
                           "childTaskFields": {
                             "assignee": {
                               "mapFrom": "foo",
                               "setTo": "bar"
                             }
-                          }
+                          },
+                          "resultMatchingPattern": null,
+                          "taskDefinitionAsAt": null,
+                          "initialTrigger": "test-trigger"
                         }
                       ]
                     }
@@ -638,20 +662,28 @@
                       },
                       "workerAsAt": "2022-01-01T01:02:03.0000000+00:00",
                       "workerParameters": {},
-                      "workerStatusTriggers": {},
+                      "workerStatusTriggers": {
+                        "started": null,
+                        "completedWithResults": null,
+                        "completedNoResults": null,
+                        "failedToStart": null,
+                        "failedToComplete": null
+                      },
                       "childTaskConfigurations": [
                         {
                           "taskDefinitionId": {
                             "scope": "AAA",
                             "code": "BBB"
                           },
-                          "initialTrigger": "test-trigger",
                           "childTaskFields": {
                             "assignee": {
                               "mapFrom": "foo",
                               "setTo": "bar"
                             }
-                          }
+                          },
+                          "resultMatchingPattern": null,
+                          "taskDefinitionAsAt": null,
+                          "initialTrigger": "test-trigger"
                         }
                       ]
                     }
@@ -775,20 +807,28 @@
                         },
                         "workerAsAt": "2022-01-01T01:02:03.0000000+00:00",
                         "workerParameters": {},
-                        "workerStatusTriggers": {},
+                        "workerStatusTriggers": {
+                          "started": null,
+                          "completedWithResults": null,
+                          "completedNoResults": null,
+                          "failedToStart": null,
+                          "failedToComplete": null
+                        },
                         "childTaskConfigurations": [
                           {
                             "taskDefinitionId": {
                               "scope": "AAA",
                               "code": "BBB"
                             },
-                            "initialTrigger": "test-trigger",
                             "childTaskFields": {
                               "assignee": {
                                 "mapFrom": "foo",
                                 "setTo": "bar"
                               }
-                            }
+                            },
+                            "resultMatchingPattern": null,
+                            "taskDefinitionAsAt": null,
+                            "initialTrigger": "test-trigger"
                           }
                         ]
                       }
@@ -1017,20 +1057,28 @@
                             },
                             "workerAsAt": "2022-01-01T01:02:03.0000000+00:00",
                             "workerParameters": {},
-                            "workerStatusTriggers": {},
+                            "workerStatusTriggers": {
+                              "started": null,
+                              "completedWithResults": null,
+                              "completedNoResults": null,
+                              "failedToStart": null,
+                              "failedToComplete": null
+                            },
                             "childTaskConfigurations": [
                               {
                                 "taskDefinitionId": {
                                   "scope": "AAA",
                                   "code": "BBB"
                                 },
-                                "initialTrigger": "test-trigger",
                                 "childTaskFields": {
                                   "assignee": {
                                     "mapFrom": "foo",
                                     "setTo": "bar"
                                   }
-                                }
+                                },
+                                "resultMatchingPattern": null,
+                                "taskDefinitionAsAt": null,
+                                "initialTrigger": "test-trigger"
                               }
                             ]
                           }
@@ -1274,20 +1322,28 @@
                         },
                         "workerAsAt": "2022-01-01T01:02:03.0000000+00:00",
                         "workerParameters": {},
-                        "workerStatusTriggers": {},
+                        "workerStatusTriggers": {
+                          "started": null,
+                          "completedWithResults": null,
+                          "completedNoResults": null,
+                          "failedToStart": null,
+                          "failedToComplete": null
+                        },
                         "childTaskConfigurations": [
                           {
                             "taskDefinitionId": {
                               "scope": "AAA",
                               "code": "BBB"
                             },
-                            "initialTrigger": "test-trigger",
                             "childTaskFields": {
                               "assignee": {
                                 "mapFrom": "foo",
                                 "setTo": "bar"
                               }
-                            }
+                            },
+                            "resultMatchingPattern": null,
+                            "taskDefinitionAsAt": null,
+                            "initialTrigger": "test-trigger"
                           }
                         ]
                       }
@@ -1538,20 +1594,28 @@
                       },
                       "workerAsAt": "2022-01-01T01:02:03.0000000+00:00",
                       "workerParameters": {},
-                      "workerStatusTriggers": {},
+                      "workerStatusTriggers": {
+                        "started": null,
+                        "completedWithResults": null,
+                        "completedNoResults": null,
+                        "failedToStart": null,
+                        "failedToComplete": null
+                      },
                       "childTaskConfigurations": [
                         {
                           "taskDefinitionId": {
                             "scope": "AAA",
                             "code": "BBB"
                           },
-                          "initialTrigger": "test-trigger",
                           "childTaskFields": {
                             "assignee": {
                               "mapFrom": "foo",
                               "setTo": "bar"
                             }
-                          }
+                          },
+                          "resultMatchingPattern": null,
+                          "taskDefinitionAsAt": null,
+                          "initialTrigger": "test-trigger"
                         }
                       ]
                     }
@@ -1691,20 +1755,28 @@
                       },
                       "workerAsAt": "2022-01-01T01:02:03.0000000+00:00",
                       "workerParameters": {},
-                      "workerStatusTriggers": {},
+                      "workerStatusTriggers": {
+                        "started": null,
+                        "completedWithResults": null,
+                        "completedNoResults": null,
+                        "failedToStart": null,
+                        "failedToComplete": null
+                      },
                       "childTaskConfigurations": [
                         {
                           "taskDefinitionId": {
                             "scope": "AAA",
                             "code": "BBB"
                           },
-                          "initialTrigger": "test-trigger",
                           "childTaskFields": {
                             "assignee": {
                               "mapFrom": "foo",
                               "setTo": "bar"
                             }
-                          }
+                          },
+                          "resultMatchingPattern": null,
+                          "taskDefinitionAsAt": null,
+                          "initialTrigger": "test-trigger"
                         }
                       ]
                     }
@@ -1844,20 +1916,28 @@
                       },
                       "workerAsAt": "2022-01-01T01:02:03.0000000+00:00",
                       "workerParameters": {},
-                      "workerStatusTriggers": {},
+                      "workerStatusTriggers": {
+                        "started": null,
+                        "completedWithResults": null,
+                        "completedNoResults": null,
+                        "failedToStart": null,
+                        "failedToComplete": null
+                      },
                       "childTaskConfigurations": [
                         {
                           "taskDefinitionId": {
                             "scope": "AAA",
                             "code": "BBB"
                           },
-                          "initialTrigger": "test-trigger",
                           "childTaskFields": {
                             "assignee": {
                               "mapFrom": "foo",
                               "setTo": "bar"
                             }
-                          }
+                          },
+                          "resultMatchingPattern": null,
+                          "taskDefinitionAsAt": null,
+                          "initialTrigger": "test-trigger"
                         }
                       ]
                     }
@@ -1997,20 +2077,28 @@
                       },
                       "workerAsAt": "2022-01-01T01:02:03.0000000+00:00",
                       "workerParameters": {},
-                      "workerStatusTriggers": {},
+                      "workerStatusTriggers": {
+                        "started": null,
+                        "completedWithResults": null,
+                        "completedNoResults": null,
+                        "failedToStart": null,
+                        "failedToComplete": null
+                      },
                       "childTaskConfigurations": [
                         {
                           "taskDefinitionId": {
                             "scope": "AAA",
                             "code": "BBB"
                           },
-                          "initialTrigger": "test-trigger",
                           "childTaskFields": {
                             "assignee": {
                               "mapFrom": "foo",
                               "setTo": "bar"
                             }
-                          }
+                          },
+                          "resultMatchingPattern": null,
+                          "taskDefinitionAsAt": null,
+                          "initialTrigger": "test-trigger"
                         }
                       ]
                     }
@@ -2134,20 +2222,28 @@
                         },
                         "workerAsAt": "2022-01-01T01:02:03.0000000+00:00",
                         "workerParameters": {},
-                        "workerStatusTriggers": {},
+                        "workerStatusTriggers": {
+                          "started": null,
+                          "completedWithResults": null,
+                          "completedNoResults": null,
+                          "failedToStart": null,
+                          "failedToComplete": null
+                        },
                         "childTaskConfigurations": [
                           {
                             "taskDefinitionId": {
                               "scope": "AAA",
                               "code": "BBB"
                             },
-                            "initialTrigger": "test-trigger",
                             "childTaskFields": {
                               "assignee": {
                                 "mapFrom": "foo",
                                 "setTo": "bar"
                               }
-                            }
+                            },
+                            "resultMatchingPattern": null,
+                            "taskDefinitionAsAt": null,
+                            "initialTrigger": "test-trigger"
                           }
                         ]
                       }
@@ -3125,8 +3221,8 @@
                   "displayName": "ASP.Net Health Check worker",
                   "description": "Calls /health to check a service is running",
                   "workerConfiguration": {
-                    "Type": "HealthCheck",
-                    "Url": "http://localhost.lusid.com:8282/health"
+                    "type": "HealthCheck",
+                    "url": "http://localhost.lusid.com:8282/health"
                   },
                   "version": {
                     "asAtCreated": "2023-01-01T12:00:00.0000000+00:00",
@@ -3153,8 +3249,8 @@
                   "displayName": "ASP.Net Health Check worker",
                   "description": "Calls /health to check a service is running",
                   "workerConfiguration": {
-                    "Type": "HealthCheck",
-                    "Url": "http://localhost.lusid.com:8282/health"
+                    "type": "HealthCheck",
+                    "url": "http://localhost.lusid.com:8282/health"
                   },
                   "version": {
                     "asAtCreated": "2023-01-01T12:00:00.0000000+00:00",
@@ -3181,8 +3277,8 @@
                   "displayName": "ASP.Net Health Check worker",
                   "description": "Calls /health to check a service is running",
                   "workerConfiguration": {
-                    "Type": "HealthCheck",
-                    "Url": "http://localhost.lusid.com:8282/health"
+                    "type": "HealthCheck",
+                    "url": "http://localhost.lusid.com:8282/health"
                   },
                   "version": {
                     "asAtCreated": "2023-01-01T12:00:00.0000000+00:00",
@@ -3295,8 +3391,8 @@
                       "displayName": "ASP.Net Health Check worker",
                       "description": "Calls /health to check a service is running",
                       "workerConfiguration": {
-                        "Type": "HealthCheck",
-                        "Url": "http://localhost.lusid.com:8282/health"
+                        "type": "HealthCheck",
+                        "url": "http://localhost.lusid.com:8282/health"
                       },
                       "version": {
                         "asAtCreated": "2023-01-01T12:00:00.0000000+00:00",
@@ -3328,8 +3424,8 @@
                       "displayName": "ASP.Net Health Check worker",
                       "description": "Calls /health to check a service is running",
                       "workerConfiguration": {
-                        "Type": "HealthCheck",
-                        "Url": "http://localhost.lusid.com:8282/health"
+                        "type": "HealthCheck",
+                        "url": "http://localhost.lusid.com:8282/health"
                       },
                       "version": {
                         "asAtCreated": "2023-01-01T12:00:00.0000000+00:00",
@@ -3361,8 +3457,8 @@
                       "displayName": "ASP.Net Health Check worker",
                       "description": "Calls /health to check a service is running",
                       "workerConfiguration": {
-                        "Type": "HealthCheck",
-                        "Url": "http://localhost.lusid.com:8282/health"
+                        "type": "HealthCheck",
+                        "url": "http://localhost.lusid.com:8282/health"
                       },
                       "version": {
                         "asAtCreated": "2023-01-01T12:00:00.0000000+00:00",
@@ -3481,8 +3577,8 @@
                   "displayName": "ASP.Net Health Check worker",
                   "description": "Calls /health to check a service is running",
                   "workerConfiguration": {
-                    "Type": "HealthCheck",
-                    "Url": "http://localhost.lusid.com:8282/health"
+                    "type": "HealthCheck",
+                    "url": "http://localhost.lusid.com:8282/health"
                   },
                   "version": {
                     "asAtCreated": "2023-01-01T12:00:00.0000000+00:00",
@@ -3509,8 +3605,8 @@
                   "displayName": "ASP.Net Health Check worker",
                   "description": "Calls /health to check a service is running",
                   "workerConfiguration": {
-                    "Type": "HealthCheck",
-                    "Url": "http://localhost.lusid.com:8282/health"
+                    "type": "HealthCheck",
+                    "url": "http://localhost.lusid.com:8282/health"
                   },
                   "version": {
                     "asAtCreated": "2023-01-01T12:00:00.0000000+00:00",
@@ -3537,8 +3633,8 @@
                   "displayName": "ASP.Net Health Check worker",
                   "description": "Calls /health to check a service is running",
                   "workerConfiguration": {
-                    "Type": "HealthCheck",
-                    "Url": "http://localhost.lusid.com:8282/health"
+                    "type": "HealthCheck",
+                    "url": "http://localhost.lusid.com:8282/health"
                   },
                   "version": {
                     "asAtCreated": "2023-01-01T12:00:00.0000000+00:00",
@@ -3814,6 +3910,40 @@
         "additionalProperties": false,
         "description": "Abstracts the kinds of Actions available"
       },
+      "CreateChildTaskConfiguration": {
+        "required": [
+          "childTaskFields",
+          "taskDefinitionId"
+        ],
+        "type": "object",
+        "properties": {
+          "taskDefinitionId": {
+            "$ref": "#/components/schemas/ResourceId"
+          },
+          "taskDefinitionAsAt": {
+            "type": "string",
+            "description": "TaskDefinition AsAt timestamp",
+            "format": "date-time",
+            "nullable": true
+          },
+          "initialTrigger": {
+            "maxLength": 1024,
+            "pattern": "^[a-zA-Z0-9\\-_]+$",
+            "type": "string",
+            "description": "The Initial Trigger for automatic start",
+            "nullable": true
+          },
+          "childTaskFields": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/FieldMapping"
+            },
+            "description": "Field Mappings"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Create Child Task Configuration"
+      },
       "CreateChildTasksAction": {
         "required": [
           "type"
@@ -3831,7 +3961,7 @@
           "childTaskConfigurations": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ResultantChildTaskConfiguration"
+              "$ref": "#/components/schemas/CreateChildTaskConfiguration"
             },
             "description": "The Child Task Configurations",
             "nullable": true
