@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.375",
+    "version": "0.1.376",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -4763,6 +4763,24 @@
         "additionalProperties": false,
         "description": "The RunWorker response"
       },
+      "Sleep": {
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "minLength": 1,
+            "enum": [
+              "Sleep"
+            ],
+            "type": "string",
+            "description": "The type of worker"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Configuration for a Worker that Sleeps for a user-defined amount of time"
+      },
       "Task": {
         "required": [
           "id",
@@ -5275,6 +5293,9 @@
           },
           {
             "$ref": "#/components/schemas/LuminesceView"
+          },
+          {
+            "$ref": "#/components/schemas/Sleep"
           }
         ],
         "properties": {
