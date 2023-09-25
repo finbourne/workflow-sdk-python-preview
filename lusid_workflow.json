@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.376",
+    "version": "0.1.414",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -2646,14 +2646,23 @@
                 },
                 "example": {
                   "id": "4aa4b4e1-866a-493e-8d33-51f9e47a0843",
-                  "correlationIds": [
-                    "correlation-id"
-                  ],
                   "taskDefinitionId": {
                     "scope": "A1",
                     "code": "ZZZ"
                   },
                   "state": "foo",
+                  "ultimateParentTask": {
+                    "id": "4aa4b4e1-866a-493e-8d33-51f9e47a0843",
+                    "taskDefinitionId": {
+                      "scope": "A1",
+                      "code": "ZZZ"
+                    },
+                    "taskDefinitionDisplayName": "TestDefinition",
+                    "state": "foo"
+                  },
+                  "correlationIds": [
+                    "correlation-id"
+                  ],
                   "terminalState": false,
                   "asAtLastTransition": "2022-01-01T01:02:03.0000000+00:00"
                 }
@@ -2819,14 +2828,23 @@
                 },
                 "example": {
                   "id": "4aa4b4e1-866a-493e-8d33-51f9e47a0843",
-                  "correlationIds": [
-                    "correlation-id"
-                  ],
                   "taskDefinitionId": {
                     "scope": "A1",
                     "code": "ZZZ"
                   },
                   "state": "foo",
+                  "ultimateParentTask": {
+                    "id": "4aa4b4e1-866a-493e-8d33-51f9e47a0843",
+                    "taskDefinitionId": {
+                      "scope": "A1",
+                      "code": "ZZZ"
+                    },
+                    "taskDefinitionDisplayName": "TestDefinition",
+                    "state": "foo"
+                  },
+                  "correlationIds": [
+                    "correlation-id"
+                  ],
                   "terminalState": false,
                   "asAtLastTransition": "2022-01-01T01:02:03.0000000+00:00"
                 }
@@ -3001,14 +3019,23 @@
                 },
                 "example": {
                   "id": "4aa4b4e1-866a-493e-8d33-51f9e47a0843",
-                  "correlationIds": [
-                    "correlation-id"
-                  ],
                   "taskDefinitionId": {
                     "scope": "A1",
                     "code": "ZZZ"
                   },
                   "state": "foo",
+                  "ultimateParentTask": {
+                    "id": "4aa4b4e1-866a-493e-8d33-51f9e47a0843",
+                    "taskDefinitionId": {
+                      "scope": "A1",
+                      "code": "ZZZ"
+                    },
+                    "taskDefinitionDisplayName": "TestDefinition",
+                    "state": "foo"
+                  },
+                  "correlationIds": [
+                    "correlation-id"
+                  ],
                   "terminalState": false,
                   "asAtLastTransition": "2022-01-01T01:02:03.0000000+00:00"
                 }
@@ -3800,7 +3827,7 @@
                   "$ref": "#/components/schemas/RunWorkerResponse"
                 },
                 "example": {
-                  "results": []
+                  "runId": 0
                 }
               },
               "application/json": {
@@ -3808,7 +3835,7 @@
                   "$ref": "#/components/schemas/RunWorkerResponse"
                 },
                 "example": {
-                  "results": []
+                  "runId": 0
                 }
               },
               "text/json": {
@@ -3816,7 +3843,7 @@
                   "$ref": "#/components/schemas/RunWorkerResponse"
                 },
                 "example": {
-                  "results": []
+                  "runId": 0
                 }
               }
             }
@@ -4736,23 +4763,14 @@
       },
       "RunWorkerResponse": {
         "required": [
-          "results",
-          "workerStatus"
+          "runId"
         ],
         "type": "object",
         "properties": {
-          "workerStatus": {
-            "minLength": 1,
-            "type": "string",
-            "description": "The final status of the Worker"
-          },
-          "results": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "additionalProperties": {}
-            },
-            "description": "Results"
+          "runId": {
+            "type": "integer",
+            "description": "Identifies a Worker run",
+            "format": "int64"
           },
           "statusDetail": {
             "type": "string",
@@ -4787,7 +4805,8 @@
           "state",
           "taskDefinitionId",
           "taskDefinitionVersion",
-          "terminalState"
+          "terminalState",
+          "ultimateParentTask"
         ],
         "type": "object",
         "properties": {
@@ -4795,6 +4814,31 @@
             "type": "string",
             "description": "The unique id for this Task",
             "format": "uuid"
+          },
+          "taskDefinitionId": {
+            "$ref": "#/components/schemas/ResourceId"
+          },
+          "taskDefinitionVersion": {
+            "$ref": "#/components/schemas/TaskDefinitionVersion"
+          },
+          "state": {
+            "minLength": 1,
+            "type": "string",
+            "description": "Current State"
+          },
+          "ultimateParentTask": {
+            "$ref": "#/components/schemas/TaskSummary"
+          },
+          "parentTask": {
+            "$ref": "#/components/schemas/TaskSummary"
+          },
+          "childTasks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TaskSummary"
+            },
+            "description": "This Task's child tasks",
+            "nullable": true
           },
           "correlationIds": {
             "type": "array",
@@ -4804,19 +4848,8 @@
             "description": "User-provided ID used to link entities and tasks",
             "nullable": true
           },
-          "taskDefinitionId": {
-            "$ref": "#/components/schemas/ResourceId"
-          },
-          "taskDefinitionVersion": {
-            "$ref": "#/components/schemas/TaskDefinitionVersion"
-          },
           "version": {
             "$ref": "#/components/schemas/VersionInfo"
-          },
-          "state": {
-            "minLength": 1,
-            "type": "string",
-            "description": "Current State"
           },
           "terminalState": {
             "type": "boolean",
@@ -4983,6 +5016,41 @@
         },
         "additionalProperties": false,
         "description": "A Task Definition/Task has a given set of States"
+      },
+      "TaskSummary": {
+        "required": [
+          "id",
+          "state",
+          "taskDefinitionDisplayName",
+          "taskDefinitionId",
+          "taskDefinitionVersion"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique id for this Task",
+            "format": "uuid"
+          },
+          "taskDefinitionId": {
+            "$ref": "#/components/schemas/ResourceId"
+          },
+          "taskDefinitionVersion": {
+            "$ref": "#/components/schemas/TaskDefinitionVersion"
+          },
+          "taskDefinitionDisplayName": {
+            "minLength": 1,
+            "type": "string",
+            "description": "The display name of the Task Definition used by this Task"
+          },
+          "state": {
+            "minLength": 1,
+            "type": "string",
+            "description": "Current State"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Summary of a Task created based on a Task Definition"
       },
       "TaskTransitionDefinition": {
         "required": [
