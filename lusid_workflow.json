@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.414",
+    "version": "0.1.419",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -2650,6 +2650,7 @@
                     "scope": "A1",
                     "code": "ZZZ"
                   },
+                  "taskDefinitionDisplayName": "Test Definition",
                   "state": "foo",
                   "ultimateParentTask": {
                     "id": "4aa4b4e1-866a-493e-8d33-51f9e47a0843",
@@ -2657,7 +2658,7 @@
                       "scope": "A1",
                       "code": "ZZZ"
                     },
-                    "taskDefinitionDisplayName": "TestDefinition",
+                    "taskDefinitionDisplayName": "Test Definition",
                     "state": "foo"
                   },
                   "correlationIds": [
@@ -2832,6 +2833,7 @@
                     "scope": "A1",
                     "code": "ZZZ"
                   },
+                  "taskDefinitionDisplayName": "Test Definition",
                   "state": "foo",
                   "ultimateParentTask": {
                     "id": "4aa4b4e1-866a-493e-8d33-51f9e47a0843",
@@ -2839,7 +2841,7 @@
                       "scope": "A1",
                       "code": "ZZZ"
                     },
-                    "taskDefinitionDisplayName": "TestDefinition",
+                    "taskDefinitionDisplayName": "Test Definition",
                     "state": "foo"
                   },
                   "correlationIds": [
@@ -3023,6 +3025,7 @@
                     "scope": "A1",
                     "code": "ZZZ"
                   },
+                  "taskDefinitionDisplayName": "Test Definition",
                   "state": "foo",
                   "ultimateParentTask": {
                     "id": "4aa4b4e1-866a-493e-8d33-51f9e47a0843",
@@ -3030,7 +3033,7 @@
                       "scope": "A1",
                       "code": "ZZZ"
                     },
-                    "taskDefinitionDisplayName": "TestDefinition",
+                    "taskDefinitionDisplayName": "Test Definition",
                     "state": "foo"
                   },
                   "correlationIds": [
@@ -3501,6 +3504,109 @@
                     }
                   ],
                   "links": []
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The details of the input related failure",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": []
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
+      }
+    },
+    "/api/workers/{runId}/$result": {
+      "get": {
+        "tags": [
+          "Workers"
+        ],
+        "summary": "[EXPERIMENTAL] GetWorkerResult: Get the status of a specific run of a worker with any relevant results",
+        "operationId": "GetWorkerResult",
+        "parameters": [
+          {
+            "name": "runId",
+            "in": "path",
+            "description": "The ID returned when calling Run Worker",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetWorkerResultResponse"
+                },
+                "example": {
+                  "workerStatus": "CompletedNoResults",
+                  "results": [
+                    {
+                      "HttpStatusCode": "200"
+                    }
+                  ]
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetWorkerResultResponse"
+                },
+                "example": {
+                  "workerStatus": "CompletedNoResults",
+                  "results": [
+                    {
+                      "HttpStatusCode": "200"
+                    }
+                  ]
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetWorkerResultResponse"
+                },
+                "example": {
+                  "workerStatus": "CompletedNoResults",
+                  "results": [
+                    {
+                      "HttpStatusCode": "200"
+                    }
+                  ]
                 }
               }
             }
@@ -4176,13 +4282,65 @@
             "maxLength": 1024,
             "minLength": 1,
             "pattern": "^[a-zA-Z0-9\\-_]+$",
-            "type": "string",
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "integer",
+                "format": "int64"
+              },
+              {
+                "type": "number",
+                "format": "float"
+              },
+              {
+                "type": "number",
+                "format": "double"
+              }
+            ],
             "description": "The (constant) value to set",
             "nullable": true
           }
         },
         "additionalProperties": false,
         "description": "Defines a single Field map"
+      },
+      "GetWorkerResultResponse": {
+        "required": [
+          "results",
+          "workerStatus"
+        ],
+        "type": "object",
+        "properties": {
+          "workerStatus": {
+            "minLength": 1,
+            "type": "string",
+            "description": "The final status of the Worker"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": {}
+            },
+            "description": "Results"
+          },
+          "statusDetail": {
+            "type": "string",
+            "description": "Detail on the final status",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "The RunWorker response"
       },
       "HealthCheck": {
         "required": [
@@ -4803,6 +4961,7 @@
         "required": [
           "id",
           "state",
+          "taskDefinitionDisplayName",
           "taskDefinitionId",
           "taskDefinitionVersion",
           "terminalState",
@@ -4820,6 +4979,11 @@
           },
           "taskDefinitionVersion": {
             "$ref": "#/components/schemas/TaskDefinitionVersion"
+          },
+          "taskDefinitionDisplayName": {
+            "minLength": 1,
+            "type": "string",
+            "description": "The display name of the Task Definition used by this Task"
           },
           "state": {
             "minLength": 1,
@@ -4992,7 +5156,6 @@
             "description": "The name of this Field"
           },
           "value": {
-            "type": "string",
             "description": "The value of this Field",
             "nullable": true
           }

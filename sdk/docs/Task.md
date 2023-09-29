@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **id** | **str** | The unique id for this Task | 
 **task_definition_id** | [**ResourceId**](ResourceId.md) |  | 
 **task_definition_version** | [**TaskDefinitionVersion**](TaskDefinitionVersion.md) |  | 
+**task_definition_display_name** | **str** | The display name of the Task Definition used by this Task | 
 **state** | **str** | Current State | 
 **ultimate_parent_task** | [**TaskSummary**](TaskSummary.md) |  | 
 **parent_task** | [**TaskSummary**](TaskSummary.md) |  | [optional] 
