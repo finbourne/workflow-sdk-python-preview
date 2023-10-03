@@ -237,7 +237,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_tasks**
-> PagedResourceListOfTask list_tasks(as_at=as_at, limit=limit, page=page)
+> PagedResourceListOfTask list_tasks(as_at=as_at, filter=filter, limit=limit, page=page)
 
 [EXPERIMENTAL] ListTasks: List Tasks
 
@@ -272,12 +272,13 @@ with lusid_workflow.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = lusid_workflow.TasksApi(api_client)
     as_at = '2013-10-20T19:20:30+01:00' # datetime | The asAt datetime at which to list the Tasks. Defaults to return the latest version of each Task if not specified. (optional)
+filter = 'filter_example' # str | Expression to filter the result set. Read more about filtering results from LUSID here: https://support.lusid.com/filtering-results-from-lusid. (optional)
 limit = 10 # int | When paginating, limit the number of returned results to this many. (optional) (default to 10)
 page = 'page_example' # str | The pagination token to use to continue listing tasks from a previous call to list tasks. This value is returned from the previous call. If a pagination token is provided the sortBy, filter, effectiveAt, and asAt fields must not have changed since the original request. (optional)
 
     try:
         # [EXPERIMENTAL] ListTasks: List Tasks
-        api_response = api_instance.list_tasks(as_at=as_at, limit=limit, page=page)
+        api_response = api_instance.list_tasks(as_at=as_at, filter=filter, limit=limit, page=page)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling TasksApi->list_tasks: %s\n" % e)
@@ -288,6 +289,7 @@ page = 'page_example' # str | The pagination token to use to continue listing ta
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **as_at** | **datetime**| The asAt datetime at which to list the Tasks. Defaults to return the latest version of each Task if not specified. | [optional] 
+ **filter** | **str**| Expression to filter the result set. Read more about filtering results from LUSID here: https://support.lusid.com/filtering-results-from-lusid. | [optional] 
  **limit** | **int**| When paginating, limit the number of returned results to this many. | [optional] [default to 10]
  **page** | **str**| The pagination token to use to continue listing tasks from a previous call to list tasks. This value is returned from the previous call. If a pagination token is provided the sortBy, filter, effectiveAt, and asAt fields must not have changed since the original request. | [optional] 
 

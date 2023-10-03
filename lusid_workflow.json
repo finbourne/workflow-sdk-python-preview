@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.420",
+    "version": "0.1.424",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -2716,6 +2716,17 @@
             "x-nullable": true
           },
           {
+            "name": "filter",
+            "in": "query",
+            "description": "Expression to filter the result set. Read more about filtering results from LUSID here: https://support.lusid.com/filtering-results-from-lusid.",
+            "schema": {
+              "maxLength": 16384,
+              "minLength": 0,
+              "pattern": "^[\\s\\S]*$",
+              "type": "string"
+            }
+          },
+          {
             "name": "limit",
             "in": "query",
             "description": "When paginating, limit the number of returned results to this many.",
@@ -4279,33 +4290,6 @@
             "nullable": true
           },
           "setTo": {
-            "maxLength": 1024,
-            "minLength": 1,
-            "pattern": "^[a-zA-Z0-9\\-_]+$",
-            "oneOf": [
-              {
-                "type": "string",
-                "format": "date-time"
-              },
-              {
-                "type": "string"
-              },
-              {
-                "type": "boolean"
-              },
-              {
-                "type": "integer",
-                "format": "int64"
-              },
-              {
-                "type": "number",
-                "format": "float"
-              },
-              {
-                "type": "number",
-                "format": "double"
-              }
-            ],
             "description": "The (constant) value to set",
             "nullable": true
           }
