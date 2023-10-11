@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.441",
+    "version": "0.1.443",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -4278,6 +4278,39 @@
         },
         "additionalProperties": false
       },
+      "Fail": {
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "minLength": 1,
+            "enum": [
+              "Fail"
+            ],
+            "type": "string",
+            "description": "The type of worker"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Configuration for a Worker that always Fails"
+      },
+      "FailResponse": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "enum": [
+              "Fail"
+            ],
+            "type": "string",
+            "description": "The type of worker",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Readonly configuration for a Worker that always Fails"
+      },
       "FieldMapping": {
         "type": "object",
         "properties": {
@@ -4351,6 +4384,26 @@
         },
         "additionalProperties": false,
         "description": "Configuration for a Worker that performs a GET against a given Url."
+      },
+      "HealthCheckResponse": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "enum": [
+              "HealthCheck"
+            ],
+            "type": "string",
+            "description": "The type of worker",
+            "nullable": true
+          },
+          "url": {
+            "type": "string",
+            "description": "The URL to check, eg: https://www.google.com/",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Readonly configuration for a Worker that performs a GET against a given Url."
       },
       "InitialState": {
         "required": [
@@ -4427,6 +4480,26 @@
         },
         "additionalProperties": false,
         "description": "Configuration for a Worker that calls a Luminesce view"
+      },
+      "LuminesceViewResponse": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "enum": [
+              "LuminesceView"
+            ],
+            "type": "string",
+            "description": "The type of worker",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the view in Luminesce",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Readonly configuration for a Worker that calls a Luminesce view"
       },
       "LusidProblemDetails": {
         "required": [
@@ -4924,6 +4997,24 @@
         "description": "The RunWorker response"
       },
       "Sleep": {
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "minLength": 1,
+            "enum": [
+              "Sleep"
+            ],
+            "type": "string",
+            "description": "The type of worker"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Configuration for a Worker that Sleeps for a user-defined amount of time"
+      },
+      "SleepResponse": {
         "required": [
           "type"
         ],
@@ -5465,7 +5556,7 @@
             "nullable": true
           },
           "workerConfiguration": {
-            "description": "Information about how the worker should be executed"
+            "$ref": "#/components/schemas/WorkerConfigurationResponse"
           },
           "version": {
             "$ref": "#/components/schemas/VersionInfo"
@@ -5504,6 +5595,9 @@
         "type": "object",
         "oneOf": [
           {
+            "$ref": "#/components/schemas/Fail"
+          },
+          {
             "$ref": "#/components/schemas/HealthCheck"
           },
           {
@@ -5522,6 +5616,25 @@
         },
         "additionalProperties": false,
         "description": "Information about how the worker should be executed"
+      },
+      "WorkerConfigurationResponse": {
+        "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/FailResponse"
+          },
+          {
+            "$ref": "#/components/schemas/HealthCheckResponse"
+          },
+          {
+            "$ref": "#/components/schemas/LuminesceViewResponse"
+          },
+          {
+            "$ref": "#/components/schemas/SleepResponse"
+          }
+        ],
+        "additionalProperties": false,
+        "description": "Readonly information about how the worker should be executed"
       },
       "WorkerStatusTriggers": {
         "type": "object",
