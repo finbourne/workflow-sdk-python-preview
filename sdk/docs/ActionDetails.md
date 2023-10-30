@@ -6,7 +6,7 @@ Abstracts the kinds of Actions available
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | **str** | Type name for this Action | 
-**child_task_configurations** | [**list[ResultantChildTaskConfiguration]**](ResultantChildTaskConfiguration.md) | Tasks can be generated from run worker results; this is the configuration | [optional] 
+**child_task_configurations** | [**list[ResultantChildTaskConfiguration]**](ResultantChildTaskConfiguration.md) | Tasks can be generated from run worker results; this is the configuration | 
 **worker_id** | [**ResourceId**](ResourceId.md) |  | 
 **worker_as_at** | **datetime** | Worker AsAt | [optional] 
 **worker_parameters** | [**dict[str, FieldMapping]**](FieldMapping.md) | Parameters for this Worker | [optional] 
