@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.487",
+    "version": "0.1.493",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -4039,6 +4039,21 @@
         "additionalProperties": false,
         "description": "Defines the Actions for a Task"
       },
+      "ActionDefinitionResponse": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The Name of this Action",
+            "nullable": true
+          },
+          "actionDetails": {
+            "$ref": "#/components/schemas/ActionDetailsResponse"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Defines the Actions for a Task in a read-only form"
+      },
       "ActionDetails": {
         "required": [
           "type"
@@ -4064,6 +4079,29 @@
         },
         "additionalProperties": false,
         "description": "Abstracts the kinds of Actions available"
+      },
+      "ActionDetailsResponse": {
+        "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/CreateChildTasksActionResponse"
+          },
+          {
+            "$ref": "#/components/schemas/RunWorkerActionResponse"
+          },
+          {
+            "$ref": "#/components/schemas/TriggerParentTaskActionResponse"
+          }
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Type name for this Action",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Abstracts the kinds of Actions available in a read-only form"
       },
       "CreateChildTaskConfiguration": {
         "required": [
@@ -4123,7 +4161,30 @@
           }
         },
         "additionalProperties": false,
-        "description": "Defines a Worker Action"
+        "description": "Defines a Create Child Tasks Action"
+      },
+      "CreateChildTasksActionResponse": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "enum": [
+              "CreateChildTasks"
+            ],
+            "type": "string",
+            "description": "Type name for this Action",
+            "nullable": true
+          },
+          "childTaskConfigurations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreateChildTaskConfiguration"
+            },
+            "description": "The Child Task Configurations",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Defines a read-only Create Child Tasks Action"
       },
       "CreateTaskDefinitionRequest": {
         "required": [
@@ -4968,7 +5029,50 @@
           }
         },
         "additionalProperties": false,
-        "description": "Defines an Worker Action"
+        "description": "Defines a Run Worker Action"
+      },
+      "RunWorkerActionResponse": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "enum": [
+              "RunWorker"
+            ],
+            "type": "string",
+            "description": "Type name for this Action",
+            "nullable": true
+          },
+          "workerId": {
+            "$ref": "#/components/schemas/ResourceId"
+          },
+          "workerAsAt": {
+            "type": "string",
+            "description": "Worker AsAt",
+            "format": "date-time",
+            "nullable": true
+          },
+          "workerParameters": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/FieldMapping"
+            },
+            "description": "Parameters for this Worker",
+            "nullable": true
+          },
+          "workerStatusTriggers": {
+            "$ref": "#/components/schemas/WorkerStatusTriggers"
+          },
+          "childTaskConfigurations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResultantChildTaskConfiguration"
+            },
+            "description": "Tasks can be generated from run worker results; this is the configuration",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Defines a read-only Run Worker Action"
       },
       "RunWorkerRequest": {
         "required": [
@@ -5178,7 +5282,7 @@
           "actions": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ActionDefinition"
+              "$ref": "#/components/schemas/ActionDefinitionResponse"
             },
             "description": "The Actions of this Task - executed after a Transition completion",
             "nullable": true
@@ -5193,7 +5297,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "TaskDefinition"
+        "description": "Task Definition"
       },
       "TaskDefinitionVersion": {
         "type": "object",
@@ -5395,7 +5499,27 @@
           }
         },
         "additionalProperties": false,
-        "description": "Defines an TriggerParentTask Action"
+        "description": "Defines a Trigger Parent Task Action"
+      },
+      "TriggerParentTaskActionResponse": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "enum": [
+              "TriggerParentTask"
+            ],
+            "type": "string",
+            "description": "Type name for this Action",
+            "nullable": true
+          },
+          "trigger": {
+            "type": "string",
+            "description": "Trigger on parent task to be invoked",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Defines a read-only Trigger Parent Task Action"
       },
       "TriggerSchema": {
         "required": [

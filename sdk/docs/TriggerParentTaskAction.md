@@ -1,6 +1,6 @@
 # TriggerParentTaskAction
 
-Defines an TriggerParentTask Action
+Defines a Trigger Parent Task Action
 
 ## Properties
 Name | Type | Description | Notes
