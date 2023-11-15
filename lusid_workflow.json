@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.556",
+    "version": "0.1.585",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -4279,6 +4279,11 @@
             },
             "description": "Fields and their initial values - should correspond with the Task Definition field schema",
             "nullable": true
+          },
+          "stackingKey": {
+            "type": "string",
+            "description": "The key for the Stack that this Task should be added to",
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -5674,6 +5679,11 @@
               "$ref": "#/components/schemas/TaskInstanceField"
             },
             "description": "Defines the fields associated with the update",
+            "nullable": true
+          },
+          "stackingKey": {
+            "type": "string",
+            "description": "The key for the Stack that this Task should be added to",
             "nullable": true
           }
         },
