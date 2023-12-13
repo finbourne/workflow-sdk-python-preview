@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.655",
+    "version": "0.1.670",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -180,6 +180,7 @@
                             "scope": "AAA",
                             "code": "BBB"
                           },
+                          "mapStackingKeyFrom": null,
                           "childTaskFields": {
                             "assignee": {
                               "mapFrom": "foo",
@@ -345,6 +346,7 @@
                             "scope": "AAA",
                             "code": "BBB"
                           },
+                          "mapStackingKeyFrom": null,
                           "childTaskFields": {
                             "assignee": {
                               "mapFrom": "foo",
@@ -510,6 +512,7 @@
                             "scope": "AAA",
                             "code": "BBB"
                           },
+                          "mapStackingKeyFrom": null,
                           "childTaskFields": {
                             "assignee": {
                               "mapFrom": "foo",
@@ -675,6 +678,7 @@
                             "scope": "AAA",
                             "code": "BBB"
                           },
+                          "mapStackingKeyFrom": null,
                           "childTaskFields": {
                             "assignee": {
                               "mapFrom": "foo",
@@ -820,6 +824,7 @@
                               "scope": "AAA",
                               "code": "BBB"
                             },
+                            "mapStackingKeyFrom": null,
                             "childTaskFields": {
                               "assignee": {
                                 "mapFrom": "foo",
@@ -1081,6 +1086,7 @@
                                   "scope": "AAA",
                                   "code": "BBB"
                                 },
+                                "mapStackingKeyFrom": null,
                                 "childTaskFields": {
                                   "assignee": {
                                     "mapFrom": "foo",
@@ -1346,6 +1352,7 @@
                               "scope": "AAA",
                               "code": "BBB"
                             },
+                            "mapStackingKeyFrom": null,
                             "childTaskFields": {
                               "assignee": {
                                 "mapFrom": "foo",
@@ -1618,6 +1625,7 @@
                             "scope": "AAA",
                             "code": "BBB"
                           },
+                          "mapStackingKeyFrom": null,
                           "childTaskFields": {
                             "assignee": {
                               "mapFrom": "foo",
@@ -1779,6 +1787,7 @@
                             "scope": "AAA",
                             "code": "BBB"
                           },
+                          "mapStackingKeyFrom": null,
                           "childTaskFields": {
                             "assignee": {
                               "mapFrom": "foo",
@@ -1940,6 +1949,7 @@
                             "scope": "AAA",
                             "code": "BBB"
                           },
+                          "mapStackingKeyFrom": null,
                           "childTaskFields": {
                             "assignee": {
                               "mapFrom": "foo",
@@ -2101,6 +2111,7 @@
                             "scope": "AAA",
                             "code": "BBB"
                           },
+                          "mapStackingKeyFrom": null,
                           "childTaskFields": {
                             "assignee": {
                               "mapFrom": "foo",
@@ -2246,6 +2257,7 @@
                               "scope": "AAA",
                               "code": "BBB"
                             },
+                            "mapStackingKeyFrom": null,
                             "childTaskFields": {
                               "assignee": {
                                 "mapFrom": "foo",
@@ -4132,6 +4144,11 @@
             },
             "description": "Field Mappings",
             "nullable": true
+          },
+          "mapStackingKeyFrom": {
+            "type": "string",
+            "description": "If present, the value of this field on the parent task will be the Stacking Key on any created child tasks",
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -4936,6 +4953,11 @@
               "$ref": "#/components/schemas/FieldMapping"
             },
             "description": "Field Mappings"
+          },
+          "mapStackingKeyFrom": {
+            "type": "string",
+            "description": "The field to be mapped as the ChildTasks Stacking Key",
+            "nullable": true
           }
         },
         "additionalProperties": false,
