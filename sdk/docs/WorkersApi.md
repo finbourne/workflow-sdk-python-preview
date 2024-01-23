@@ -5,10 +5,12 @@ All URIs are relative to *https://www.lusid.com/workflow*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_worker**](WorkersApi.md#create_worker) | **POST** /api/workers | [EXPERIMENTAL] CreateWorker: Create a new Worker
+[**delete_worker**](WorkersApi.md#delete_worker) | **DELETE** /api/workers/{scope}/{code} | [EXPERIMENTAL] DeleteWorker: Delete a Worker
 [**get_worker**](WorkersApi.md#get_worker) | **GET** /api/workers/{scope}/{code} | [EXPERIMENTAL] GetWorker: Get a Worker
 [**get_worker_result**](WorkersApi.md#get_worker_result) | **GET** /api/workers/{runId}/$result | [EXPERIMENTAL] GetWorkerResult: Get the status of a specific run of a worker with any relevant results
 [**list_workers**](WorkersApi.md#list_workers) | **GET** /api/workers | [EXPERIMENTAL] ListWorkers: List Workers
 [**run_worker**](WorkersApi.md#run_worker) | **POST** /api/workers/{scope}/{code}/$run | [EXPERIMENTAL] RunWorker: Run a Worker
+[**update_worker**](WorkersApi.md#update_worker) | **PUT** /api/workers/{scope}/{code} | [EXPERIMENTAL] UpdateWorker: Update a Worker
 
 
 # **create_worker**
@@ -82,6 +84,84 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **201** | Created |  -  |
 **400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **delete_worker**
+> DeletedEntityResponse delete_worker(scope, code)
+
+[EXPERIMENTAL] DeleteWorker: Delete a Worker
+
+If the Worker does not exist a failure will be returned
+
+### Example
+
+* OAuth Authentication (oauth2):
+```python
+from __future__ import print_function
+import time
+import lusid_workflow
+from lusid_workflow.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://www.lusid.com/workflow
+# See configuration.py for a list of all supported configuration parameters.
+configuration = lusid_workflow.Configuration(
+    host = "https://www.lusid.com/workflow"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure OAuth2 access token for authorization: oauth2
+configuration = lusid_workflow.Configuration(
+    host = "https://www.lusid.com/workflow"
+)
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Enter a context with an instance of the API client
+with lusid_workflow.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = lusid_workflow.WorkersApi(api_client)
+    scope = 'scope_example' # str | Scope of the worker to be deleted
+code = 'code_example' # str | Code of the worker to be deleted
+
+    try:
+        # [EXPERIMENTAL] DeleteWorker: Delete a Worker
+        api_response = api_instance.delete_worker(scope, code)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling WorkersApi->delete_worker: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| Scope of the worker to be deleted | 
+ **code** | **str**| Code of the worker to be deleted | 
+
+### Return type
+
+[**DeletedEntityResponse**](DeletedEntityResponse.md)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**400** | The details of the input related failure |  -  |
+**404** | Worker not found. |  -  |
 **0** | Error response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -390,6 +470,86 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Success |  -  |
 **400** | The details of the input related failure |  -  |
+**0** | Error response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_worker**
+> Worker update_worker(scope, code, update_worker_request)
+
+[EXPERIMENTAL] UpdateWorker: Update a Worker
+
+If the Worker does not exist a failure will be returned
+
+### Example
+
+* OAuth Authentication (oauth2):
+```python
+from __future__ import print_function
+import time
+import lusid_workflow
+from lusid_workflow.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://www.lusid.com/workflow
+# See configuration.py for a list of all supported configuration parameters.
+configuration = lusid_workflow.Configuration(
+    host = "https://www.lusid.com/workflow"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure OAuth2 access token for authorization: oauth2
+configuration = lusid_workflow.Configuration(
+    host = "https://www.lusid.com/workflow"
+)
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Enter a context with an instance of the API client
+with lusid_workflow.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = lusid_workflow.WorkersApi(api_client)
+    scope = 'scope_example' # str | Scope of the worker to be updated
+code = 'code_example' # str | Code of the worker to be updated
+update_worker_request = {"displayName":"ASP.Net Health Check worker","description":"Calls /health to check a service is running","workerConfiguration":{"type":"HealthCheck","url":"http://localhost.lusid.com:8282"}} # UpdateWorkerRequest | State of the updated worker
+
+    try:
+        # [EXPERIMENTAL] UpdateWorker: Update a Worker
+        api_response = api_instance.update_worker(scope, code, update_worker_request)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling WorkersApi->update_worker: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **str**| Scope of the worker to be updated | 
+ **code** | **str**| Code of the worker to be updated | 
+ **update_worker_request** | [**UpdateWorkerRequest**](UpdateWorkerRequest.md)| State of the updated worker | 
+
+### Return type
+
+[**Worker**](Worker.md)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**400** | The details of the input related failure |  -  |
+**404** | Worker not found. |  -  |
 **0** | Error response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

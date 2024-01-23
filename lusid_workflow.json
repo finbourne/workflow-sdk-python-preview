@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.721",
+    "version": "0.1.727",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -3685,6 +3685,357 @@
       }
     },
     "/api/workers/{scope}/{code}": {
+      "put": {
+        "tags": [
+          "Workers"
+        ],
+        "summary": "[EXPERIMENTAL] UpdateWorker: Update a Worker",
+        "description": "If the Worker does not exist a failure will be returned",
+        "operationId": "UpdateWorker",
+        "parameters": [
+          {
+            "name": "scope",
+            "in": "path",
+            "description": "Scope of the worker to be updated",
+            "required": true,
+            "schema": {
+              "maxLength": 64,
+              "minLength": 1,
+              "pattern": "^[a-zA-Z0-9\\-_]+$",
+              "type": "string"
+            }
+          },
+          {
+            "name": "code",
+            "in": "path",
+            "description": "Code of the worker to be updated",
+            "required": true,
+            "schema": {
+              "maxLength": 64,
+              "minLength": 1,
+              "pattern": "^[a-zA-Z0-9\\-_]+$",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "State of the updated worker",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateWorkerRequest"
+              },
+              "example": {
+                "displayName": "ASP.Net Health Check worker",
+                "description": "Calls /health to check a service is running",
+                "workerConfiguration": {
+                  "type": "HealthCheck",
+                  "url": "http://localhost.lusid.com:8282"
+                }
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateWorkerRequest"
+              },
+              "example": {
+                "displayName": "ASP.Net Health Check worker",
+                "description": "Calls /health to check a service is running",
+                "workerConfiguration": {
+                  "type": "HealthCheck",
+                  "url": "http://localhost.lusid.com:8282"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateWorkerRequest"
+              },
+              "example": {
+                "displayName": "ASP.Net Health Check worker",
+                "description": "Calls /health to check a service is running",
+                "workerConfiguration": {
+                  "type": "HealthCheck",
+                  "url": "http://localhost.lusid.com:8282"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateWorkerRequest"
+              },
+              "example": {
+                "displayName": "ASP.Net Health Check worker",
+                "description": "Calls /health to check a service is running",
+                "workerConfiguration": {
+                  "type": "HealthCheck",
+                  "url": "http://localhost.lusid.com:8282"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Worker"
+                },
+                "example": {
+                  "id": {
+                    "scope": "Health",
+                    "code": "HealthCheckWorker"
+                  },
+                  "displayName": "ASP.Net Health Check worker",
+                  "description": "Calls /health to check a service is running",
+                  "workerConfiguration": {
+                    "type": "HealthCheck",
+                    "url": "http://localhost.lusid.com:8282/health"
+                  },
+                  "version": {
+                    "asAtCreated": "2023-01-01T12:00:00.0000000+00:00",
+                    "userIdCreated": "UserId123",
+                    "requestIdCreated": "RequestId123",
+                    "asAtModified": "2023-01-01T12:00:00.0000000+00:00",
+                    "userIdModified": "UserId123",
+                    "requestIdModified": "RequestId123",
+                    "asAtVersionNumber": 1
+                  },
+                  "parameters": [],
+                  "resultFields": []
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Worker"
+                },
+                "example": {
+                  "id": {
+                    "scope": "Health",
+                    "code": "HealthCheckWorker"
+                  },
+                  "displayName": "ASP.Net Health Check worker",
+                  "description": "Calls /health to check a service is running",
+                  "workerConfiguration": {
+                    "type": "HealthCheck",
+                    "url": "http://localhost.lusid.com:8282/health"
+                  },
+                  "version": {
+                    "asAtCreated": "2023-01-01T12:00:00.0000000+00:00",
+                    "userIdCreated": "UserId123",
+                    "requestIdCreated": "RequestId123",
+                    "asAtModified": "2023-01-01T12:00:00.0000000+00:00",
+                    "userIdModified": "UserId123",
+                    "requestIdModified": "RequestId123",
+                    "asAtVersionNumber": 1
+                  },
+                  "parameters": [],
+                  "resultFields": []
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Worker"
+                },
+                "example": {
+                  "id": {
+                    "scope": "Health",
+                    "code": "HealthCheckWorker"
+                  },
+                  "displayName": "ASP.Net Health Check worker",
+                  "description": "Calls /health to check a service is running",
+                  "workerConfiguration": {
+                    "type": "HealthCheck",
+                    "url": "http://localhost.lusid.com:8282/health"
+                  },
+                  "version": {
+                    "asAtCreated": "2023-01-01T12:00:00.0000000+00:00",
+                    "userIdCreated": "UserId123",
+                    "requestIdCreated": "RequestId123",
+                    "asAtModified": "2023-01-01T12:00:00.0000000+00:00",
+                    "userIdModified": "UserId123",
+                    "requestIdModified": "RequestId123",
+                    "asAtVersionNumber": 1
+                  },
+                  "parameters": [],
+                  "resultFields": []
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The details of the input related failure",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Worker not found.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": []
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
+      },
+      "delete": {
+        "tags": [
+          "Workers"
+        ],
+        "summary": "[EXPERIMENTAL] DeleteWorker: Delete a Worker",
+        "description": "If the Worker does not exist a failure will be returned",
+        "operationId": "DeleteWorker",
+        "parameters": [
+          {
+            "name": "scope",
+            "in": "path",
+            "description": "Scope of the worker to be deleted",
+            "required": true,
+            "schema": {
+              "maxLength": 64,
+              "minLength": 1,
+              "pattern": "^[a-zA-Z0-9\\-_]+$",
+              "type": "string"
+            }
+          },
+          {
+            "name": "code",
+            "in": "path",
+            "description": "Code of the worker to be deleted",
+            "required": true,
+            "schema": {
+              "maxLength": 64,
+              "minLength": 1,
+              "pattern": "^[a-zA-Z0-9\\-_]+$",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeletedEntityResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeletedEntityResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeletedEntityResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The details of the input related failure",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Worker not found.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": []
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
+      },
       "get": {
         "tags": [
           "Workers"
@@ -5711,6 +6062,35 @@
         },
         "additionalProperties": false,
         "description": "A request to update a Task"
+      },
+      "UpdateWorkerRequest": {
+        "required": [
+          "displayName",
+          "workerConfiguration"
+        ],
+        "type": "object",
+        "properties": {
+          "displayName": {
+            "maxLength": 512,
+            "minLength": 1,
+            "pattern": "^[\\s\\S]*$",
+            "type": "string",
+            "description": "Human readable name"
+          },
+          "description": {
+            "maxLength": 1024,
+            "minLength": 0,
+            "pattern": "^[\\s\\S]*$",
+            "type": "string",
+            "description": "Human readable description",
+            "nullable": true
+          },
+          "workerConfiguration": {
+            "description": "Information about how the worker should be executed"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Request to Update a new worker"
       },
       "VersionInfo": {
         "type": "object",
