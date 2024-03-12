@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.796",
+    "version": "0.1.797",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -159,6 +159,7 @@
                 "actions": [
                   {
                     "name": "health-check",
+                    "runAsUserId": "user-id",
                     "actionDetails": {
                       "type": "RunWorker",
                       "workerId": {
@@ -325,6 +326,7 @@
                 "actions": [
                   {
                     "name": "health-check",
+                    "runAsUserId": "user-id",
                     "actionDetails": {
                       "type": "RunWorker",
                       "workerId": {
@@ -491,6 +493,7 @@
                 "actions": [
                   {
                     "name": "health-check",
+                    "runAsUserId": "user-id",
                     "actionDetails": {
                       "type": "RunWorker",
                       "workerId": {
@@ -657,6 +660,7 @@
                 "actions": [
                   {
                     "name": "health-check",
+                    "runAsUserId": "user-id",
                     "actionDetails": {
                       "type": "RunWorker",
                       "workerId": {
@@ -803,6 +807,7 @@
                   "actions": [
                     {
                       "name": "health-check",
+                      "runAsUserId": "user-id",
                       "actionDetails": {
                         "type": "RunWorker",
                         "workerId": {
@@ -1065,6 +1070,7 @@
                       "actions": [
                         {
                           "name": "health-check",
+                          "runAsUserId": "user-id",
                           "actionDetails": {
                             "type": "RunWorker",
                             "workerId": {
@@ -1331,6 +1337,7 @@
                   "actions": [
                     {
                       "name": "health-check",
+                      "runAsUserId": "user-id",
                       "actionDetails": {
                         "type": "RunWorker",
                         "workerId": {
@@ -1604,6 +1611,7 @@
                 "actions": [
                   {
                     "name": "health-check",
+                    "runAsUserId": "user-id",
                     "actionDetails": {
                       "type": "RunWorker",
                       "workerId": {
@@ -1766,6 +1774,7 @@
                 "actions": [
                   {
                     "name": "health-check",
+                    "runAsUserId": "user-id",
                     "actionDetails": {
                       "type": "RunWorker",
                       "workerId": {
@@ -1928,6 +1937,7 @@
                 "actions": [
                   {
                     "name": "health-check",
+                    "runAsUserId": "user-id",
                     "actionDetails": {
                       "type": "RunWorker",
                       "workerId": {
@@ -2090,6 +2100,7 @@
                 "actions": [
                   {
                     "name": "health-check",
+                    "runAsUserId": "user-id",
                     "actionDetails": {
                       "type": "RunWorker",
                       "workerId": {
@@ -2236,6 +2247,7 @@
                   "actions": [
                     {
                       "name": "health-check",
+                      "runAsUserId": "user-id",
                       "actionDetails": {
                         "type": "RunWorker",
                         "workerId": {
@@ -4395,6 +4407,14 @@
             "type": "string",
             "description": "The Name of this Action"
           },
+          "runAsUserId": {
+            "maxLength": 1024,
+            "minLength": 0,
+            "pattern": "^[a-zA-Z0-9\\-_]+$",
+            "type": "string",
+            "description": "The ID of the user that this action will be performed by. If not specified, the actions will be performed by the \"current user\".",
+            "nullable": true
+          },
           "actionDetails": {
             "$ref": "#/components/schemas/ActionDetails"
           }
@@ -4408,6 +4428,11 @@
           "name": {
             "type": "string",
             "description": "The Name of this Action",
+            "nullable": true
+          },
+          "runAsUserId": {
+            "type": "string",
+            "description": "The ID of the user that this action will be performed by. If not specified, the actions will be performed by the \"current user\".",
             "nullable": true
           },
           "actionDetails": {
