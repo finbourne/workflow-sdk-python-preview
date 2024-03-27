@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.835",
+    "version": "0.1.840",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -5514,6 +5514,46 @@
         "additionalProperties": false,
         "description": "The RunWorker response"
       },
+      "SchedulerJob": {
+        "required": [
+          "jobId",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "minLength": 1,
+            "enum": [
+              "SchedulerJob"
+            ],
+            "type": "string",
+            "description": "The type of worker"
+          },
+          "jobId": {
+            "$ref": "#/components/schemas/ResourceId"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Configuration for a Worker that calls a Scheduler Job"
+      },
+      "SchedulerJobResponse": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "enum": [
+              "SchedulerJob"
+            ],
+            "type": "string",
+            "description": "The type of worker",
+            "nullable": true
+          },
+          "jobId": {
+            "$ref": "#/components/schemas/ResourceId"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Readonly configuration for a Worker that calls a Scheduler job"
+      },
       "Sleep": {
         "required": [
           "type"
@@ -6232,6 +6272,9 @@
             "$ref": "#/components/schemas/LuminesceView"
           },
           {
+            "$ref": "#/components/schemas/SchedulerJob"
+          },
+          {
             "$ref": "#/components/schemas/Sleep"
           }
         ],
@@ -6256,6 +6299,9 @@
           },
           {
             "$ref": "#/components/schemas/LuminesceViewResponse"
+          },
+          {
+            "$ref": "#/components/schemas/SchedulerJobResponse"
           },
           {
             "$ref": "#/components/schemas/SleepResponse"

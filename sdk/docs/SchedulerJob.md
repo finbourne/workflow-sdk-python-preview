@@ -1,14 +1,12 @@
-# WorkerConfigurationResponse
+# SchedulerJob
 
-Readonly information about how the worker should be executed
+Configuration for a Worker that calls a Scheduler Job
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | **str** | The type of worker | 
-**url** | **str** | The URL to check, eg: https://www.google.com/ | [optional] 
-**name** | **str** | Name of the view in Luminesce | [optional] 
-**job_id** | [**ResourceId**](ResourceId.md) |  | [optional] 
+**job_id** | [**ResourceId**](ResourceId.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
