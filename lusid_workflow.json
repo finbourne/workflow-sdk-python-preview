@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.878",
+    "version": "0.1.879",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -21,223 +21,6 @@
     }
   ],
   "paths": {
-    "/api/eventhandlers": {
-      "post": {
-        "tags": [
-          "Event Handlers"
-        ],
-        "summary": "[EXPERIMENTAL] CreateEventHandler: Create a new Event Handler",
-        "operationId": "CreateEventHandler",
-        "requestBody": {
-          "description": "The data to create an Event Handler",
-          "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateEventHandlerRequest"
-              },
-              "example": {
-                "id": {
-                  "scope": "A1",
-                  "code": "ZZZ"
-                },
-                "displayName": "An example Event Handler",
-                "description": "Test",
-                "status": "Active",
-                "eventMatchingPattern": {
-                  "eventType": "PortfolioCreated",
-                  "filter": "body.scope eq 'TestScope'"
-                },
-                "runAsUserId": {
-                  "setTo": "ExampleUserId"
-                },
-                "taskDefinitionId": {
-                  "scope": "A1",
-                  "code": "YYY"
-                },
-                "taskDefinitionAsAt": "9999-12-31T23:59:59.9999999+00:00",
-                "taskActivity": {
-                  "InitialTrigger": "InitialTrigger",
-                  "Type": "CreateNewTask",
-                  "CorrelationIds": [],
-                  "TaskFields": {}
-                }
-              }
-            },
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateEventHandlerRequest"
-              },
-              "example": {
-                "id": {
-                  "scope": "A1",
-                  "code": "ZZZ"
-                },
-                "displayName": "An example Event Handler",
-                "description": "Test",
-                "status": "Active",
-                "eventMatchingPattern": {
-                  "eventType": "PortfolioCreated",
-                  "filter": "body.scope eq 'TestScope'"
-                },
-                "runAsUserId": {
-                  "setTo": "ExampleUserId"
-                },
-                "taskDefinitionId": {
-                  "scope": "A1",
-                  "code": "YYY"
-                },
-                "taskDefinitionAsAt": "9999-12-31T23:59:59.9999999+00:00",
-                "taskActivity": {
-                  "InitialTrigger": "InitialTrigger",
-                  "Type": "CreateNewTask",
-                  "CorrelationIds": [],
-                  "TaskFields": {}
-                }
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateEventHandlerRequest"
-              },
-              "example": {
-                "id": {
-                  "scope": "A1",
-                  "code": "ZZZ"
-                },
-                "displayName": "An example Event Handler",
-                "description": "Test",
-                "status": "Active",
-                "eventMatchingPattern": {
-                  "eventType": "PortfolioCreated",
-                  "filter": "body.scope eq 'TestScope'"
-                },
-                "runAsUserId": {
-                  "setTo": "ExampleUserId"
-                },
-                "taskDefinitionId": {
-                  "scope": "A1",
-                  "code": "YYY"
-                },
-                "taskDefinitionAsAt": "9999-12-31T23:59:59.9999999+00:00",
-                "taskActivity": {
-                  "InitialTrigger": "InitialTrigger",
-                  "Type": "CreateNewTask",
-                  "CorrelationIds": [],
-                  "TaskFields": {}
-                }
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateEventHandlerRequest"
-              },
-              "example": {
-                "id": {
-                  "scope": "A1",
-                  "code": "ZZZ"
-                },
-                "displayName": "An example Event Handler",
-                "description": "Test",
-                "status": "Active",
-                "eventMatchingPattern": {
-                  "eventType": "PortfolioCreated",
-                  "filter": "body.scope eq 'TestScope'"
-                },
-                "runAsUserId": {
-                  "setTo": "ExampleUserId"
-                },
-                "taskDefinitionId": {
-                  "scope": "A1",
-                  "code": "YYY"
-                },
-                "taskDefinitionAsAt": "9999-12-31T23:59:59.9999999+00:00",
-                "taskActivity": {
-                  "InitialTrigger": "InitialTrigger",
-                  "Type": "CreateNewTask",
-                  "CorrelationIds": [],
-                  "TaskFields": {}
-                }
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EventHandler"
-                },
-                "example": {
-                  "id": {
-                    "scope": "A1",
-                    "code": "ZZZ"
-                  },
-                  "version": {
-                    "asAtCreated": "2022-01-01T01:02:03.0000000+00:00",
-                    "userIdCreated": "User-1",
-                    "requestIdCreated": "RequestId-1",
-                    "asAtModified": "2022-01-01T01:02:03.0000000+00:00",
-                    "userIdModified": "User-1",
-                    "requestIdModified": "RequestId-1",
-                    "asAtVersionNumber": 1
-                  },
-                  "displayName": "An example Event Handler",
-                  "description": "Test",
-                  "status": "Active",
-                  "eventMatchingPattern": {
-                    "eventType": "PortfolioCreated",
-                    "filter": "body.scope eq 'TestScope'"
-                  },
-                  "runAsUserId": {
-                    "setTo": "ExampleUserId"
-                  },
-                  "taskDefinitionId": {
-                    "scope": "A1",
-                    "code": "YYY"
-                  },
-                  "taskDefinitionAsAt": "9999-12-31T23:59:59.9999999+00:00",
-                  "taskActivity": {
-                    "initialTrigger": "InitialTrigger",
-                    "type": "CreateNewTask",
-                    "correlationIds": [],
-                    "taskFields": {}
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "The details of the input related failure",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "Error response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/LusidProblemDetails"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "oauth2": []
-          }
-        ],
-        "x-fbn-apistatus": "Experimental"
-      }
-    },
     "/api/taskdefinitions": {
       "post": {
         "tags": [
@@ -4796,58 +4579,6 @@
         "additionalProperties": false,
         "description": "Defines a read-only Create Child Tasks Action"
       },
-      "CreateEventHandlerRequest": {
-        "required": [
-          "displayName",
-          "eventMatchingPattern",
-          "id",
-          "runAsUserId",
-          "status",
-          "taskActivity",
-          "taskDefinitionId"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "$ref": "#/components/schemas/ResourceId"
-          },
-          "displayName": {
-            "minLength": 1,
-            "type": "string",
-            "description": "Human readable name"
-          },
-          "description": {
-            "type": "string",
-            "description": "Human readable description",
-            "nullable": true
-          },
-          "status": {
-            "minLength": 1,
-            "type": "string",
-            "description": "The current status of the event handler"
-          },
-          "eventMatchingPattern": {
-            "$ref": "#/components/schemas/EventMatchingPattern"
-          },
-          "runAsUserId": {
-            "$ref": "#/components/schemas/EventHandlerMapping"
-          },
-          "taskDefinitionId": {
-            "$ref": "#/components/schemas/ResourceId"
-          },
-          "taskDefinitionAsAt": {
-            "type": "string",
-            "description": "AsAt of the required task definition",
-            "format": "date-time",
-            "nullable": true
-          },
-          "taskActivity": {
-            "description": "Defines what the event handler should do after being triggered"
-          }
-        },
-        "additionalProperties": false,
-        "description": "Contains information for creating an Event Handler"
-      },
       "CreateTaskDefinitionRequest": {
         "required": [
           "displayName",
@@ -5016,100 +4747,6 @@
           }
         },
         "additionalProperties": false
-      },
-      "EventHandler": {
-        "required": [
-          "displayName",
-          "eventMatchingPattern",
-          "id",
-          "runAsUserId",
-          "status",
-          "taskActivity",
-          "taskDefinitionId"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "$ref": "#/components/schemas/ResourceId"
-          },
-          "version": {
-            "$ref": "#/components/schemas/VersionInfo"
-          },
-          "displayName": {
-            "minLength": 1,
-            "type": "string",
-            "description": "Human readable name"
-          },
-          "description": {
-            "type": "string",
-            "description": "Human readable description",
-            "nullable": true
-          },
-          "status": {
-            "minLength": 1,
-            "type": "string",
-            "description": "The current status of the event handler"
-          },
-          "eventMatchingPattern": {
-            "$ref": "#/components/schemas/EventMatchingPattern"
-          },
-          "runAsUserId": {
-            "$ref": "#/components/schemas/EventHandlerMapping"
-          },
-          "taskDefinitionId": {
-            "$ref": "#/components/schemas/ResourceId"
-          },
-          "taskDefinitionAsAt": {
-            "type": "string",
-            "description": "AsAt of the required task definition",
-            "format": "date-time",
-            "nullable": true
-          },
-          "taskActivity": {
-            "description": "Defines what the event handler should do after being triggered"
-          }
-        },
-        "additionalProperties": false,
-        "description": "Information about an Event Handler"
-      },
-      "EventHandlerMapping": {
-        "type": "object",
-        "properties": {
-          "mapFrom": {
-            "type": "string",
-            "description": "The field to map from",
-            "nullable": true
-          },
-          "setTo": {
-            "type": "string",
-            "description": "The (constant) value to set",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "Defines a mapping for event handler properties"
-      },
-      "EventMatchingPattern": {
-        "required": [
-          "eventType"
-        ],
-        "type": "object",
-        "properties": {
-          "eventType": {
-            "maxLength": 512,
-            "minLength": 0,
-            "pattern": "^[a-zA-Z]*$",
-            "type": "string",
-            "description": "The type of event to subscribe to. The list of available event types can be discovered\r\nby calling the ‘List available EventTypes’ API endpoint in the Notifications service"
-          },
-          "filter": {
-            "type": "string",
-            "description": "A filter on the event. See https://support.lusid.com/filtering-results-from-lusid for more information.\r\nIf not provided, all events will be matched.",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "The matching event pattern object"
       },
       "Fail": {
         "required": [
@@ -6724,10 +6361,6 @@
   ],
   "tags": [
     {
-      "name": "Event Handlers",
-      "description": "Workflow endpoint for managing Event Handlers"
-    },
-    {
       "name": "Task Definitions",
       "description": "Workflow endpoint for managing Task Definitions"
     },
@@ -6743,7 +6376,6 @@
   "x-tagGroups": {
     "name": "API",
     "tags": [
-      "Event Handlers",
       "Task Definitions",
       "Tasks",
       "Workers"
