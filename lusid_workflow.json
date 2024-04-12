@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.884",
+    "version": "0.1.891",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -21,6 +21,54 @@
     }
   ],
   "paths": {
+    "/api/metadata/access/resources": {
+      "get": {
+        "tags": [
+          "Application Metadata"
+        ],
+        "summary": "[EXPERIMENTAL] ListAccessControlledResources: Get resources available for access control",
+        "description": "Get the comprehensive set of resources that are available for access control",
+        "operationId": "ListAccessControlledResources",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceListOfAccessControlledResource"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceListOfAccessControlledResource"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceListOfAccessControlledResource"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": []
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
+      }
+    },
     "/api/taskdefinitions": {
       "post": {
         "tags": [
@@ -4393,6 +4441,79 @@
   },
   "components": {
     "schemas": {
+      "AccessControlledAction": {
+        "required": [
+          "action",
+          "description"
+        ],
+        "type": "object",
+        "properties": {
+          "description": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "action": {
+            "$ref": "#/components/schemas/ActionId"
+          },
+          "limitedSet": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IdSelectorDefinition"
+            },
+            "nullable": true
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Link"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AccessControlledResource": {
+        "required": [
+          "actions",
+          "description"
+        ],
+        "type": "object",
+        "properties": {
+          "application": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "actions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccessControlledAction"
+            }
+          },
+          "identifierParts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IdentifierPartSchema"
+            },
+            "nullable": true
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Link"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ActionDefinition": {
         "required": [
           "actionDetails",
@@ -4490,6 +4611,32 @@
         },
         "additionalProperties": false,
         "description": "Abstracts the kinds of Actions available in a read-only form"
+      },
+      "ActionId": {
+        "required": [
+          "activity",
+          "entity",
+          "scope"
+        ],
+        "type": "object",
+        "properties": {
+          "scope": {
+            "maxLength": 100,
+            "minLength": 3,
+            "type": "string"
+          },
+          "activity": {
+            "maxLength": 25,
+            "minLength": 3,
+            "type": "string"
+          },
+          "entity": {
+            "maxLength": 25,
+            "minLength": 3,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
       },
       "CreateChildTaskConfiguration": {
         "required": [
@@ -4875,6 +5022,81 @@
         "additionalProperties": false,
         "description": "Readonly configuration for a Worker that performs a GET against a given Url."
       },
+      "IdentifierPartSchema": {
+        "required": [
+          "description",
+          "displayName",
+          "index",
+          "name",
+          "required"
+        ],
+        "type": "object",
+        "properties": {
+          "index": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "displayName": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "description": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Link"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "IdSelectorDefinition": {
+        "required": [
+          "actions",
+          "identifier"
+        ],
+        "type": "object",
+        "properties": {
+          "identifier": {
+            "minLength": 1,
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "actions": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ActionId"
+            }
+          },
+          "name": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "maxLength": 1024,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "InitialState": {
         "required": [
           "name"
@@ -5258,6 +5480,41 @@
           },
           "code": {
             "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResourceListOfAccessControlledResource": {
+        "required": [
+          "values"
+        ],
+        "type": "object",
+        "properties": {
+          "values": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccessControlledResource"
+            }
+          },
+          "href": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Link"
+            },
+            "nullable": true
+          },
+          "nextPage": {
+            "type": "string",
+            "nullable": true
+          },
+          "previousPage": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -6361,6 +6618,10 @@
   ],
   "tags": [
     {
+      "name": "Application Metadata",
+      "description": "Methods for querying Workflow application metadata"
+    },
+    {
       "name": "Task Definitions",
       "description": "Workflow endpoint for managing Task Definitions"
     },
@@ -6376,6 +6637,7 @@
   "x-tagGroups": {
     "name": "API",
     "tags": [
+      "Application Metadata",
       "Task Definitions",
       "Tasks",
       "Workers"
