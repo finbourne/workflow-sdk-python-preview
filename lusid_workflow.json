@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.974",
+    "version": "0.1.980",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -5557,11 +5557,87 @@
             "nullable": true
           },
           "taskActivity": {
-            "description": "Defines what the event handler should do after being triggered"
+            "$ref": "#/components/schemas/TaskActivity"
           }
         },
         "additionalProperties": false,
         "description": "Contains information for creating an Event Handler"
+      },
+      "CreateNewTaskActivity": {
+        "required": [
+          "initialTrigger",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "initialTrigger": {
+            "minLength": 1,
+            "type": "string",
+            "description": "Trigger to supply to all tasks to be made"
+          },
+          "type": {
+            "minLength": 1,
+            "enum": [
+              "CreateNewTask"
+            ],
+            "type": "string",
+            "description": "The type of task activity"
+          },
+          "correlationIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EventHandlerMapping"
+            },
+            "description": "The event to correlation ID mappings",
+            "nullable": true
+          },
+          "taskFields": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/FieldMapping"
+            },
+            "description": "The event to task field mappings",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Define a Task Activity that creates a new task"
+      },
+      "CreateNewTaskActivityResponse": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "enum": [
+              "CreateNewTask"
+            ],
+            "type": "string",
+            "description": "Type of task activity",
+            "nullable": true
+          },
+          "initialTrigger": {
+            "type": "string",
+            "description": "Trigger to supply to all tasks to be made",
+            "nullable": true
+          },
+          "correlationIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EventHandlerMapping"
+            },
+            "description": "The event to correlation ID mappings",
+            "nullable": true
+          },
+          "taskFields": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/FieldMapping"
+            },
+            "description": "The event to task field mappings",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Read only Create new task response"
       },
       "CreateTaskDefinitionRequest": {
         "required": [
@@ -5781,7 +5857,7 @@
             "nullable": true
           },
           "taskActivity": {
-            "description": "Defines what the event handler should do after being triggered"
+            "$ref": "#/components/schemas/TaskActivityResponse"
           }
         },
         "additionalProperties": false,
@@ -6949,6 +7025,81 @@
         "additionalProperties": false,
         "description": "Defines a Task created based on a Task Definition"
       },
+      "TaskActivity": {
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/CreateNewTaskActivity"
+          },
+          {
+            "$ref": "#/components/schemas/UpdateMatchingTasksActivity"
+          }
+        ],
+        "properties": {
+          "type": {
+            "minLength": 1,
+            "type": "string",
+            "description": "The type of task activity"
+          },
+          "correlationIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EventHandlerMapping"
+            },
+            "description": "The event to correlation ID mappings",
+            "nullable": true
+          },
+          "taskFields": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/FieldMapping"
+            },
+            "description": "The event to task field mappings",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Information about what tasks to create/update when receiving events"
+      },
+      "TaskActivityResponse": {
+        "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/CreateNewTaskActivityResponse"
+          },
+          {
+            "$ref": "#/components/schemas/UpdateMatchingTasksActivityResponse"
+          }
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "The type of task activity",
+            "nullable": true
+          },
+          "correlationIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EventHandlerMapping"
+            },
+            "description": "The event to correlation ID mappings",
+            "nullable": true
+          },
+          "taskFields": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/FieldMapping"
+            },
+            "description": "The event to task field mappings",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Readonly information about how the worker should be executed"
+      },
       "TaskDefinition": {
         "required": [
           "displayName",
@@ -7300,11 +7451,97 @@
             "nullable": true
           },
           "taskActivity": {
-            "description": "Defines what the event handler should do after being triggered"
+            "$ref": "#/components/schemas/TaskActivity"
           }
         },
         "additionalProperties": false,
         "description": "Contains information for updating an Event Handler"
+      },
+      "UpdateMatchingTasksActivity": {
+        "required": [
+          "trigger",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "minLength": 1,
+            "enum": [
+              "UpdateMatchingTasks"
+            ],
+            "type": "string",
+            "description": "The type of task activity"
+          },
+          "filter": {
+            "type": "string",
+            "description": "The filter that matches on existing tasks",
+            "nullable": true
+          },
+          "trigger": {
+            "minLength": 1,
+            "type": "string",
+            "description": "Trigger to supply to all tasks that have been matched"
+          },
+          "correlationIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EventHandlerMapping"
+            },
+            "description": "The event to correlation ID mappings",
+            "nullable": true
+          },
+          "taskFields": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/FieldMapping"
+            },
+            "description": "The event to task field mappings",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Update all matching tasks based on filter matches"
+      },
+      "UpdateMatchingTasksActivityResponse": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "enum": [
+              "UpdateMatchingTasks"
+            ],
+            "type": "string",
+            "description": "The type of task activity",
+            "nullable": true
+          },
+          "filter": {
+            "type": "string",
+            "description": "The filter that matches on existing tasks",
+            "nullable": true
+          },
+          "trigger": {
+            "type": "string",
+            "description": "Trigger to supply to all tasks that have been matched",
+            "nullable": true
+          },
+          "correlationIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EventHandlerMapping"
+            },
+            "description": "The event to correlation ID mappings",
+            "nullable": true
+          },
+          "taskFields": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/FieldMapping"
+            },
+            "description": "The event to task field mappings",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Readonly TaskActivity response"
       },
       "UpdateTaskDefinitionRequest": {
         "required": [
