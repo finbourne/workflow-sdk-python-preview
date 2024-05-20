@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.1022",
+    "version": "0.1.1023",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -902,11 +902,23 @@
                   },
                   {
                     "name": "assignee",
-                    "type": "String"
+                    "type": "String",
+                    "readOnlyStates": {
+                      "stateType": "SelectedStates",
+                      "selectedStates": [
+                        "Submitted",
+                        "Done",
+                        "SurveyNotSent",
+                        "NotDone"
+                      ]
+                    }
                   },
                   {
                     "name": "resolutionDetail",
-                    "type": "String"
+                    "type": "String",
+                    "readOnlyStates": {
+                      "stateType": "TerminalState"
+                    }
                   }
                 ],
                 "initialState": {
@@ -1069,11 +1081,23 @@
                   },
                   {
                     "name": "assignee",
-                    "type": "String"
+                    "type": "String",
+                    "readOnlyStates": {
+                      "stateType": "SelectedStates",
+                      "selectedStates": [
+                        "Submitted",
+                        "Done",
+                        "SurveyNotSent",
+                        "NotDone"
+                      ]
+                    }
                   },
                   {
                     "name": "resolutionDetail",
-                    "type": "String"
+                    "type": "String",
+                    "readOnlyStates": {
+                      "stateType": "TerminalState"
+                    }
                   }
                 ],
                 "initialState": {
@@ -1236,11 +1260,23 @@
                   },
                   {
                     "name": "assignee",
-                    "type": "String"
+                    "type": "String",
+                    "readOnlyStates": {
+                      "stateType": "SelectedStates",
+                      "selectedStates": [
+                        "Submitted",
+                        "Done",
+                        "SurveyNotSent",
+                        "NotDone"
+                      ]
+                    }
                   },
                   {
                     "name": "resolutionDetail",
-                    "type": "String"
+                    "type": "String",
+                    "readOnlyStates": {
+                      "stateType": "TerminalState"
+                    }
                   }
                 ],
                 "initialState": {
@@ -1403,11 +1439,23 @@
                   },
                   {
                     "name": "assignee",
-                    "type": "String"
+                    "type": "String",
+                    "readOnlyStates": {
+                      "stateType": "SelectedStates",
+                      "selectedStates": [
+                        "Submitted",
+                        "Done",
+                        "SurveyNotSent",
+                        "NotDone"
+                      ]
+                    }
                   },
                   {
                     "name": "resolutionDetail",
-                    "type": "String"
+                    "type": "String",
+                    "readOnlyStates": {
+                      "stateType": "TerminalState"
+                    }
                   }
                 ],
                 "initialState": {
@@ -1586,11 +1634,23 @@
                     },
                     {
                       "name": "assignee",
-                      "type": "String"
+                      "type": "String",
+                      "readOnlyStates": {
+                        "stateType": "SelectedStates",
+                        "selectedStates": [
+                          "Submitted",
+                          "Done",
+                          "SurveyNotSent",
+                          "NotDone"
+                        ]
+                      }
                     },
                     {
                       "name": "resolutionDetail",
-                      "type": "String"
+                      "type": "String",
+                      "readOnlyStates": {
+                        "stateType": "TerminalState"
+                      }
                     }
                   ],
                   "initialState": {
@@ -1849,11 +1909,23 @@
                         },
                         {
                           "name": "assignee",
-                          "type": "String"
+                          "type": "String",
+                          "readOnlyStates": {
+                            "stateType": "SelectedStates",
+                            "selectedStates": [
+                              "Submitted",
+                              "Done",
+                              "SurveyNotSent",
+                              "NotDone"
+                            ]
+                          }
                         },
                         {
                           "name": "resolutionDetail",
-                          "type": "String"
+                          "type": "String",
+                          "readOnlyStates": {
+                            "stateType": "TerminalState"
+                          }
                         }
                       ],
                       "initialState": {
@@ -2116,11 +2188,23 @@
                     },
                     {
                       "name": "assignee",
-                      "type": "String"
+                      "type": "String",
+                      "readOnlyStates": {
+                        "stateType": "SelectedStates",
+                        "selectedStates": [
+                          "Submitted",
+                          "Done",
+                          "SurveyNotSent",
+                          "NotDone"
+                        ]
+                      }
                     },
                     {
                       "name": "resolutionDetail",
-                      "type": "String"
+                      "type": "String",
+                      "readOnlyStates": {
+                        "stateType": "TerminalState"
+                      }
                     }
                   ],
                   "initialState": {
@@ -2354,11 +2438,23 @@
                   },
                   {
                     "name": "assignee",
-                    "type": "String"
+                    "type": "String",
+                    "readOnlyStates": {
+                      "stateType": "SelectedStates",
+                      "selectedStates": [
+                        "Submitted",
+                        "Done",
+                        "SurveyNotSent",
+                        "NotDone"
+                      ]
+                    }
                   },
                   {
                     "name": "resolutionDetail",
-                    "type": "String"
+                    "type": "String",
+                    "readOnlyStates": {
+                      "stateType": "TerminalState"
+                    }
                   }
                 ],
                 "initialState": {
@@ -2517,11 +2613,23 @@
                   },
                   {
                     "name": "assignee",
-                    "type": "String"
+                    "type": "String",
+                    "readOnlyStates": {
+                      "stateType": "SelectedStates",
+                      "selectedStates": [
+                        "Submitted",
+                        "Done",
+                        "SurveyNotSent",
+                        "NotDone"
+                      ]
+                    }
                   },
                   {
                     "name": "resolutionDetail",
-                    "type": "String"
+                    "type": "String",
+                    "readOnlyStates": {
+                      "stateType": "TerminalState"
+                    }
                   }
                 ],
                 "initialState": {
@@ -2680,11 +2788,23 @@
                   },
                   {
                     "name": "assignee",
-                    "type": "String"
+                    "type": "String",
+                    "readOnlyStates": {
+                      "stateType": "SelectedStates",
+                      "selectedStates": [
+                        "Submitted",
+                        "Done",
+                        "SurveyNotSent",
+                        "NotDone"
+                      ]
+                    }
                   },
                   {
                     "name": "resolutionDetail",
-                    "type": "String"
+                    "type": "String",
+                    "readOnlyStates": {
+                      "stateType": "TerminalState"
+                    }
                   }
                 ],
                 "initialState": {
@@ -2843,11 +2963,23 @@
                   },
                   {
                     "name": "assignee",
-                    "type": "String"
+                    "type": "String",
+                    "readOnlyStates": {
+                      "stateType": "SelectedStates",
+                      "selectedStates": [
+                        "Submitted",
+                        "Done",
+                        "SurveyNotSent",
+                        "NotDone"
+                      ]
+                    }
                   },
                   {
                     "name": "resolutionDetail",
-                    "type": "String"
+                    "type": "String",
+                    "readOnlyStates": {
+                      "stateType": "TerminalState"
+                    }
                   }
                 ],
                 "initialState": {
@@ -3026,11 +3158,23 @@
                     },
                     {
                       "name": "assignee",
-                      "type": "String"
+                      "type": "String",
+                      "readOnlyStates": {
+                        "stateType": "SelectedStates",
+                        "selectedStates": [
+                          "Submitted",
+                          "Done",
+                          "SurveyNotSent",
+                          "NotDone"
+                        ]
+                      }
                     },
                     {
                       "name": "resolutionDetail",
-                      "type": "String"
+                      "type": "String",
+                      "readOnlyStates": {
+                        "stateType": "TerminalState"
+                      }
                     }
                   ],
                   "initialState": {
@@ -6533,6 +6677,29 @@
         "additionalProperties": false,
         "description": "Defines a Parameter Value"
       },
+      "ReadOnlyStates": {
+        "required": [
+          "selectedStates",
+          "stateType"
+        ],
+        "type": "object",
+        "properties": {
+          "stateType": {
+            "minLength": 1,
+            "type": "string",
+            "description": "The State Type (e.g. InitialState, AllStates, SelectedStates)"
+          },
+          "selectedStates": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Named states for which the field will be readonly - This field can only be populated if StateType = SelectedStates"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Information about which states the field can be edited in"
+      },
       "ResourceId": {
         "required": [
           "code",
@@ -7225,6 +7392,9 @@
             "minLength": 1,
             "type": "string",
             "description": "The value type for the field. Available values are: \"String\", \"Decimal\", \"DateTime\", \"Boolean\")"
+          },
+          "readOnlyStates": {
+            "$ref": "#/components/schemas/ReadOnlyStates"
           }
         },
         "additionalProperties": false,
