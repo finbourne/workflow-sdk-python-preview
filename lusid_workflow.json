@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.1026",
+    "version": "0.1.1027",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -374,13 +374,13 @@
         "tags": [
           "Event Handlers"
         ],
-        "summary": "[EXPERIMENTAL] UpdateEventHandler: Update an existing Task Definition",
+        "summary": "[EXPERIMENTAL] UpdateEventHandler: Update an existing Event handler",
         "operationId": "UpdateEventHandler",
         "parameters": [
           {
             "name": "scope",
             "in": "path",
-            "description": "The scope that identifies a Task Definition",
+            "description": "The scope that identifies an Event Handler",
             "required": true,
             "schema": {
               "maxLength": 64,
@@ -392,7 +392,7 @@
           {
             "name": "code",
             "in": "path",
-            "description": "The code that identifies a Task Definition",
+            "description": "The code that identifies an Event Handler",
             "required": true,
             "schema": {
               "maxLength": 64,
@@ -403,7 +403,7 @@
           }
         ],
         "requestBody": {
-          "description": "The data to update a Task Definition",
+          "description": "The data to update an Event Handler",
           "content": {
             "application/json-patch+json": {
               "schema": {
@@ -578,7 +578,7 @@
             }
           },
           "404": {
-            "description": "Task Definition not found.",
+            "description": "Event Handler not found.",
             "content": {
               "application/json": {
                 "schema": {

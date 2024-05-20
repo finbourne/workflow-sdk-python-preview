@@ -8,7 +8,7 @@ Method | HTTP request | Description
 [**delete_event_handler**](EventHandlersApi.md#delete_event_handler) | **DELETE** /api/eventhandlers/{scope}/{code} | [EXPERIMENTAL] DeleteEventHandler: Delete an Event Handler
 [**get_event_handler**](EventHandlersApi.md#get_event_handler) | **GET** /api/eventhandlers/{scope}/{code} | [EXPERIMENTAL] GetEventHandler: Get an Event Handler
 [**list_event_handlers**](EventHandlersApi.md#list_event_handlers) | **GET** /api/eventhandlers | [EXPERIMENTAL] ListEventHandlers: List Event Handlers
-[**update_event_handler**](EventHandlersApi.md#update_event_handler) | **PUT** /api/eventhandlers/{scope}/{code} | [EXPERIMENTAL] UpdateEventHandler: Update an existing Task Definition
+[**update_event_handler**](EventHandlersApi.md#update_event_handler) | **PUT** /api/eventhandlers/{scope}/{code} | [EXPERIMENTAL] UpdateEventHandler: Update an existing Event handler
 
 
 # **create_event_handler**
@@ -323,7 +323,7 @@ Name | Type | Description  | Notes
 # **update_event_handler**
 > EventHandler update_event_handler(scope, code, update_event_handler_request)
 
-[EXPERIMENTAL] UpdateEventHandler: Update an existing Task Definition
+[EXPERIMENTAL] UpdateEventHandler: Update an existing Event handler
 
 ### Example
 
@@ -355,12 +355,12 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with lusid_workflow.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = lusid_workflow.EventHandlersApi(api_client)
-    scope = 'scope_example' # str | The scope that identifies a Task Definition
-code = 'code_example' # str | The code that identifies a Task Definition
-update_event_handler_request = {"displayName":"An example Event Handler","description":"Test","status":"Active","eventMatchingPattern":{"eventType":"PortfolioCreated","filter":"body.portfolioScope eq 'TestScope'"},"runAsUserId":{"setTo":"ExampleUserId"},"taskDefinitionId":{"scope":"A1","code":"YYY"},"taskDefinitionAsAt":"9999-12-31T23:59:59.9999999+00:00","taskActivity":{"InitialTrigger":"InitialTrigger","Type":"CreateNewTask","CorrelationIds":[],"TaskFields":{}}} # UpdateEventHandlerRequest | The data to update a Task Definition
+    scope = 'scope_example' # str | The scope that identifies an Event Handler
+code = 'code_example' # str | The code that identifies an Event Handler
+update_event_handler_request = {"displayName":"An example Event Handler","description":"Test","status":"Active","eventMatchingPattern":{"eventType":"PortfolioCreated","filter":"body.portfolioScope eq 'TestScope'"},"runAsUserId":{"setTo":"ExampleUserId"},"taskDefinitionId":{"scope":"A1","code":"YYY"},"taskDefinitionAsAt":"9999-12-31T23:59:59.9999999+00:00","taskActivity":{"InitialTrigger":"InitialTrigger","Type":"CreateNewTask","CorrelationIds":[],"TaskFields":{}}} # UpdateEventHandlerRequest | The data to update an Event Handler
 
     try:
-        # [EXPERIMENTAL] UpdateEventHandler: Update an existing Task Definition
+        # [EXPERIMENTAL] UpdateEventHandler: Update an existing Event handler
         api_response = api_instance.update_event_handler(scope, code, update_event_handler_request)
         pprint(api_response)
     except ApiException as e:
@@ -371,9 +371,9 @@ update_event_handler_request = {"displayName":"An example Event Handler","descri
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **scope** | **str**| The scope that identifies a Task Definition | 
- **code** | **str**| The code that identifies a Task Definition | 
- **update_event_handler_request** | [**UpdateEventHandlerRequest**](UpdateEventHandlerRequest.md)| The data to update a Task Definition | 
+ **scope** | **str**| The scope that identifies an Event Handler | 
+ **code** | **str**| The code that identifies an Event Handler | 
+ **update_event_handler_request** | [**UpdateEventHandlerRequest**](UpdateEventHandlerRequest.md)| The data to update an Event Handler | 
 
 ### Return type
 
@@ -393,7 +393,7 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Success |  -  |
 **400** | The details of the input related failure |  -  |
-**404** | Task Definition not found. |  -  |
+**404** | Event Handler not found. |  -  |
 **0** | Error response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
