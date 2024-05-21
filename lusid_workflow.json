@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.1030",
+    "version": "0.1.1043",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -6679,7 +6679,6 @@
       },
       "ReadOnlyStates": {
         "required": [
-          "selectedStates",
           "stateType"
         ],
         "type": "object",
@@ -6687,14 +6686,15 @@
           "stateType": {
             "minLength": 1,
             "type": "string",
-            "description": "The State Type (e.g. InitialState, AllStates, SelectedStates)"
+            "description": "The State Type (e.g. InitialState, AllStates, TerminalState, SelectedStates)"
           },
           "selectedStates": {
             "type": "array",
             "items": {
               "type": "string"
             },
-            "description": "Named states for which the field will be readonly - This field can only be populated if StateType = SelectedStates"
+            "description": "Named states for which the field will be readonly - This field can only be populated if StateType = SelectedStates",
+            "nullable": true
           }
         },
         "additionalProperties": false,
