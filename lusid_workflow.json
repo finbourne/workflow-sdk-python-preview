@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.1046",
+    "version": "0.1.1047",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -7395,6 +7395,9 @@
           },
           "readOnlyStates": {
             "$ref": "#/components/schemas/ReadOnlyStates"
+          },
+          "valueConstraints": {
+            "$ref": "#/components/schemas/ValueConstraints"
           }
         },
         "additionalProperties": false,
@@ -7857,6 +7860,33 @@
         },
         "additionalProperties": false,
         "description": "Request to Update a new worker"
+      },
+      "ValueConstraints": {
+        "required": [
+          "acceptableValues",
+          "constraintType",
+          "valueSourceType"
+        ],
+        "type": "object",
+        "properties": {
+          "constraintType": {
+            "minLength": 1,
+            "type": "string",
+            "description": "Whether the constraint is a suggestion or should be enforced via validation"
+          },
+          "valueSourceType": {
+            "minLength": 1,
+            "type": "string",
+            "description": "The source of the acceptable values"
+          },
+          "acceptableValues": {
+            "type": "array",
+            "items": {},
+            "description": "The acceptable values for the field"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Constraints that should be applied to a Tasks fields"
       },
       "VersionInfo": {
         "type": "object",
