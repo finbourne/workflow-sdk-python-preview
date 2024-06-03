@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.1084",
+    "version": "0.1.1085",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -5756,15 +5756,14 @@
       },
       "CreateNewTaskActivity": {
         "required": [
-          "initialTrigger",
           "type"
         ],
         "type": "object",
         "properties": {
           "initialTrigger": {
-            "minLength": 1,
             "type": "string",
-            "description": "Trigger to supply to all tasks to be made"
+            "description": "Trigger to supply to all tasks to be made",
+            "nullable": true
           },
           "type": {
             "minLength": 1,
