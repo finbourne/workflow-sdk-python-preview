@@ -1,10 +1,11 @@
+![LUSID_by_Finbourne](./resources/Finbourne_Logo_Teal.svg)
+
 # Deprecated
 
 Please note that this repository is deprecated and will be archived early 2024.
 
 All functionality is now contained, in the [workflow-sdk-python](https://github.com/finbourne/workflow-sdk-python) repository on the `main` branch.
 
-![LUSID by Finbourne](https://content.finbourne.com/LUSID_repo.png)
 
 # ${REPO_NAME}
 
