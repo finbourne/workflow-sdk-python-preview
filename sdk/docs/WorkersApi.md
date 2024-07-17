@@ -280,7 +280,7 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with lusid_workflow.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = lusid_workflow.WorkersApi(api_client)
-    run_id = 56 # int | The ID returned when calling Run Worker
+    run_id = 'run_id_example' # str | The ID returned when calling Run Worker
 
     try:
         # [EXPERIMENTAL] GetWorkerResult: Get the status of a specific run of a worker with any relevant results
@@ -294,7 +294,7 @@ with lusid_workflow.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **run_id** | **int**| The ID returned when calling Run Worker | 
+ **run_id** | **str**| The ID returned when calling Run Worker | 
 
 ### Return type
 

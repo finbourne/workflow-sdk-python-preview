@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.1158",
+    "version": "0.1.1171",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -4631,8 +4631,8 @@
             "description": "The ID returned when calling Run Worker",
             "required": true,
             "schema": {
-              "type": "integer",
-              "format": "int64"
+              "type": "string",
+              "format": "uuid"
             }
           }
         ],
@@ -5354,7 +5354,7 @@
                   "$ref": "#/components/schemas/RunWorkerResponse"
                 },
                 "example": {
-                  "runId": 0
+                  "runId": "00000000-0000-0000-0000-000000000000"
                 }
               },
               "application/json": {
@@ -5362,7 +5362,7 @@
                   "$ref": "#/components/schemas/RunWorkerResponse"
                 },
                 "example": {
-                  "runId": 0
+                  "runId": "00000000-0000-0000-0000-000000000000"
                 }
               },
               "text/json": {
@@ -5370,7 +5370,7 @@
                   "$ref": "#/components/schemas/RunWorkerResponse"
                 },
                 "example": {
-                  "runId": 0
+                  "runId": "00000000-0000-0000-0000-000000000000"
                 }
               }
             }
@@ -7013,9 +7013,9 @@
         "type": "object",
         "properties": {
           "runId": {
-            "type": "integer",
+            "type": "string",
             "description": "Identifies a Worker run",
-            "format": "int64"
+            "format": "uuid"
           },
           "statusDetail": {
             "type": "string",
