@@ -46,7 +46,7 @@ configuration.access_token = 'YOUR_ACCESS_TOKEN'
 with lusid_workflow.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = lusid_workflow.EventHandlersApi(api_client)
-    create_event_handler_request = {"id":{"scope":"A1","code":"ZZZ"},"displayName":"An example Event Handler","description":"Test","status":"Active","eventMatchingPattern":{"eventType":"PortfolioCreated","filter":"body.portfolioScope eq 'TestScope'"},"runAsUserId":{"setTo":"ExampleUserId"},"taskDefinitionId":{"scope":"A1","code":"YYY"},"taskDefinitionAsAt":"9999-12-31T23:59:59.9999999+00:00","taskActivity":{"InitialTrigger":"InitialTrigger","Type":"CreateNewTask","CorrelationIds":[],"TaskFields":{}}} # CreateEventHandlerRequest | The data to create an Event Handler
+    create_event_handler_request = {"id":{"scope":"A1","code":"ZZZ"},"displayName":"An example Event Handler","description":"Test","status":"Active","eventMatchingPattern":{"eventType":"PortfolioCreated","filter":"body.portfolioScope eq 'TestScope'"},"runAsUserId":{"setTo":"ExampleUserId"},"taskDefinitionId":{"scope":"A1","code":"YYY"},"taskDefinitionAsAt":"9999-12-31T23:59:59.9999999+00:00","taskActivity":{"initialTrigger":"InitialTrigger","type":"CreateNewTask","correlationIds":[],"taskFields":{}}} # CreateEventHandlerRequest | The data to create an Event Handler
 
     try:
         # [EXPERIMENTAL] CreateEventHandler: Create a new Event Handler
@@ -357,7 +357,7 @@ with lusid_workflow.ApiClient(configuration) as api_client:
     api_instance = lusid_workflow.EventHandlersApi(api_client)
     scope = 'scope_example' # str | The scope that identifies an Event Handler
 code = 'code_example' # str | The code that identifies an Event Handler
-update_event_handler_request = {"displayName":"An example Event Handler","description":"Test","status":"Active","eventMatchingPattern":{"eventType":"PortfolioCreated","filter":"body.portfolioScope eq 'TestScope'"},"runAsUserId":{"setTo":"ExampleUserId"},"taskDefinitionId":{"scope":"A1","code":"YYY"},"taskDefinitionAsAt":"9999-12-31T23:59:59.9999999+00:00","taskActivity":{"InitialTrigger":"InitialTrigger","Type":"CreateNewTask","CorrelationIds":[],"TaskFields":{}}} # UpdateEventHandlerRequest | The data to update an Event Handler
+update_event_handler_request = {"displayName":"An example Event Handler","description":"Test","status":"Active","eventMatchingPattern":{"eventType":"PortfolioCreated","filter":"body.portfolioScope eq 'TestScope'"},"runAsUserId":{"setTo":"ExampleUserId"},"taskDefinitionId":{"scope":"A1","code":"YYY"},"taskDefinitionAsAt":"9999-12-31T23:59:59.9999999+00:00","taskActivity":{"initialTrigger":"InitialTrigger","type":"CreateNewTask","correlationIds":[],"taskFields":{}}} # UpdateEventHandlerRequest | The data to update an Event Handler
 
     try:
         # [EXPERIMENTAL] UpdateEventHandler: Update an existing Event handler
