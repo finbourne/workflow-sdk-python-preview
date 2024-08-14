@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**create_task**](TasksApi.md#create_task) | **POST** /api/tasks | [EXPERIMENTAL] CreateTask: Create a new Task
 [**delete_task**](TasksApi.md#delete_task) | **DELETE** /api/tasks/{id} | [EXPERIMENTAL] DeleteTask: Delete a Task
 [**get_task**](TasksApi.md#get_task) | **GET** /api/tasks/{id} | [EXPERIMENTAL] GetTask: Get a Task
-[**list_tasks**](TasksApi.md#list_tasks) | **GET** /api/tasks | [EXPERIMENTAL] ListTasks: List Tasks
+[**list_tasks**](TasksApi.md#list_tasks) | **GET** /api/tasks | ListTasks: List Tasks
 [**update_task**](TasksApi.md#update_task) | **POST** /api/tasks/{id} | [EXPERIMENTAL] UpdateTask: Update a Task
 
 
@@ -239,7 +239,7 @@ Name | Type | Description  | Notes
 # **list_tasks**
 > PagedResourceListOfTask list_tasks(as_at=as_at, filter=filter, sort_by=sort_by, limit=limit, page=page)
 
-[EXPERIMENTAL] ListTasks: List Tasks
+ListTasks: List Tasks
 
 ### Example
 
@@ -278,7 +278,7 @@ limit = 10 # int | When paginating, limit the number of returned results to this
 page = 'page_example' # str | The pagination token to use to continue listing tasks from a previous call to list tasks. This value is returned from the previous call. If a pagination token is provided the sortBy, filter, effectiveAt, and asAt fields must not have changed since the original request. (optional)
 
     try:
-        # [EXPERIMENTAL] ListTasks: List Tasks
+        # ListTasks: List Tasks
         api_response = api_instance.list_tasks(as_at=as_at, filter=filter, sort_by=sort_by, limit=limit, page=page)
         pprint(api_response)
     except ApiException as e:

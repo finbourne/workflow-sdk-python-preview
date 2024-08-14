@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.1189",
+    "version": "0.1.1190",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -3732,7 +3732,7 @@
         "tags": [
           "Tasks"
         ],
-        "summary": "[EXPERIMENTAL] ListTasks: List Tasks",
+        "summary": "ListTasks: List Tasks",
         "operationId": "ListTasks",
         "parameters": [
           {
@@ -3838,7 +3838,7 @@
             "oauth2": []
           }
         ],
-        "x-fbn-apistatus": "Experimental"
+        "x-fbn-apistatus": "Stable"
       }
     },
     "/api/tasks/{id}": {
