@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**create_task**](TasksApi.md#create_task) | **POST** /api/tasks | [EXPERIMENTAL] CreateTask: Create a new Task
 [**delete_task**](TasksApi.md#delete_task) | **DELETE** /api/tasks/{id} | [EXPERIMENTAL] DeleteTask: Delete a Task
 [**get_task**](TasksApi.md#get_task) | **GET** /api/tasks/{id} | [EXPERIMENTAL] GetTask: Get a Task
+[**get_task_history**](TasksApi.md#get_task_history) | **GET** /api/tasks/{id}/history | [EXPERIMENTAL] GetTaskHistory: Get the history of a Task
 [**list_tasks**](TasksApi.md#list_tasks) | **GET** /api/tasks | ListTasks: List Tasks
 [**update_task**](TasksApi.md#update_task) | **POST** /api/tasks/{id} | [EXPERIMENTAL] UpdateTask: Update a Task
 
@@ -216,6 +217,82 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Task**](Task.md)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**400** | The details of the input related failure |  -  |
+**404** | Task not found. |  -  |
+**0** | Error response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_task_history**
+> ResourceListOfChangeItem get_task_history(id, as_at=as_at)
+
+[EXPERIMENTAL] GetTaskHistory: Get the history of a Task
+
+### Example
+
+* OAuth Authentication (oauth2):
+```python
+from __future__ import print_function
+import time
+import lusid_workflow
+from lusid_workflow.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://www.lusid.com/workflow
+# See configuration.py for a list of all supported configuration parameters.
+configuration = lusid_workflow.Configuration(
+    host = "https://www.lusid.com/workflow"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure OAuth2 access token for authorization: oauth2
+configuration = lusid_workflow.Configuration(
+    host = "https://www.lusid.com/workflow"
+)
+configuration.access_token = 'YOUR_ACCESS_TOKEN'
+
+# Enter a context with an instance of the API client
+with lusid_workflow.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = lusid_workflow.TasksApi(api_client)
+    id = 'id_example' # str | The Task Id for which to get the history
+as_at = '2013-10-20T19:20:30+01:00' # datetime | The asAt datetime of the oldest change to retrieve. Defaults to returning the latest version of the Task if not specified. (optional)
+
+    try:
+        # [EXPERIMENTAL] GetTaskHistory: Get the history of a Task
+        api_response = api_instance.get_task_history(id, as_at=as_at)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling TasksApi->get_task_history: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| The Task Id for which to get the history | 
+ **as_at** | **datetime**| The asAt datetime of the oldest change to retrieve. Defaults to returning the latest version of the Task if not specified. | [optional] 
+
+### Return type
+
+[**ResourceListOfChangeItem**](ResourceListOfChangeItem.md)
 
 ### Authorization
 

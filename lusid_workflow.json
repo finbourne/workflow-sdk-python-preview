@@ -2,18 +2,18 @@
   "openapi": "3.0.1",
   "info": {
     "title": "FINBOURNE Workflow API",
+    "description": "FINBOURNE Technology",
     "termsOfService": "https://www.finbourne.com/legal/terms-conditions",
     "contact": {
       "name": "FINBOURNE Technology",
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.1203",
+    "version": "0.1.1218",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
-    },
-    "description": "FINBOURNE Technology"
+    }
   },
   "servers": [
     {
@@ -4218,6 +4218,87 @@
         "x-fbn-apistatus": "Experimental"
       }
     },
+    "/api/tasks/{id}/history": {
+      "get": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "[EXPERIMENTAL] GetTaskHistory: Get the history of a Task",
+        "operationId": "GetTaskHistory",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The Task Id for which to get the history",
+            "required": true,
+            "schema": {
+              "maxLength": 40,
+              "minLength": 30,
+              "pattern": "^[a-zA-Z0-9\\-]+$",
+              "type": "string"
+            }
+          },
+          {
+            "name": "asAt",
+            "in": "query",
+            "description": "The asAt datetime of the oldest change to retrieve. Defaults to returning the latest version of the Task if not specified.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceListOfChangeItem"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The details of the input related failure",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Task not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": []
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
+      }
+    },
     "/api/workers": {
       "post": {
         "tags": [
@@ -5635,6 +5716,59 @@
         },
         "additionalProperties": false
       },
+      "ChangeItem": {
+        "required": [
+          "action",
+          "asAtModified",
+          "asAtVersionNumber",
+          "attributeName",
+          "newValue",
+          "requestIdModified",
+          "userIdModified"
+        ],
+        "type": "object",
+        "properties": {
+          "asAtModified": {
+            "type": "string",
+            "description": "The AsAt time of the change",
+            "format": "date-time"
+          },
+          "userIdModified": {
+            "minLength": 1,
+            "type": "string",
+            "description": "The User ID that performed the change"
+          },
+          "requestIdModified": {
+            "minLength": 1,
+            "type": "string",
+            "description": "The Request ID of the request that caused the change"
+          },
+          "asAtVersionNumber": {
+            "type": "integer",
+            "description": "The AsAt Version number",
+            "format": "int32"
+          },
+          "action": {
+            "minLength": 1,
+            "type": "string",
+            "description": "The Action that resulted in the change"
+          },
+          "attributeName": {
+            "minLength": 1,
+            "type": "string",
+            "description": "The name of the attribute that has been change"
+          },
+          "previousValue": {
+            "description": "The value of the attribute prior to the change",
+            "nullable": true
+          },
+          "newValue": {
+            "description": "The value of the attribute following the change"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Defines a change that occured to a Task"
+      },
       "CreateChildTaskConfiguration": {
         "required": [
           "taskDefinitionId"
@@ -6770,6 +6904,41 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/AccessControlledResource"
+            }
+          },
+          "href": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Link"
+            },
+            "nullable": true
+          },
+          "nextPage": {
+            "type": "string",
+            "nullable": true
+          },
+          "previousPage": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResourceListOfChangeItem": {
+        "required": [
+          "values"
+        ],
+        "type": "object",
+        "properties": {
+          "values": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ChangeItem"
             }
           },
           "href": {
