@@ -9,7 +9,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.1223",
+    "version": "0.1.1239",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -1037,7 +1037,8 @@
                           "taskDefinitionAsAt": null,
                           "initialTrigger": "test-trigger"
                         }
-                      ]
+                      ],
+                      "workerTimeout": 120
                     }
                   }
                 ]
@@ -1216,7 +1217,8 @@
                           "taskDefinitionAsAt": null,
                           "initialTrigger": "test-trigger"
                         }
-                      ]
+                      ],
+                      "workerTimeout": 120
                     }
                   }
                 ]
@@ -1395,7 +1397,8 @@
                           "taskDefinitionAsAt": null,
                           "initialTrigger": "test-trigger"
                         }
-                      ]
+                      ],
+                      "workerTimeout": 120
                     }
                   }
                 ]
@@ -1574,7 +1577,8 @@
                           "taskDefinitionAsAt": null,
                           "initialTrigger": "test-trigger"
                         }
-                      ]
+                      ],
+                      "workerTimeout": 120
                     }
                   }
                 ]
@@ -1733,7 +1737,8 @@
                             "taskDefinitionAsAt": null,
                             "initialTrigger": "test-trigger"
                           }
-                        ]
+                        ],
+                        "workerTimeout": 120
                       }
                     }
                   ],
@@ -2020,7 +2025,8 @@
                                 "taskDefinitionAsAt": null,
                                 "initialTrigger": "test-trigger"
                               }
-                            ]
+                            ],
+                            "workerTimeout": 120
                           }
                         }
                       ],
@@ -2299,7 +2305,8 @@
                             "taskDefinitionAsAt": null,
                             "initialTrigger": "test-trigger"
                           }
-                        ]
+                        ],
+                        "workerTimeout": 120
                       }
                     }
                   ],
@@ -2585,7 +2592,8 @@
                           "taskDefinitionAsAt": null,
                           "initialTrigger": "test-trigger"
                         }
-                      ]
+                      ],
+                      "workerTimeout": 120
                     }
                   }
                 ]
@@ -2760,7 +2768,8 @@
                           "taskDefinitionAsAt": null,
                           "initialTrigger": "test-trigger"
                         }
-                      ]
+                      ],
+                      "workerTimeout": 120
                     }
                   }
                 ]
@@ -2935,7 +2944,8 @@
                           "taskDefinitionAsAt": null,
                           "initialTrigger": "test-trigger"
                         }
-                      ]
+                      ],
+                      "workerTimeout": 120
                     }
                   }
                 ]
@@ -3110,7 +3120,8 @@
                           "taskDefinitionAsAt": null,
                           "initialTrigger": "test-trigger"
                         }
-                      ]
+                      ],
+                      "workerTimeout": 120
                     }
                   }
                 ]
@@ -3269,7 +3280,8 @@
                             "taskDefinitionAsAt": null,
                             "initialTrigger": "test-trigger"
                           }
-                        ]
+                        ],
+                        "workerTimeout": 120
                       }
                     }
                   ],
@@ -5402,7 +5414,8 @@
                     "name": "test-parameter",
                     "value": true
                   }
-                ]
+                ],
+                "workerTimeout": 120
               }
             },
             "application/json": {
@@ -5415,7 +5428,8 @@
                     "name": "test-parameter",
                     "value": true
                   }
-                ]
+                ],
+                "workerTimeout": 120
               }
             },
             "text/json": {
@@ -5428,7 +5442,8 @@
                     "name": "test-parameter",
                     "value": true
                   }
-                ]
+                ],
+                "workerTimeout": 120
               }
             },
             "application/*+json": {
@@ -5441,7 +5456,8 @@
                     "name": "test-parameter",
                     "value": true
                   }
-                ]
+                ],
+                "workerTimeout": 120
               }
             }
           },
@@ -7131,6 +7147,12 @@
             },
             "description": "Tasks can be generated from run worker results; this is the configuration",
             "nullable": true
+          },
+          "workerTimeout": {
+            "type": "integer",
+            "description": "Worker WorkerTimeout in seconds",
+            "format": "int32",
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -7174,6 +7196,12 @@
             },
             "description": "Tasks can be generated from run worker results; this is the configuration",
             "nullable": true
+          },
+          "workerTimeout": {
+            "type": "integer",
+            "description": "Worker timeout in seconds",
+            "format": "int32",
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -7191,6 +7219,12 @@
               "$ref": "#/components/schemas/ParameterValue"
             },
             "description": "The Parameter and their values."
+          },
+          "workerTimeout": {
+            "type": "integer",
+            "description": "The timeout in seconds for the worker",
+            "format": "int32",
+            "nullable": true
           }
         },
         "additionalProperties": false,

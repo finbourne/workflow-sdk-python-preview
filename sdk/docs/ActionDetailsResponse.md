@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **worker_as_at** | **datetime** | Worker AsAt | [optional] 
 **worker_parameters** | [**dict[str, FieldMapping]**](FieldMapping.md) | Parameters for this Worker | [optional] 
 **worker_status_triggers** | [**WorkerStatusTriggers**](WorkerStatusTriggers.md) |  | [optional] 
+**worker_timeout** | **int** | Worker timeout in seconds | [optional] 
 **trigger** | **str** | Trigger on parent task to be invoked | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

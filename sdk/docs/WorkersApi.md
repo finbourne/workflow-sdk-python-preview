@@ -436,7 +436,7 @@ with lusid_workflow.ApiClient(configuration) as api_client:
     api_instance = lusid_workflow.WorkersApi(api_client)
     scope = 'scope_example' # str | Scope of the worker
 code = 'code_example' # str | Code of the worker
-run_worker_request = {"parameters":[{"name":"test-parameter","value":true}]} # RunWorkerRequest | 
+run_worker_request = {"parameters":[{"name":"test-parameter","value":true}],"workerTimeout":120} # RunWorkerRequest | 
 as_at = '2013-10-20T19:20:30+01:00' # datetime | The asAt datetime at which to retrieve the Worker. Defaults to returning the latest version of the Worker if not specified. (optional)
 
     try:
