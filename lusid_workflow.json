@@ -9,7 +9,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.1252",
+    "version": "0.1.1271",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -21,6 +21,107 @@
     }
   ],
   "paths": {
+    "/api/actionlogs/{id}": {
+      "get": {
+        "tags": [
+          "Action Logs"
+        ],
+        "summary": "[EXPERIMENTAL] GetActionLogs: Get the Action Logs for an Action Id",
+        "operationId": "GetActionLogs",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The Action Id",
+            "required": true,
+            "schema": {
+              "maxLength": 40,
+              "minLength": 30,
+              "pattern": "^[a-zA-Z0-9\\-]+$",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActionLog"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActionLog"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActionLog"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The details of the input related failure",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Action Log not found.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": []
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
+      }
+    },
     "/api/eventhandlers": {
       "post": {
         "tags": [
@@ -4268,6 +4369,41 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResourceListOfChangeItem"
+                },
+                "example": {
+                  "values": [
+                    {
+                      "asAtModified": "2024-01-02T03:00:00.0000000+00:00",
+                      "userIdModified": "UserId1",
+                      "requestIdModified": "RequestId1",
+                      "asAtVersionNumber": 2,
+                      "action": "Update",
+                      "attributeName": "State",
+                      "previousValue": "Ready",
+                      "newValue": "Started"
+                    },
+                    {
+                      "asAtModified": "2024-01-02T03:00:00.0000000+00:00",
+                      "userIdModified": "UserId1",
+                      "requestIdModified": "RequestId1",
+                      "asAtVersionNumber": 2,
+                      "action": "Update",
+                      "attributeName": "Fields[FieldA]",
+                      "previousValue": "A",
+                      "newValue": "B"
+                    },
+                    {
+                      "asAtModified": "2024-01-02T03:01:00.0000000+00:00",
+                      "userIdModified": "UserId2",
+                      "requestIdModified": "RequestId2",
+                      "asAtVersionNumber": 3,
+                      "action": "Update",
+                      "attributeName": "Fields[FieldA]",
+                      "previousValue": "B",
+                      "newValue": "C"
+                    }
+                  ],
+                  "links": []
                 }
               }
             }
@@ -5624,7 +5760,6 @@
           },
           "runAsUserId": {
             "maxLength": 1024,
-            "minLength": 0,
             "pattern": "^[a-zA-Z0-9\\-_]+$",
             "type": "string",
             "description": "The ID of the user that this action will be performed by. If not specified, the actions will be performed by the \"current user\".",
@@ -5725,12 +5860,100 @@
             "type": "string"
           },
           "entity": {
-            "maxLength": 25,
+            "maxLength": 40,
             "minLength": 3,
             "type": "string"
           }
         },
         "additionalProperties": false
+      },
+      "ActionLog": {
+        "required": [
+          "actionType",
+          "id",
+          "loggedItems",
+          "origin"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "pattern": "^[a-zA-Z0-9\\-]+$",
+            "type": "string",
+            "description": "Unique identifier of the Action",
+            "format": "uuid"
+          },
+          "origin": {
+            "$ref": "#/components/schemas/ActionLogOrigin"
+          },
+          "actionType": {
+            "minLength": 1,
+            "type": "string",
+            "description": "The type of the Action"
+          },
+          "runAsUserId": {
+            "maxLength": 1024,
+            "pattern": "^[a-zA-Z0-9\\-_]+$",
+            "type": "string",
+            "description": "The ID of the user that the Action was performed by.\r\nIf not specified, the actions were performed by the \"current user\".",
+            "nullable": true
+          },
+          "loggedItems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ActionLogItem"
+            },
+            "description": "The logged items for this Action"
+          }
+        },
+        "additionalProperties": false,
+        "description": "An Action Log contains the processing history of an Action"
+      },
+      "ActionLogItem": {
+        "required": [
+          "logType",
+          "timestamp"
+        ],
+        "type": "object",
+        "properties": {
+          "timestamp": {
+            "type": "string",
+            "description": "The timestamp of the log item",
+            "format": "date-time"
+          },
+          "logType": {
+            "minLength": 1,
+            "type": "string",
+            "description": "The type of log item"
+          },
+          "details": {
+            "type": "string",
+            "description": "The details of the log item",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "A log item for a given Action Log"
+      },
+      "ActionLogOrigin": {
+        "required": [
+          "requestId"
+        ],
+        "type": "object",
+        "properties": {
+          "taskId": {
+            "type": "string",
+            "description": "The Id of the Task that created this Action",
+            "format": "uuid",
+            "nullable": true
+          },
+          "requestId": {
+            "minLength": 1,
+            "type": "string",
+            "description": "The request Id of the request that caused this Action to be triggered.\r\nThis could be the original request that caused a sequence of Actions that resulted in this Action"
+          }
+        },
+        "additionalProperties": false,
+        "description": "The Action Log Origin contains information about how the Action was created"
       },
       "ChangeItem": {
         "required": [
@@ -7457,6 +7680,24 @@
           },
           "stack": {
             "$ref": "#/components/schemas/Stack"
+          },
+          "actionLogIdCreated": {
+            "type": "string",
+            "description": "The Id of the Action that created this Task",
+            "format": "uuid",
+            "nullable": true
+          },
+          "actionLogIdModified": {
+            "type": "string",
+            "description": "The Id of the Action that last modified this Task",
+            "format": "uuid",
+            "nullable": true
+          },
+          "actionLogIdSubmitted": {
+            "type": "string",
+            "description": "The Id of the last Action submitted by this Task",
+            "format": "uuid",
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -8339,6 +8580,10 @@
   ],
   "tags": [
     {
+      "name": "Action Logs",
+      "description": "Endpoints for retrieving Action Logs"
+    },
+    {
       "name": "Application Metadata",
       "description": "Methods for querying Workflow application metadata"
     },
@@ -8362,6 +8607,7 @@
   "x-tagGroups": {
     "name": "API",
     "tags": [
+      "Action Logs",
       "Application Metadata",
       "Event Handlers",
       "Task Definitions",

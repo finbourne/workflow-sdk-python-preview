@@ -20,6 +20,9 @@ Name | Type | Description | Notes
 **fields** | [**list[TaskInstanceField]**](TaskInstanceField.md) | Fields and their latest values - should correspond with the Task Definition field schema | [optional] 
 **stacking_key** | **str** | The key used to determine which stack to add the Task to | [optional] 
 **stack** | [**Stack**](Stack.md) |  | [optional] 
+**action_log_id_created** | **str** | The Id of the Action that created this Task | [optional] 
+**action_log_id_modified** | **str** | The Id of the Action that last modified this Task | [optional] 
+**action_log_id_submitted** | **str** | The Id of the last Action submitted by this Task | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
