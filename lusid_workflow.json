@@ -9,7 +9,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.1271",
+    "version": "0.1.1274",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -49,16 +49,112 @@
               "text/plain": {
                 "schema": {
                   "$ref": "#/components/schemas/ActionLog"
+                },
+                "example": {
+                  "id": "b9c3f647-5ce8-4d4c-9599-bd6addf6ff29",
+                  "origin": {
+                    "taskId": "c17a8537-68b0-460b-8cbb-a86724163c83",
+                    "requestId": "TestRequestId"
+                  },
+                  "actionType": "RunWorker",
+                  "runAsUserId": "TestUserId",
+                  "loggedItems": [
+                    {
+                      "timestamp": "2024-01-02T03:00:00.0000000+00:00",
+                      "logType": "ActionSubmitted"
+                    },
+                    {
+                      "timestamp": "2024-01-02T03:01:00.0000000+00:00",
+                      "logType": "ActionInitialising"
+                    },
+                    {
+                      "timestamp": "2024-01-02T03:02:00.0000000+00:00",
+                      "logType": "ActionStarted"
+                    },
+                    {
+                      "timestamp": "2024-01-02T03:02:00.0000000+00:00",
+                      "logType": "ActionProgressUpdate",
+                      "details": "Processing Luminesce query"
+                    },
+                    {
+                      "timestamp": "2024-01-02T03:03:00.0000000+00:00",
+                      "logType": "ActionSuccessful"
+                    }
+                  ]
                 }
               },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ActionLog"
+                },
+                "example": {
+                  "id": "b9c3f647-5ce8-4d4c-9599-bd6addf6ff29",
+                  "origin": {
+                    "taskId": "c17a8537-68b0-460b-8cbb-a86724163c83",
+                    "requestId": "TestRequestId"
+                  },
+                  "actionType": "RunWorker",
+                  "runAsUserId": "TestUserId",
+                  "loggedItems": [
+                    {
+                      "timestamp": "2024-01-02T03:00:00.0000000+00:00",
+                      "logType": "ActionSubmitted"
+                    },
+                    {
+                      "timestamp": "2024-01-02T03:01:00.0000000+00:00",
+                      "logType": "ActionInitialising"
+                    },
+                    {
+                      "timestamp": "2024-01-02T03:02:00.0000000+00:00",
+                      "logType": "ActionStarted"
+                    },
+                    {
+                      "timestamp": "2024-01-02T03:02:00.0000000+00:00",
+                      "logType": "ActionProgressUpdate",
+                      "details": "Processing Luminesce query"
+                    },
+                    {
+                      "timestamp": "2024-01-02T03:03:00.0000000+00:00",
+                      "logType": "ActionSuccessful"
+                    }
+                  ]
                 }
               },
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ActionLog"
+                },
+                "example": {
+                  "id": "b9c3f647-5ce8-4d4c-9599-bd6addf6ff29",
+                  "origin": {
+                    "taskId": "c17a8537-68b0-460b-8cbb-a86724163c83",
+                    "requestId": "TestRequestId"
+                  },
+                  "actionType": "RunWorker",
+                  "runAsUserId": "TestUserId",
+                  "loggedItems": [
+                    {
+                      "timestamp": "2024-01-02T03:00:00.0000000+00:00",
+                      "logType": "ActionSubmitted"
+                    },
+                    {
+                      "timestamp": "2024-01-02T03:01:00.0000000+00:00",
+                      "logType": "ActionInitialising"
+                    },
+                    {
+                      "timestamp": "2024-01-02T03:02:00.0000000+00:00",
+                      "logType": "ActionStarted"
+                    },
+                    {
+                      "timestamp": "2024-01-02T03:02:00.0000000+00:00",
+                      "logType": "ActionProgressUpdate",
+                      "details": "Processing Luminesce query"
+                    },
+                    {
+                      "timestamp": "2024-01-02T03:03:00.0000000+00:00",
+                      "logType": "ActionSuccessful"
+                    }
+                  ]
                 }
               }
             }
