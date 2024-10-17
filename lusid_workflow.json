@@ -9,7 +9,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.1275",
+    "version": "0.1.1284",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -934,7 +934,7 @@
             "description": "Scope of the event handler to be deleted",
             "required": true,
             "schema": {
-              "maxLength": 64,
+              "maxLength": 512,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\-_]+$",
               "type": "string"
@@ -946,7 +946,7 @@
             "description": "Code of the event handler to be deleted",
             "required": true,
             "schema": {
-              "maxLength": 64,
+              "maxLength": 512,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\-_]+$",
               "type": "string"
@@ -3573,7 +3573,7 @@
             "description": "The scope that identifies a Task Definition",
             "required": true,
             "schema": {
-              "maxLength": 64,
+              "maxLength": 512,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\-_]+$",
               "type": "string"
@@ -3585,7 +3585,7 @@
             "description": "The code that identifies a Task Definition",
             "required": true,
             "schema": {
-              "maxLength": 64,
+              "maxLength": 512,
               "minLength": 1,
               "pattern": "^[a-zA-Z0-9\\-_]+$",
               "type": "string"
